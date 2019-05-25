@@ -848,6 +848,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         AdminStrateurDashboard.add(EmploiDeTemps, "card4");
 
         SaisieLesNotes.setBackground(new java.awt.Color(254, 254, 254));
+        SaisieLesNotes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton3.setBackground(new java.awt.Color(66, 76, 247));
         jButton3.setForeground(new java.awt.Color(254, 254, 254));
@@ -857,6 +858,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        SaisieLesNotes.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(706, 464, -1, -1));
 
         jButton4.setBackground(new java.awt.Color(66, 76, 247));
         jButton4.setForeground(new java.awt.Color(254, 254, 254));
@@ -866,6 +868,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+        SaisieLesNotes.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(497, 464, -1, -1));
 
         jTextField1.setForeground(new java.awt.Color(185, 185, 185));
         jTextField1.setToolTipText("");
@@ -876,11 +879,14 @@ public class AdminDashboard extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
+        SaisieLesNotes.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 267, 30));
 
         jSeparator1.setBackground(new java.awt.Color(206, 202, 198));
+        SaisieLesNotes.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 267, 14));
 
         jLabel17.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel17.setText("Nom :");
+        SaisieLesNotes.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 49, -1));
 
         jTextField2.setForeground(new java.awt.Color(185, 185, 185));
         jTextField2.setToolTipText("");
@@ -891,11 +897,14 @@ public class AdminDashboard extends javax.swing.JFrame {
                 jTextField2ActionPerformed(evt);
             }
         });
+        SaisieLesNotes.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 267, 30));
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel18.setText("Adress : ");
+        SaisieLesNotes.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 68, -1));
 
         jSeparator2.setBackground(new java.awt.Color(206, 202, 198));
+        SaisieLesNotes.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 267, 14));
 
         jTextField3.setForeground(new java.awt.Color(185, 185, 185));
         jTextField3.setToolTipText("");
@@ -906,11 +915,14 @@ public class AdminDashboard extends javax.swing.JFrame {
                 jTextField3ActionPerformed(evt);
             }
         });
+        SaisieLesNotes.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 267, 30));
 
         jLabel26.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel26.setText("Prenom : ");
+        SaisieLesNotes.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 79, -1));
 
         jSeparator3.setBackground(new java.awt.Color(206, 202, 198));
+        SaisieLesNotes.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 267, 14));
 
         jTextField4.setForeground(new java.awt.Color(185, 185, 185));
         jTextField4.setToolTipText("");
@@ -921,11 +933,14 @@ public class AdminDashboard extends javax.swing.JFrame {
                 jTextField4ActionPerformed(evt);
             }
         });
+        SaisieLesNotes.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 267, 30));
 
         jLabel27.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel27.setText("Niveau : ");
+        SaisieLesNotes.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 69, -1));
 
         jSeparator4.setBackground(new java.awt.Color(206, 202, 198));
+        SaisieLesNotes.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, 267, 14));
 
         dateChooserCombo1.setCurrentView(new datechooser.view.appearance.AppearancesList("Swing",
             new datechooser.view.appearance.ViewAppearance("custom",
@@ -970,25 +985,30 @@ public class AdminDashboard extends javax.swing.JFrame {
                 true)));
     dateChooserCombo1.setCalendarBackground(new java.awt.Color(254, 254, 254));
     dateChooserCombo1.setFieldFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 15));
+    SaisieLesNotes.add(dateChooserCombo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 267, 30));
 
     jLabel28.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
     jLabel28.setText("Date de naissance : ");
+    SaisieLesNotes.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 144, -1));
 
     jComboBox1.setBackground(new java.awt.Color(254, 254, 254));
     jComboBox1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
     jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere Année", "2eme Année", "3eme Année", "4eme Année" }));
+    SaisieLesNotes.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, 267, 30));
 
     jLabel29.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
     jLabel29.setText("Lieu de naissance : ");
+    SaisieLesNotes.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 147, -1));
 
     jButton5.setBackground(new java.awt.Color(66, 76, 247));
     jButton5.setForeground(new java.awt.Color(254, 254, 254));
-    jButton5.setText("Afficher toute");
+    jButton5.setText("Afficher tous");
     jButton5.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButton5ActionPerformed(evt);
         }
     });
+    SaisieLesNotes.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(578, 464, -1, -1));
 
     specifierClasse.setText("Vous voulez specifier l classe?");
     specifierClasse.addActionListener(new java.awt.event.ActionListener() {
@@ -996,109 +1016,17 @@ public class AdminDashboard extends javax.swing.JFrame {
             specifierClasseActionPerformed(evt);
         }
     });
+    SaisieLesNotes.add(specifierClasse, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 360, -1, -1));
 
     jComboBox2.setBackground(new java.awt.Color(254, 254, 254));
     jComboBox2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
     jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere Année", "2eme Année", "3eme Année", "4eme Année" }));
     jComboBox2.setBorder(null);
+    SaisieLesNotes.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, 267, 30));
 
     classeLabel.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
     classeLabel.setText("Classe :");
-
-    javax.swing.GroupLayout SaisieLesNotesLayout = new javax.swing.GroupLayout(SaisieLesNotes);
-    SaisieLesNotes.setLayout(SaisieLesNotesLayout);
-    SaisieLesNotesLayout.setHorizontalGroup(
-        SaisieLesNotesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(SaisieLesNotesLayout.createSequentialGroup()
-            .addGap(89, 89, 89)
-            .addGroup(SaisieLesNotesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addGroup(SaisieLesNotesLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jButton4)
-                    .addGap(18, 18, 18)
-                    .addComponent(jButton5)
-                    .addGap(18, 18, 18)
-                    .addComponent(jButton3))
-                .addGroup(SaisieLesNotesLayout.createSequentialGroup()
-                    .addGroup(SaisieLesNotesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(classeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
-                    .addGroup(SaisieLesNotesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(dateChooserCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(specifierClasse))))
-            .addGap(91, 91, 91))
-    );
-    SaisieLesNotesLayout.setVerticalGroup(
-        SaisieLesNotesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(SaisieLesNotesLayout.createSequentialGroup()
-            .addContainerGap(36, Short.MAX_VALUE)
-            .addGroup(SaisieLesNotesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SaisieLesNotesLayout.createSequentialGroup()
-                    .addComponent(jLabel17)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(30, 30, 30)
-                    .addComponent(jLabel29)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(29, 29, 29)
-                    .addComponent(jLabel18)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SaisieLesNotesLayout.createSequentialGroup()
-                    .addGroup(SaisieLesNotesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SaisieLesNotesLayout.createSequentialGroup()
-                            .addComponent(jLabel26)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(84, 84, 84))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SaisieLesNotesLayout.createSequentialGroup()
-                            .addComponent(jLabel28)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(dateChooserCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(43, 43, 43)
-                    .addComponent(jLabel27)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(SaisieLesNotesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(SaisieLesNotesLayout.createSequentialGroup()
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(27, 27, 27)
-                    .addComponent(classeLabel)
-                    .addGap(5, 5, 5)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(SaisieLesNotesLayout.createSequentialGroup()
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(specifierClasse)))
-            .addGap(85, 85, 85)
-            .addGroup(SaisieLesNotesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jButton4)
-                .addComponent(jButton3)
-                .addComponent(jButton5))
-            .addGap(47, 47, 47))
-    );
+    SaisieLesNotes.add(classeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, 68, -1));
 
     AdminStrateurDashboard.add(SaisieLesNotes, "card4");
 
@@ -1372,7 +1300,8 @@ public class AdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        ElevesListeDetail eld = new ElevesListeDetail();
+        eld.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void specifierClasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_specifierClasseActionPerformed
