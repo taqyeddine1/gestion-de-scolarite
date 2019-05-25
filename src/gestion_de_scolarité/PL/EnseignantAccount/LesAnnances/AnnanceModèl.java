@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gestion_de_scolarité.PL.StudentAccount.LesAnnances;
+package gestion_de_scolarité.PL.EnseignantAccount.LesAnnances;
 
 import java.util.Date;
 

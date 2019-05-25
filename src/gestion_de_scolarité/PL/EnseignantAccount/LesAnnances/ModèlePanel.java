@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gestion_de_scolarité.PL.StudentAccount.LesAnnances;
+package gestion_de_scolarité.PL.EnseignantAccount.LesAnnances;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import javafx.embed.swing.JFXPanel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
@@ -55,7 +56,7 @@ public class ModèlePanel extends javax.swing.JPanel implements ListCellRenderer
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("jLabel3");
 
-        jLabel4.setFont(new java.awt.Font("Abyssinica SIL", 1, 15)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial Black", 1, 15)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("jLabel4");
 
@@ -108,11 +109,13 @@ public class ModèlePanel extends javax.swing.JPanel implements ListCellRenderer
     
     @Override
     public Component getListCellRendererComponent(JList<? extends AnnanceModèl> list, AnnanceModèl value, int index, boolean isSelected, boolean cellHasFocus) {
+        jLabel5.setMaximumSize(new Dimension(100,100));
         jLabel1.setText(String.valueOf(value.getDate()));
         jLabel2.setText(value.getStatus());
         jLabel3.setText(value.getCategorie());
         jLabel4.setText(value.getTitre());
         jLabel5.setText(value.getDetail());
+        
         return this;
     }
 }

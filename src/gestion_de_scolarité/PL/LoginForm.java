@@ -5,9 +5,15 @@
  */
 package gestion_de_scolarité.PL;
 
-import gestion_de_scolarité.PL.StudentAccount.StudentDashboard;
+import gestion_de_scolarité.PL.EnseignantAccount.EnseignantDashboard;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.beans.EventHandler;
+import java.io.IOException;
+import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javax.swing.JTextField;
 
 /**
@@ -15,12 +21,13 @@ import javax.swing.JTextField;
  * @author slimane
  */
 public class LoginForm extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form LoginForm
      */
     public LoginForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
         jPanel4.setVisible(false);
     }
 
@@ -47,12 +54,9 @@ public class LoginForm extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -114,7 +118,8 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Kinnari", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(78, 78, 78));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 130, 30));
+        jLabel1.setText("Choisis un");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 130, 30));
 
         jTextField1.setForeground(new java.awt.Color(185, 185, 185));
         jTextField1.setText(" username");
@@ -161,32 +166,14 @@ public class LoginForm extends javax.swing.JFrame {
                 jLabel5MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 20, 20));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 20, 20));
 
         jPanel4.setBackground(new java.awt.Color(254, 254, 254));
         jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(117, 110, 110));
-        jLabel6.setText("Student");
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel6MousePressed(evt);
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel6MouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel6MouseEntered(evt);
-            }
-        });
-
         jLabel7.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(117, 110, 110));
-        jLabel7.setText("Administrative");
+        jLabel7.setText("Directeur");
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jLabel7MousePressed(evt);
@@ -202,27 +189,9 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(117, 110, 110));
-        jLabel8.setText("Admin chef");
-        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel8MousePressed(evt);
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel8MouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel8MouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel8MouseEntered(evt);
-            }
-        });
-
         jLabel9.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(117, 110, 110));
-        jLabel9.setText("Teacher");
+        jLabel9.setText("Admin");
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jLabel9MousePressed(evt);
@@ -240,7 +209,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(117, 110, 110));
-        jLabel10.setText("Director");
+        jLabel10.setText("Enseignant");
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jLabel10MousePressed(evt);
@@ -263,9 +232,7 @@ public class LoginForm extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)))
         );
@@ -273,11 +240,7 @@ public class LoginForm extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -285,12 +248,7 @@ public class LoginForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 120, 130));
-
-        jLabel11.setFont(new java.awt.Font("Kinnari", 1, 21)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(115, 115, 115));
-        jLabel11.setText("I am a");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 80, 30));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 120, 90));
 
         jPanel5.setBackground(new java.awt.Color(39, 65, 238));
         jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -374,33 +332,12 @@ public class LoginForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel5MouseClicked
 
-    private void jLabel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseEntered
-        jLabel6.setForeground(new Color(38,34,34));
-        jLabel6.setFont(new Font(jLabel6.getName(), Font.BOLD, jLabel6.getFont().getSize()));
-    }//GEN-LAST:event_jLabel6MouseEntered
-
-    private void jLabel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseExited
-        jLabel6.setForeground(new Color(117,110,110));
-        jLabel6.setFont(new Font(jLabel6.getName(), jLabel6.getFont().getStyle()-Font.BOLD, jLabel6.getFont().getSize()));
-    }//GEN-LAST:event_jLabel6MouseExited
-
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        jLabel1.setText(jLabel6.getText().toString());
-        jLabel6.setBackground(new Color(254,254,254));
-        jPanel4.setVisible(false);
-        
-    }//GEN-LAST:event_jLabel6MouseClicked
-
-    private void jLabel6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MousePressed
-    }//GEN-LAST:event_jLabel6MousePressed
-
     private void jLabel7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel7MousePressed
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         jLabel1.setText(jLabel7.getText().toString());
-        jLabel6.setBackground(new Color(254,254,254));
         jPanel4.setVisible(false);
     }//GEN-LAST:event_jLabel7MouseClicked
 
@@ -414,33 +351,12 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel7.setFont(new Font(jLabel7.getName(), Font.BOLD, jLabel7.getFont().getSize()));
     }//GEN-LAST:event_jLabel7MouseEntered
 
-    private void jLabel8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel8MousePressed
-
-    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-        jLabel1.setText(jLabel8.getText().toString());
-        jLabel6.setBackground(new Color(254,254,254));
-        jPanel4.setVisible(false);
-    }//GEN-LAST:event_jLabel8MouseClicked
-
-    private void jLabel8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseExited
-        jLabel8.setForeground(new Color(117,110,110));
-        jLabel8.setFont(new Font(jLabel8.getName(), jLabel8.getFont().getStyle()-Font.BOLD, jLabel8.getFont().getSize()));
-    }//GEN-LAST:event_jLabel8MouseExited
-
-    private void jLabel8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseEntered
-        jLabel8.setForeground(new Color(38,34,34));
-        jLabel8.setFont(new Font(jLabel8.getName(), Font.BOLD, jLabel8.getFont().getSize()));
-    }//GEN-LAST:event_jLabel8MouseEntered
-
     private void jLabel9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel9MousePressed
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         jLabel1.setText(jLabel9.getText().toString());
-        jLabel6.setBackground(new Color(254,254,254));
         jPanel4.setVisible(false);
     }//GEN-LAST:event_jLabel9MouseClicked
 
@@ -460,7 +376,6 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         jLabel1.setText(jLabel10.getText().toString());
-        jLabel6.setBackground(new Color(254,254,254));
         jPanel4.setVisible(false);
     }//GEN-LAST:event_jLabel10MouseClicked
 
@@ -498,7 +413,7 @@ public class LoginForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
-        StudentDashboard sd = new StudentDashboard();
+        EnseignantDashboard sd = new EnseignantDashboard();
         LoginForm lf = new LoginForm();
         sd.setVisible(true);
         lf.setVisible(false);
@@ -546,7 +461,6 @@ public class LoginForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -555,9 +469,7 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
