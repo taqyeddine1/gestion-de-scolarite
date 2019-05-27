@@ -51,6 +51,9 @@ public class AdminDashboard extends javax.swing.JFrame {
         //add the current time to the view
         currentTime.setText(String.valueOf(new Date()));
         
+        //to set the combobox of absence transparent
+        Abs_combobox.setVisible(false);
+        
        test_list();
     }
 
@@ -92,6 +95,9 @@ public class AdminDashboard extends javax.swing.JFrame {
         jPanel20 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        Abs_combobox = new javax.swing.JPanel();
+        absEns_label = new javax.swing.JLabel();
+        absEleve_label = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -109,22 +115,24 @@ public class AdminDashboard extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jButton6 = new javax.swing.JButton();
-        VérifierLaPresence = new javax.swing.JPanel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        GestionDesAbsences = new javax.swing.JPanel();
+        classecombo = new javax.swing.JComboBox<>();
+        class_label = new javax.swing.JLabel();
+        niveauLabel = new javax.swing.JLabel();
+        niveauCombo = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
-        jLabel22 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        LesAnnances = new javax.swing.JPanel();
+        matiereLabel = new javax.swing.JLabel();
+        matiereCombo = new javax.swing.JComboBox<>();
+        siJustifierCombo = new javax.swing.JComboBox<>();
+        siJustifierLabel = new javax.swing.JLabel();
+        GestionDesMaitieres = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         EmploiDeTemps = new javax.swing.JPanel();
-        SaisieLesNotes = new javax.swing.JPanel();
+        Inscriptiton = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
@@ -215,7 +223,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel15))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 341, Short.MAX_VALUE)
+                        .addGap(0, 418, Short.MAX_VALUE)
                         .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -262,6 +270,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(66, 76, 247));
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setPreferredSize(new java.awt.Dimension(260, 534));
         jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.Y_AXIS));
 
         jPanel13.setBackground(new java.awt.Color(66, 76, 247));
@@ -280,7 +289,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addContainerGap(201, Short.MAX_VALUE)
+                .addContainerGap(203, Short.MAX_VALUE)
                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
@@ -288,7 +297,7 @@ public class AdminDashboard extends javax.swing.JFrame {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -310,7 +319,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -445,12 +454,72 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 17)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(254, 254, 254));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel11.setText("Gestion des matieres");
+        jLabel11.setText("Gestion des absences");
         jPanel20.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 180, 40));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestion_de_scolarité/PL/EnseignantAccount/Icons_EnseignantDashboard/ecrireRecours.png"))); // NOI18N
         jPanel20.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 30, 40));
+
+        Abs_combobox.setBackground(new java.awt.Color(119, 136, 235));
+        Abs_combobox.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        absEns_label.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        absEns_label.setForeground(new java.awt.Color(254, 254, 254));
+        absEns_label.setText("Enseignants");
+        absEns_label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                absEns_labelMousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                absEns_labelMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                absEns_labelMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                absEns_labelMouseEntered(evt);
+            }
+        });
+
+        absEleve_label.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        absEleve_label.setForeground(new java.awt.Color(254, 254, 254));
+        absEleve_label.setText("Eleves");
+        absEleve_label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                absEleve_labelMousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                absEleve_labelMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                absEleve_labelMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                absEleve_labelMouseEntered(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Abs_comboboxLayout = new javax.swing.GroupLayout(Abs_combobox);
+        Abs_combobox.setLayout(Abs_comboboxLayout);
+        Abs_comboboxLayout.setHorizontalGroup(
+            Abs_comboboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Abs_comboboxLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(Abs_comboboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(absEns_label, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                    .addComponent(absEleve_label, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)))
+        );
+        Abs_comboboxLayout.setVerticalGroup(
+            Abs_comboboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Abs_comboboxLayout.createSequentialGroup()
+                .addComponent(absEns_label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(absEleve_label)
+                .addContainerGap())
+        );
+
+        jPanel20.add(Abs_combobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 100, 40));
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -462,7 +531,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+            .addComponent(jPanel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel3.add(jPanel19);
@@ -492,7 +561,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 17)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(254, 254, 254));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel12.setText("Gestion des classes");
+        jLabel12.setText("Gestion des matières");
         jPanel22.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 180, 40));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -572,14 +641,14 @@ public class AdminDashboard extends javax.swing.JFrame {
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(currentTime, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addGap(0, 35, Short.MAX_VALUE)
+                .addGap(0, 36, Short.MAX_VALUE)
                 .addComponent(currentTime, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -605,7 +674,7 @@ public class AdminDashboard extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -660,7 +729,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton6)
                 .addContainerGap())
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 848, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 923, Short.MAX_VALUE)
         );
         EcrireUnRapprotsLayout.setVerticalGroup(
             EcrireUnRapprotsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -674,24 +743,24 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         AdminStrateurDashboard.add(EcrireUnRapprots, "card4");
 
-        VérifierLaPresence.setBackground(new java.awt.Color(254, 254, 254));
+        GestionDesAbsences.setBackground(new java.awt.Color(254, 254, 254));
 
-        jComboBox3.setBackground(new java.awt.Color(254, 254, 254));
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N1C1", "N1C2", "N1C3", "N1C4" }));
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+        classecombo.setBackground(new java.awt.Color(254, 254, 254));
+        classecombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N1C1", "N1C2", "N1C3", "N1C4" }));
+        classecombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
+                classecomboActionPerformed(evt);
             }
         });
 
-        jLabel20.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel20.setText("Classe:");
+        class_label.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        class_label.setText("Classe:");
 
-        jLabel21.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel21.setText("Niveau:");
+        niveauLabel.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        niveauLabel.setText("Niveau:");
 
-        jComboBox4.setBackground(new java.awt.Color(254, 254, 254));
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere année", "2eme année", "3eme année", "4eme année" }));
+        niveauCombo.setBackground(new java.awt.Color(254, 254, 254));
+        niveauCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere année", "2eme année", "3eme année", "4eme année" }));
 
         jButton1.setBackground(new java.awt.Color(44, 80, 242));
         jButton1.setForeground(new java.awt.Color(254, 254, 254));
@@ -727,11 +796,11 @@ public class AdminDashboard extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nom", "Prénom", "La date de naissance", "L'absence", "Plus info"
+                "Nom", "Prénom", "Seance abs", "La date abs", "Justification", "Plus info"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -741,7 +810,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         jTable3.setFocusable(false);
         jTable3.setIntercellSpacing(new java.awt.Dimension(0, 0));
         jTable3.setRowHeight(25);
-        jTable3.setSelectionBackground(new java.awt.Color(88, 124, 245));
+        jTable3.setSelectionBackground(new java.awt.Color(60, 60, 60));
         jTable3.setShowVerticalLines(false);
         jTable3.getTableHeader().setReorderingAllowed(false);
         jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -751,86 +820,103 @@ public class AdminDashboard extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(jTable3);
 
-        jLabel22.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel22.setText("Matière:");
+        matiereLabel.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        matiereLabel.setText("Matière:");
 
-        jComboBox5.setBackground(new java.awt.Color(254, 254, 254));
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Anglais", "Compilation", "Génie Logiciel", "Application Mobile", "Programmation Linéaire", "Programmation Logique", "Base De Donnée" }));
-        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
+        matiereCombo.setBackground(new java.awt.Color(254, 254, 254));
+        matiereCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Anglais", "Compilation", "Génie Logiciel", "Application Mobile", "Programmation Linéaire", "Programmation Logique", "Base De Donnée" }));
+        matiereCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox5ActionPerformed(evt);
+                matiereComboActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout VérifierLaPresenceLayout = new javax.swing.GroupLayout(VérifierLaPresence);
-        VérifierLaPresence.setLayout(VérifierLaPresenceLayout);
-        VérifierLaPresenceLayout.setHorizontalGroup(
-            VérifierLaPresenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(VérifierLaPresenceLayout.createSequentialGroup()
-                .addContainerGap(665, Short.MAX_VALUE)
+        siJustifierCombo.setBackground(new java.awt.Color(254, 254, 254));
+        siJustifierCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Justifier", "Non justifier" }));
+        siJustifierCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siJustifierComboActionPerformed(evt);
+            }
+        });
+
+        siJustifierLabel.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        siJustifierLabel.setText("Justifier?");
+
+        javax.swing.GroupLayout GestionDesAbsencesLayout = new javax.swing.GroupLayout(GestionDesAbsences);
+        GestionDesAbsences.setLayout(GestionDesAbsencesLayout);
+        GestionDesAbsencesLayout.setHorizontalGroup(
+            GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(GestionDesAbsencesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addGap(51, 51, 51))
-            .addGroup(VérifierLaPresenceLayout.createSequentialGroup()
+            .addGroup(GestionDesAbsencesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(VérifierLaPresenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4)
-                    .addGroup(VérifierLaPresenceLayout.createSequentialGroup()
-                        .addComponent(jLabel21)
+                    .addGroup(GestionDesAbsencesLayout.createSequentialGroup()
+                        .addComponent(niveauLabel)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(niveauCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(class_label)
+                        .addGap(18, 18, 18)
+                        .addComponent(classecombo, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
-                        .addComponent(jLabel20)
+                        .addComponent(matiereLabel)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel22)
+                        .addComponent(matiereCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(siJustifierLabel)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(siJustifierCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        VérifierLaPresenceLayout.setVerticalGroup(
-            VérifierLaPresenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(VérifierLaPresenceLayout.createSequentialGroup()
+        GestionDesAbsencesLayout.setVerticalGroup(
+            GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(GestionDesAbsencesLayout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addGroup(VérifierLaPresenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(VérifierLaPresenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel22)
-                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(VérifierLaPresenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel20)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel21)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(class_label)
+                    .addComponent(classecombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(niveauLabel)
+                    .addComponent(niveauCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(matiereLabel)
+                        .addComponent(matiereCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(siJustifierLabel)
+                            .addComponent(siJustifierCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 344, Short.MAX_VALUE)
-                .addGroup(VérifierLaPresenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addGap(49, 49, 49))
         );
 
-        AdminStrateurDashboard.add(VérifierLaPresence, "card4");
+        AdminStrateurDashboard.add(GestionDesAbsences, "card4");
 
-        LesAnnances.setBackground(new java.awt.Color(254, 254, 254));
+        GestionDesMaitieres.setBackground(new java.awt.Color(254, 254, 254));
 
         jScrollPane2.setViewportView(jList1);
 
-        javax.swing.GroupLayout LesAnnancesLayout = new javax.swing.GroupLayout(LesAnnances);
-        LesAnnances.setLayout(LesAnnancesLayout);
-        LesAnnancesLayout.setHorizontalGroup(
-            LesAnnancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 848, Short.MAX_VALUE)
+        javax.swing.GroupLayout GestionDesMaitieresLayout = new javax.swing.GroupLayout(GestionDesMaitieres);
+        GestionDesMaitieres.setLayout(GestionDesMaitieresLayout);
+        GestionDesMaitieresLayout.setHorizontalGroup(
+            GestionDesMaitieresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 923, Short.MAX_VALUE)
         );
-        LesAnnancesLayout.setVerticalGroup(
-            LesAnnancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        GestionDesMaitieresLayout.setVerticalGroup(
+            GestionDesMaitieresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
         );
 
-        AdminStrateurDashboard.add(LesAnnances, "card4");
+        AdminStrateurDashboard.add(GestionDesMaitieres, "card4");
 
         EmploiDeTemps.setBackground(new java.awt.Color(254, 254, 254));
 
@@ -838,7 +924,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         EmploiDeTemps.setLayout(EmploiDeTempsLayout);
         EmploiDeTempsLayout.setHorizontalGroup(
             EmploiDeTempsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 848, Short.MAX_VALUE)
+            .addGap(0, 923, Short.MAX_VALUE)
         );
         EmploiDeTempsLayout.setVerticalGroup(
             EmploiDeTempsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -847,8 +933,8 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         AdminStrateurDashboard.add(EmploiDeTemps, "card4");
 
-        SaisieLesNotes.setBackground(new java.awt.Color(254, 254, 254));
-        SaisieLesNotes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Inscriptiton.setBackground(new java.awt.Color(254, 254, 254));
+        Inscriptiton.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton3.setBackground(new java.awt.Color(66, 76, 247));
         jButton3.setForeground(new java.awt.Color(254, 254, 254));
@@ -858,7 +944,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        SaisieLesNotes.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(706, 464, -1, -1));
+        Inscriptiton.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(706, 464, -1, -1));
 
         jButton4.setBackground(new java.awt.Color(66, 76, 247));
         jButton4.setForeground(new java.awt.Color(254, 254, 254));
@@ -868,7 +954,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        SaisieLesNotes.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(497, 464, -1, -1));
+        Inscriptiton.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(497, 464, -1, -1));
 
         jTextField1.setForeground(new java.awt.Color(185, 185, 185));
         jTextField1.setToolTipText("");
@@ -879,14 +965,14 @@ public class AdminDashboard extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-        SaisieLesNotes.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 267, 30));
+        Inscriptiton.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 267, 30));
 
         jSeparator1.setBackground(new java.awt.Color(206, 202, 198));
-        SaisieLesNotes.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 267, 14));
+        Inscriptiton.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 267, 14));
 
         jLabel17.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel17.setText("Nom :");
-        SaisieLesNotes.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 49, -1));
+        Inscriptiton.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 49, -1));
 
         jTextField2.setForeground(new java.awt.Color(185, 185, 185));
         jTextField2.setToolTipText("");
@@ -897,14 +983,14 @@ public class AdminDashboard extends javax.swing.JFrame {
                 jTextField2ActionPerformed(evt);
             }
         });
-        SaisieLesNotes.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 267, 30));
+        Inscriptiton.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 267, 30));
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel18.setText("Adress : ");
-        SaisieLesNotes.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 68, -1));
+        Inscriptiton.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 68, -1));
 
         jSeparator2.setBackground(new java.awt.Color(206, 202, 198));
-        SaisieLesNotes.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 267, 14));
+        Inscriptiton.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 267, 14));
 
         jTextField3.setForeground(new java.awt.Color(185, 185, 185));
         jTextField3.setToolTipText("");
@@ -915,14 +1001,14 @@ public class AdminDashboard extends javax.swing.JFrame {
                 jTextField3ActionPerformed(evt);
             }
         });
-        SaisieLesNotes.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 267, 30));
+        Inscriptiton.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 267, 30));
 
         jLabel26.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel26.setText("Prenom : ");
-        SaisieLesNotes.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 79, -1));
+        Inscriptiton.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 79, -1));
 
         jSeparator3.setBackground(new java.awt.Color(206, 202, 198));
-        SaisieLesNotes.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 267, 14));
+        Inscriptiton.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 267, 14));
 
         jTextField4.setForeground(new java.awt.Color(185, 185, 185));
         jTextField4.setToolTipText("");
@@ -933,14 +1019,14 @@ public class AdminDashboard extends javax.swing.JFrame {
                 jTextField4ActionPerformed(evt);
             }
         });
-        SaisieLesNotes.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 267, 30));
+        Inscriptiton.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 267, 30));
 
         jLabel27.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel27.setText("Niveau : ");
-        SaisieLesNotes.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 69, -1));
+        Inscriptiton.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 69, -1));
 
         jSeparator4.setBackground(new java.awt.Color(206, 202, 198));
-        SaisieLesNotes.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, 267, 14));
+        Inscriptiton.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, 267, 14));
 
         dateChooserCombo1.setCurrentView(new datechooser.view.appearance.AppearancesList("Swing",
             new datechooser.view.appearance.ViewAppearance("custom",
@@ -985,20 +1071,20 @@ public class AdminDashboard extends javax.swing.JFrame {
                 true)));
     dateChooserCombo1.setCalendarBackground(new java.awt.Color(254, 254, 254));
     dateChooserCombo1.setFieldFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 15));
-    SaisieLesNotes.add(dateChooserCombo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 267, 30));
+    Inscriptiton.add(dateChooserCombo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 267, 30));
 
     jLabel28.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
     jLabel28.setText("Date de naissance : ");
-    SaisieLesNotes.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 144, -1));
+    Inscriptiton.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 144, -1));
 
     jComboBox1.setBackground(new java.awt.Color(254, 254, 254));
     jComboBox1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
     jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere Année", "2eme Année", "3eme Année", "4eme Année" }));
-    SaisieLesNotes.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, 267, 30));
+    Inscriptiton.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, 267, 30));
 
     jLabel29.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
     jLabel29.setText("Lieu de naissance : ");
-    SaisieLesNotes.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 147, -1));
+    Inscriptiton.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 147, -1));
 
     jButton5.setBackground(new java.awt.Color(66, 76, 247));
     jButton5.setForeground(new java.awt.Color(254, 254, 254));
@@ -1008,7 +1094,7 @@ public class AdminDashboard extends javax.swing.JFrame {
             jButton5ActionPerformed(evt);
         }
     });
-    SaisieLesNotes.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(578, 464, -1, -1));
+    Inscriptiton.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(578, 464, -1, -1));
 
     specifierClasse.setText("Vous voulez specifier l classe?");
     specifierClasse.addActionListener(new java.awt.event.ActionListener() {
@@ -1016,19 +1102,19 @@ public class AdminDashboard extends javax.swing.JFrame {
             specifierClasseActionPerformed(evt);
         }
     });
-    SaisieLesNotes.add(specifierClasse, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 360, -1, -1));
+    Inscriptiton.add(specifierClasse, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 360, -1, -1));
 
     jComboBox2.setBackground(new java.awt.Color(254, 254, 254));
     jComboBox2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
     jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere Année", "2eme Année", "3eme Année", "4eme Année" }));
     jComboBox2.setBorder(null);
-    SaisieLesNotes.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, 267, 30));
+    Inscriptiton.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, 267, 30));
 
     classeLabel.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
     classeLabel.setText("Classe :");
-    SaisieLesNotes.add(classeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, 68, -1));
+    Inscriptiton.add(classeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, 68, -1));
 
-    AdminStrateurDashboard.add(SaisieLesNotes, "card4");
+    AdminStrateurDashboard.add(Inscriptiton, "card4");
 
     getContentPane().add(AdminStrateurDashboard, java.awt.BorderLayout.CENTER);
 
@@ -1047,9 +1133,9 @@ public class AdminDashboard extends javax.swing.JFrame {
         jPanel21.setBackground(new Color(66,76,247));
         jPanel23.setBackground(new Color(66,76,247));
         
-        LesAnnances.setVisible(false);
-        SaisieLesNotes.setVisible(false);
-        VérifierLaPresence.setVisible(false);
+        GestionDesMaitieres.setVisible(false);
+        Inscriptiton.setVisible(false);
+        GestionDesAbsences.setVisible(false);
         EcrireUnRapprots.setVisible(true);
         EmploiDeTemps.setVisible(false);
     }//GEN-LAST:event_jPanel18MouseClicked
@@ -1063,11 +1149,16 @@ public class AdminDashboard extends javax.swing.JFrame {
         jPanel21.setBackground(new Color(66,76,247));
         jPanel23.setBackground(new Color(66,76,247));
         
-        LesAnnances.setVisible(false);
-        SaisieLesNotes.setVisible(false);
-        VérifierLaPresence.setVisible(true);
-        EcrireUnRapprots.setVisible(false);
-        EmploiDeTemps.setVisible(false);
+        //GestionDesMaitieres.setVisible(false);
+        //Inscriptiton.setVisible(false);
+        //GestionDesAbsences.setVisible(true);
+        //EcrireUnRapprots.setVisible(false);
+        //EmploiDeTemps.setVisible(false);
+        
+        // to chose the enseignant or eleve absences dashboard
+        //this affiche Abs_combobox
+        Abs_combobox.setVisible(true);
+       
     }//GEN-LAST:event_jPanel20MouseClicked
 
     private void jPanel22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel22MouseClicked
@@ -1079,9 +1170,9 @@ public class AdminDashboard extends javax.swing.JFrame {
         jPanel21.setBackground(new Color(116,165,253));
         jPanel23.setBackground(new Color(66,76,247));
         
-        LesAnnances.setVisible(true);
-        SaisieLesNotes.setVisible(false);
-        VérifierLaPresence.setVisible(false);
+        GestionDesMaitieres.setVisible(true);
+        Inscriptiton.setVisible(false);
+        GestionDesAbsences.setVisible(false);
         EcrireUnRapprots.setVisible(false);
         EmploiDeTemps.setVisible(false);
     }//GEN-LAST:event_jPanel22MouseClicked
@@ -1095,9 +1186,9 @@ public class AdminDashboard extends javax.swing.JFrame {
         jPanel21.setBackground(new Color(66,76,247));
         jPanel23.setBackground(new Color(116,165,253));
         
-        LesAnnances.setVisible(false);
-        SaisieLesNotes.setVisible(false);
-        VérifierLaPresence.setVisible(false);
+        GestionDesMaitieres.setVisible(false);
+        Inscriptiton.setVisible(false);
+        GestionDesAbsences.setVisible(false);
         EcrireUnRapprots.setVisible(false);
         EmploiDeTemps.setVisible(true);
     }//GEN-LAST:event_jPanel24MouseClicked
@@ -1135,9 +1226,9 @@ public class AdminDashboard extends javax.swing.JFrame {
         jPanel21.setBackground(new Color(66,76,247));
         jPanel23.setBackground(new Color(66,76,247));
         
-        LesAnnances.setVisible(false);
-        SaisieLesNotes.setVisible(true);
-        VérifierLaPresence.setVisible(false);
+        GestionDesMaitieres.setVisible(false);
+        Inscriptiton.setVisible(true);
+        GestionDesAbsences.setVisible(false);
         EcrireUnRapprots.setVisible(false);
         EmploiDeTemps.setVisible(false);
         
@@ -1275,13 +1366,13 @@ public class AdminDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable3MouseClicked
 
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+    private void classecomboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classecomboActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
+    }//GEN-LAST:event_classecomboActionPerformed
 
-    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+    private void matiereComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matiereComboActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox5ActionPerformed
+    }//GEN-LAST:event_matiereComboActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -1317,6 +1408,76 @@ public class AdminDashboard extends javax.swing.JFrame {
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
+
+    private void siJustifierComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siJustifierComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_siJustifierComboActionPerformed
+
+    private void absEns_labelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_absEns_labelMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_absEns_labelMousePressed
+
+    private void absEns_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_absEns_labelMouseClicked
+         GestionDesMaitieres.setVisible(false);
+        Inscriptiton.setVisible(false);
+        GestionDesAbsences.setVisible(true);
+        EcrireUnRapprots.setVisible(false);
+        EmploiDeTemps.setVisible(false);
+        
+        //invisible the combonent of the eleve like 
+        niveauLabel.setVisible(false);
+        niveauCombo.setVisible(false);
+        class_label.setVisible(false);
+        classecombo.setVisible(false);
+        matiereLabel.setVisible(false);
+        matiereCombo.setVisible(false);
+        siJustifierLabel.setVisible(false);
+        siJustifierCombo.setVisible(false);
+        Abs_combobox.setVisible(false);
+    }//GEN-LAST:event_absEns_labelMouseClicked
+
+    private void absEns_labelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_absEns_labelMouseExited
+        absEns_label.setForeground(new Color(255,255,255));
+        absEns_label.setFont(new Font(absEns_label.getName(), absEns_label.getFont().getStyle()-Font.BOLD, absEns_label.getFont().getSize()));
+    }//GEN-LAST:event_absEns_labelMouseExited
+
+    private void absEns_labelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_absEns_labelMouseEntered
+        absEns_label.setForeground(new Color(38,34,34));
+        absEns_label.setFont(new Font(absEns_label.getName(), Font.BOLD, absEns_label.getFont().getSize()));
+    }//GEN-LAST:event_absEns_labelMouseEntered
+
+    private void absEleve_labelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_absEleve_labelMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_absEleve_labelMousePressed
+
+    private void absEleve_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_absEleve_labelMouseClicked
+        GestionDesMaitieres.setVisible(false);
+        Inscriptiton.setVisible(false);
+        GestionDesAbsences.setVisible(true);
+        EcrireUnRapprots.setVisible(false);
+        EmploiDeTemps.setVisible(false);
+        Abs_combobox.setVisible(false);
+        
+        //invisible the combonent of the eleve like 
+        niveauLabel.setVisible(true);
+        niveauCombo.setVisible(true);
+        class_label.setVisible(true);
+        classecombo.setVisible(true);
+        matiereLabel.setVisible(true);
+        matiereCombo.setVisible(true);
+        siJustifierLabel.setVisible(true);
+        siJustifierCombo.setVisible(true);
+    }//GEN-LAST:event_absEleve_labelMouseClicked
+
+    private void absEleve_labelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_absEleve_labelMouseExited
+        absEleve_label.setForeground(new Color(255,255,255));
+        absEleve_label.setFont(new Font(absEleve_label.getName(), absEleve_label.getFont().getStyle()-Font.BOLD, absEleve_label.getFont().getSize()));
+    }//GEN-LAST:event_absEleve_labelMouseExited
+
+    private void absEleve_labelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_absEleve_labelMouseEntered
+        absEleve_label.setForeground(new Color(38,34,34));
+        absEleve_label.setFont(new Font(absEleve_label.getName(), Font.BOLD, absEleve_label.getFont().getSize()));
+    }//GEN-LAST:event_absEleve_labelMouseEntered
 
     public void test_list(){
         DefaultListModel<AnnanceModèl> defaultListModel = new DefaultListModel<AnnanceModèl>();
@@ -1366,13 +1527,18 @@ public class AdminDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Abs_combobox;
     private javax.swing.JPanel AdminStrateurDashboard;
     private javax.swing.JPanel EcrireUnRapprots;
     private javax.swing.JPanel EmploiDeTemps;
-    private javax.swing.JPanel LesAnnances;
-    private javax.swing.JPanel SaisieLesNotes;
-    private javax.swing.JPanel VérifierLaPresence;
+    private javax.swing.JPanel GestionDesAbsences;
+    private javax.swing.JPanel GestionDesMaitieres;
+    private javax.swing.JPanel Inscriptiton;
+    private javax.swing.JLabel absEleve_label;
+    private javax.swing.JLabel absEns_label;
+    private javax.swing.JLabel class_label;
     private javax.swing.JLabel classeLabel;
+    private javax.swing.JComboBox<String> classecombo;
     private javax.swing.JLabel currentTime;
     private datechooser.beans.DateChooserCombo dateChooserCombo1;
     private javax.swing.JButton jButton1;
@@ -1383,9 +1549,6 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1398,9 +1561,6 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
@@ -1448,6 +1608,12 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JComboBox<String> matiereCombo;
+    private javax.swing.JLabel matiereLabel;
+    private javax.swing.JComboBox<String> niveauCombo;
+    private javax.swing.JLabel niveauLabel;
+    private javax.swing.JComboBox<String> siJustifierCombo;
+    private javax.swing.JLabel siJustifierLabel;
     private javax.swing.JCheckBox specifierClasse;
     private javax.swing.JLabel userAvatar;
     // End of variables declaration//GEN-END:variables

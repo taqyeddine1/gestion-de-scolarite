@@ -63,7 +63,7 @@ public class Diviseure extends javax.swing.JFrame {
 
         jTextField1.setEnabled(false);
 
-        jButton1.setBackground(new java.awt.Color(170, 187, 250));
+        jButton1.setBackground(new java.awt.Color(37, 41, 255));
         jButton1.setForeground(new java.awt.Color(254, 254, 254));
         jButton1.setText("Annuler");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -72,7 +72,7 @@ public class Diviseure extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(170, 187, 250));
+        jButton2.setBackground(new java.awt.Color(37, 41, 255));
         jButton2.setForeground(new java.awt.Color(254, 254, 254));
         jButton2.setText("Appliquer");
 
@@ -108,7 +108,6 @@ public class Diviseure extends javax.swing.JFrame {
                         .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addGap(33, 33, 33)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
