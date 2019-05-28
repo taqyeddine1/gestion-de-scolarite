@@ -16,6 +16,7 @@ public class EditerMatiere extends javax.swing.JFrame {
      */
     public EditerMatiere() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

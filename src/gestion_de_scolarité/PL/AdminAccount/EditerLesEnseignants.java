@@ -16,6 +16,7 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
      */
     public EditerLesEnseignants() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -27,21 +28,328 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel17 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
+        jLabel28 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel29 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        classeLabel = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        classeLabel1 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jSeparator5 = new javax.swing.JSeparator();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 556, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
+        jPanel1.setBackground(new java.awt.Color(254, 254, 254));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pack();
+        jButton3.setBackground(new java.awt.Color(89, 89, 89));
+        jButton3.setForeground(new java.awt.Color(254, 254, 254));
+        jButton3.setText("Supprimer");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 330, -1, -1));
+
+        jButton4.setBackground(new java.awt.Color(89, 89, 89));
+        jButton4.setForeground(new java.awt.Color(254, 254, 254));
+        jButton4.setText("Ajouter");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, -1, -1));
+
+        jTextField1.setForeground(new java.awt.Color(66, 66, 66));
+        jTextField1.setToolTipText("");
+        jTextField1.setBorder(null);
+        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 170, 30));
+
+        jSeparator1.setBackground(new java.awt.Color(206, 202, 198));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 170, 14));
+
+        jLabel17.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(136, 136, 136));
+        jLabel17.setText("Nom :");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 49, -1));
+
+        jTextField2.setForeground(new java.awt.Color(66, 66, 66));
+        jTextField2.setToolTipText("");
+        jTextField2.setBorder(null);
+        jTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 170, 30));
+
+        jLabel18.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(136, 136, 136));
+        jLabel18.setText("Adresse : ");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 70, -1));
+
+        jSeparator2.setBackground(new java.awt.Color(206, 202, 198));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 170, 14));
+
+        jTextField3.setForeground(new java.awt.Color(66, 66, 66));
+        jTextField3.setToolTipText("");
+        jTextField3.setBorder(null);
+        jTextField3.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 170, 30));
+
+        jLabel26.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(136, 136, 136));
+        jLabel26.setText("Prenom : ");
+        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 79, -1));
+
+        jSeparator3.setBackground(new java.awt.Color(206, 202, 198));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, 170, 14));
+
+        jTextField4.setForeground(new java.awt.Color(66, 66, 66));
+        jTextField4.setToolTipText("");
+        jTextField4.setBorder(null);
+        jTextField4.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 170, 30));
+
+        jLabel27.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(136, 136, 136));
+        jLabel27.setText("Niveau : ");
+        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 69, -1));
+
+        jSeparator4.setBackground(new java.awt.Color(206, 202, 198));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 170, 14));
+
+        dateChooserCombo1.setCurrentView(new datechooser.view.appearance.AppearancesList("Swing",
+            new datechooser.view.appearance.ViewAppearance("custom",
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Ubuntu", java.awt.Font.PLAIN, 15),
+                    new java.awt.Color(76, 76, 76),
+                    new java.awt.Color(0, 0, 255),
+                    false,
+                    true,
+                    new datechooser.view.appearance.swing.ButtonPainter()),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Ubuntu", java.awt.Font.PLAIN, 15),
+                    new java.awt.Color(76, 76, 76),
+                    new java.awt.Color(0, 0, 255),
+                    true,
+                    true,
+                    new datechooser.view.appearance.swing.ButtonPainter()),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Ubuntu", java.awt.Font.PLAIN, 15),
+                    new java.awt.Color(0, 0, 255),
+                    new java.awt.Color(0, 0, 255),
+                    false,
+                    true,
+                    new datechooser.view.appearance.swing.ButtonPainter()),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Ubuntu", java.awt.Font.PLAIN, 15),
+                    new java.awt.Color(128, 128, 128),
+                    new java.awt.Color(0, 0, 255),
+                    false,
+                    true,
+                    new datechooser.view.appearance.swing.LabelPainter()),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Ubuntu", java.awt.Font.PLAIN, 15),
+                    new java.awt.Color(76, 76, 76),
+                    new java.awt.Color(0, 0, 255),
+                    false,
+                    true,
+                    new datechooser.view.appearance.swing.LabelPainter()),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Ubuntu", java.awt.Font.PLAIN, 15),
+                    new java.awt.Color(76, 76, 76),
+                    new java.awt.Color(255, 0, 0),
+                    false,
+                    false,
+                    new datechooser.view.appearance.swing.ButtonPainter()),
+                (datechooser.view.BackRenderer)null,
+                false,
+                true)));
+    dateChooserCombo1.setCalendarBackground(new java.awt.Color(254, 254, 254));
+    dateChooserCombo1.setFieldFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 15));
+    jPanel1.add(dateChooserCombo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 170, 30));
+
+    jLabel28.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+    jLabel28.setForeground(new java.awt.Color(136, 136, 136));
+    jLabel28.setText("Date de naissance : ");
+    jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 170, 144, -1));
+
+    jComboBox1.setBackground(new java.awt.Color(254, 254, 254));
+    jComboBox1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+    jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere Année", "2eme Année", "3eme Année", "4eme Année" }));
+    jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 170, 30));
+
+    jLabel29.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+    jLabel29.setForeground(new java.awt.Color(136, 136, 136));
+    jLabel29.setText("Lieu de naissance : ");
+    jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 147, -1));
+
+    jButton5.setBackground(new java.awt.Color(89, 89, 89));
+    jButton5.setForeground(new java.awt.Color(254, 254, 254));
+    jButton5.setText("Modifier");
+    jButton5.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton5ActionPerformed(evt);
+        }
+    });
+    jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 330, -1, -1));
+
+    classeLabel.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+    classeLabel.setForeground(new java.awt.Color(136, 136, 136));
+    classeLabel.setText("Classe :");
+    jPanel1.add(classeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 68, -1));
+
+    jComboBox3.setBackground(new java.awt.Color(254, 254, 254));
+    jComboBox3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+    jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "c1n1", "c1c2", "n1c3" }));
+    jComboBox3.setBorder(null);
+    jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 170, 30));
+
+    jComboBox4.setBackground(new java.awt.Color(254, 254, 254));
+    jComboBox4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+    jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Math", "physics", "Arab", "English", "Islamic" }));
+    jComboBox4.setBorder(null);
+    jPanel1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 170, 30));
+
+    classeLabel1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+    classeLabel1.setForeground(new java.awt.Color(136, 136, 136));
+    classeLabel1.setText("Matière :");
+    jPanel1.add(classeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, 68, -1));
+
+    jLabel19.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+    jLabel19.setForeground(new java.awt.Color(136, 136, 136));
+    jLabel19.setText("Numéro telephone :");
+    jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 150, -1));
+
+    jTextField5.setForeground(new java.awt.Color(66, 66, 66));
+    jTextField5.setToolTipText("");
+    jTextField5.setBorder(null);
+    jTextField5.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+    jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jTextField5ActionPerformed(evt);
+        }
+    });
+    jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 170, 30));
+
+    jSeparator5.setBackground(new java.awt.Color(206, 202, 198));
+    jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 170, 14));
+
+    jTextField6.setBackground(new java.awt.Color(254, 254, 254));
+    jTextField6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+    jTextField6.setForeground(new java.awt.Color(185, 185, 185));
+    jTextField6.setText(" Search");
+    jTextField6.setToolTipText("");
+    jTextField6.setBorder(null);
+    jTextField6.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+    jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jTextField6ActionPerformed(evt);
+        }
+    });
+    jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 210, 30));
+
+    jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestion_de_scolarité/PL/EnseignantAccount/VérifierLaPresence/search.png"))); // NOI18N
+    jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
+
+    jSeparator6.setBackground(new java.awt.Color(206, 202, 198));
+    jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 220, 10));
+
+    jButton1.setBackground(new java.awt.Color(103, 103, 103));
+    jButton1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+    jButton1.setForeground(new java.awt.Color(254, 254, 254));
+    jButton1.setText("Search");
+    jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, -1, -1));
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 0, Short.MAX_VALUE))
+    );
+
+    pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        ElevesListeDetail eld = new ElevesListeDetail();
+        eld.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +387,36 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel classeLabel;
+    private javax.swing.JLabel classeLabel1;
+    private datechooser.beans.DateChooserCombo dateChooserCombo1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }
