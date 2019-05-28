@@ -72,7 +72,8 @@ public class ElevesListeDetail extends javax.swing.JFrame {
         jComboBox6.setBackground(new java.awt.Color(254, 254, 254));
         jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere année", "2eme année", "3eme année", "4eme année" }));
 
-        jLabel23.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(60, 60, 60));
         jLabel23.setText("Niveau:");
 
         jTable1.setBackground(new java.awt.Color(254, 254, 254));
@@ -113,7 +114,8 @@ public class ElevesListeDetail extends javax.swing.JFrame {
             }
         });
 
-        jLabel24.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jLabel24.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(60, 60, 60));
         jLabel24.setText("Classe:");
 
         jButton3.setBackground(new java.awt.Color(66, 76, 247));

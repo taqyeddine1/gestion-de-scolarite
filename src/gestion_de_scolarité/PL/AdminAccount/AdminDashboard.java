@@ -48,6 +48,8 @@ public class AdminDashboard extends javax.swing.JFrame {
         //jTable1.setRowHeight(25);
         //jTable1.setBackground(new Color(255, 255, 253));
         
+        jTable2.setVisible(false);
+        
         jComboBox2.setVisible(false);
         classeLabel.setVisible(false);
         //add the current time to the view
@@ -112,10 +114,14 @@ public class AdminDashboard extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         AdminStrateurDashboard = new javax.swing.JPanel();
-        EcrireUnRapprots = new javax.swing.JPanel();
+        GestionDesEnseignants = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jButton6 = new javax.swing.JButton();
+        class_label1 = new javax.swing.JLabel();
+        classecombo1 = new javax.swing.JComboBox<>();
+        matiereLabel1 = new javax.swing.JLabel();
+        classecombo2 = new javax.swing.JComboBox<>();
         GestionDesAbsences = new javax.swing.JPanel();
         classecombo = new javax.swing.JComboBox<>();
         class_label = new javax.swing.JLabel();
@@ -161,6 +167,11 @@ public class AdminDashboard extends javax.swing.JFrame {
         classeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         jPanel8.setLayout(new javax.swing.BoxLayout(jPanel8, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -195,6 +206,11 @@ public class AdminDashboard extends javax.swing.JFrame {
                 jTextField6ActionPerformed(evt);
             }
         });
+        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField6KeyTyped(evt);
+            }
+        });
 
         jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestion_de_scolarité/PL/AdminAccount/icons/searchicons.png"))); // NOI18N
         jLabel25.setText("jLabel13");
@@ -224,16 +240,16 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 679, Short.MAX_VALUE)
                         .addComponent(jLabel15))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 450, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(153, 153, 153)
+                        .addGap(204, 204, 204)
                         .addComponent(jLabel16)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -468,7 +484,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         Abs_combobox.setBackground(new java.awt.Color(25, 56, 233));
         Abs_combobox.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        absEns_label.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        absEns_label.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         absEns_label.setForeground(new java.awt.Color(254, 254, 254));
         absEns_label.setText("Enseignants");
         absEns_label.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -486,7 +502,7 @@ public class AdminDashboard extends javax.swing.JFrame {
             }
         });
 
-        absEleve_label.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        absEleve_label.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         absEleve_label.setForeground(new java.awt.Color(254, 254, 254));
         absEleve_label.setText("Eleves");
         absEleve_label.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -695,19 +711,20 @@ public class AdminDashboard extends javax.swing.JFrame {
         AdminStrateurDashboard.setBackground(new java.awt.Color(254, 254, 254));
         AdminStrateurDashboard.setLayout(new java.awt.CardLayout());
 
-        EcrireUnRapprots.setBackground(new java.awt.Color(254, 254, 254));
+        GestionDesEnseignants.setBackground(new java.awt.Color(254, 254, 254));
 
         jTable2.setBackground(new java.awt.Color(254, 254, 254));
+        jTable2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Enseignant", "Matière", " Eleve", "Classe", "Reason", "Sanction", "La date"
+                "Nom", "Prénom", "Date de naissance", "Adresse", "Lieu de naissance", "Numéro telephone", "Matière", "Info plus"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -718,34 +735,78 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         jButton6.setBackground(new java.awt.Color(66, 76, 247));
         jButton6.setForeground(new java.awt.Color(254, 254, 254));
-        jButton6.setText("Nouveau Rapport");
+        jButton6.setText("Editer la liste");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout EcrireUnRapprotsLayout = new javax.swing.GroupLayout(EcrireUnRapprots);
-        EcrireUnRapprots.setLayout(EcrireUnRapprotsLayout);
-        EcrireUnRapprotsLayout.setHorizontalGroup(
-            EcrireUnRapprotsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EcrireUnRapprotsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton6)
-                .addContainerGap())
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 957, Short.MAX_VALUE)
+        class_label1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        class_label1.setForeground(new java.awt.Color(60, 60, 60));
+        class_label1.setText("Filter par :");
+
+        classecombo1.setBackground(new java.awt.Color(254, 254, 254));
+        classecombo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tous", "Niveau", "Matière" }));
+        classecombo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                classecombo1ActionPerformed(evt);
+            }
+        });
+
+        matiereLabel1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        matiereLabel1.setForeground(new java.awt.Color(60, 60, 60));
+        matiereLabel1.setText("Matière:");
+
+        classecombo2.setBackground(new java.awt.Color(254, 254, 254));
+        classecombo2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tous", "Niveau", "Matière" }));
+        classecombo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                classecombo2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout GestionDesEnseignantsLayout = new javax.swing.GroupLayout(GestionDesEnseignants);
+        GestionDesEnseignants.setLayout(GestionDesEnseignantsLayout);
+        GestionDesEnseignantsLayout.setHorizontalGroup(
+            GestionDesEnseignantsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(GestionDesEnseignantsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(GestionDesEnseignantsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GestionDesEnseignantsLayout.createSequentialGroup()
+                        .addGroup(GestionDesEnseignantsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GestionDesEnseignantsLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButton6))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GestionDesEnseignantsLayout.createSequentialGroup()
+                                .addComponent(class_label1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(classecombo1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(131, 131, 131)
+                                .addComponent(matiereLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(classecombo2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 356, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
-        EcrireUnRapprotsLayout.setVerticalGroup(
-            EcrireUnRapprotsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcrireUnRapprotsLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
+        GestionDesEnseignantsLayout.setVerticalGroup(
+            GestionDesEnseignantsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GestionDesEnseignantsLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(GestionDesEnseignantsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(matiereLabel1)
+                    .addComponent(class_label1)
+                    .addComponent(classecombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(classecombo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 343, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 324, Short.MAX_VALUE)
                 .addComponent(jButton6)
                 .addGap(90, 90, 90))
         );
 
-        AdminStrateurDashboard.add(EcrireUnRapprots, "card4");
+        AdminStrateurDashboard.add(GestionDesEnseignants, "card4");
 
         GestionDesAbsences.setBackground(new java.awt.Color(254, 254, 254));
 
@@ -766,7 +827,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         niveauLabel.setText("Niveau:");
 
         niveauCombo.setBackground(new java.awt.Color(254, 254, 254));
-        niveauCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere année", "2eme année", "3eme année", "4eme année" }));
+        niveauCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tous les niveaux", "1ere année", "2eme année", "3eme année", "4eme année" }));
 
         jButton1.setBackground(new java.awt.Color(44, 80, 242));
         jButton1.setForeground(new java.awt.Color(254, 254, 254));
@@ -839,7 +900,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         });
 
         siJustifierCombo.setBackground(new java.awt.Color(254, 254, 254));
-        siJustifierCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Justifier", "Non justifier" }));
+        siJustifierCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tous", "Justifier", "Non justifier" }));
         siJustifierCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 siJustifierComboActionPerformed(evt);
@@ -848,7 +909,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         siJustifierLabel.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         siJustifierLabel.setForeground(new java.awt.Color(60, 60, 60));
-        siJustifierLabel.setText("Justifier? :");
+        siJustifierLabel.setText("Justification :");
 
         javax.swing.GroupLayout GestionDesAbsencesLayout = new javax.swing.GroupLayout(GestionDesAbsences);
         GestionDesAbsences.setLayout(GestionDesAbsencesLayout);
@@ -859,22 +920,22 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4)
                     .addGroup(GestionDesAbsencesLayout.createSequentialGroup()
+                        .addComponent(siJustifierLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(siJustifierCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                         .addComponent(niveauLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(niveauCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(niveauCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
                         .addComponent(class_label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(classecombo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(classecombo, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
                         .addComponent(matiereLabel)
                         .addGap(18, 18, 18)
                         .addComponent(matiereCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(siJustifierLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(siJustifierCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GestionDesAbsencesLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton2)
@@ -891,13 +952,14 @@ public class AdminDashboard extends javax.swing.JFrame {
                         .addComponent(siJustifierLabel)
                         .addComponent(siJustifierCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(matiereLabel)
-                        .addComponent(matiereCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(niveauLabel)
+                        .addComponent(niveauCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(class_label)
-                        .addComponent(classecombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(niveauLabel)
-                        .addComponent(niveauCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(classecombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(matiereLabel)
+                        .addComponent(matiereCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 344, Short.MAX_VALUE)
@@ -971,7 +1033,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                             .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 685, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
         GestionDesMaitieresLayout.setVerticalGroup(
             GestionDesMaitieresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -995,7 +1057,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         EmploiDeTemps.setLayout(EmploiDeTempsLayout);
         EmploiDeTempsLayout.setHorizontalGroup(
             EmploiDeTempsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 957, Short.MAX_VALUE)
+            .addGap(0, 955, Short.MAX_VALUE)
         );
         EmploiDeTempsLayout.setVerticalGroup(
             EmploiDeTempsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1027,7 +1089,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         });
         Inscriptiton.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(497, 464, -1, -1));
 
-        jTextField1.setForeground(new java.awt.Color(185, 185, 185));
+        jTextField1.setForeground(new java.awt.Color(66, 66, 66));
         jTextField1.setToolTipText("");
         jTextField1.setBorder(null);
         jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -1041,11 +1103,12 @@ public class AdminDashboard extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(206, 202, 198));
         Inscriptiton.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 267, 14));
 
-        jLabel17.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(136, 136, 136));
         jLabel17.setText("Nom :");
         Inscriptiton.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 49, -1));
 
-        jTextField2.setForeground(new java.awt.Color(185, 185, 185));
+        jTextField2.setForeground(new java.awt.Color(66, 66, 66));
         jTextField2.setToolTipText("");
         jTextField2.setBorder(null);
         jTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -1056,14 +1119,15 @@ public class AdminDashboard extends javax.swing.JFrame {
         });
         Inscriptiton.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 267, 30));
 
-        jLabel18.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel18.setText("Adress : ");
-        Inscriptiton.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 68, -1));
+        jLabel18.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(136, 136, 136));
+        jLabel18.setText("Adresse : ");
+        Inscriptiton.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 70, -1));
 
         jSeparator2.setBackground(new java.awt.Color(206, 202, 198));
         Inscriptiton.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 267, 14));
 
-        jTextField3.setForeground(new java.awt.Color(185, 185, 185));
+        jTextField3.setForeground(new java.awt.Color(66, 66, 66));
         jTextField3.setToolTipText("");
         jTextField3.setBorder(null);
         jTextField3.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -1074,14 +1138,15 @@ public class AdminDashboard extends javax.swing.JFrame {
         });
         Inscriptiton.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 267, 30));
 
-        jLabel26.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jLabel26.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(136, 136, 136));
         jLabel26.setText("Prenom : ");
         Inscriptiton.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 79, -1));
 
         jSeparator3.setBackground(new java.awt.Color(206, 202, 198));
         Inscriptiton.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 267, 14));
 
-        jTextField4.setForeground(new java.awt.Color(185, 185, 185));
+        jTextField4.setForeground(new java.awt.Color(66, 66, 66));
         jTextField4.setToolTipText("");
         jTextField4.setBorder(null);
         jTextField4.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -1092,7 +1157,8 @@ public class AdminDashboard extends javax.swing.JFrame {
         });
         Inscriptiton.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 267, 30));
 
-        jLabel27.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jLabel27.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(136, 136, 136));
         jLabel27.setText("Niveau : ");
         Inscriptiton.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 69, -1));
 
@@ -1144,7 +1210,8 @@ public class AdminDashboard extends javax.swing.JFrame {
     dateChooserCombo1.setFieldFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 15));
     Inscriptiton.add(dateChooserCombo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 267, 30));
 
-    jLabel28.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+    jLabel28.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+    jLabel28.setForeground(new java.awt.Color(136, 136, 136));
     jLabel28.setText("Date de naissance : ");
     Inscriptiton.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 144, -1));
 
@@ -1153,7 +1220,8 @@ public class AdminDashboard extends javax.swing.JFrame {
     jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere Année", "2eme Année", "3eme Année", "4eme Année" }));
     Inscriptiton.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, 267, 30));
 
-    jLabel29.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+    jLabel29.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+    jLabel29.setForeground(new java.awt.Color(136, 136, 136));
     jLabel29.setText("Lieu de naissance : ");
     Inscriptiton.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 147, -1));
 
@@ -1181,7 +1249,8 @@ public class AdminDashboard extends javax.swing.JFrame {
     jComboBox2.setBorder(null);
     Inscriptiton.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, 267, 30));
 
-    classeLabel.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+    classeLabel.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+    classeLabel.setForeground(new java.awt.Color(136, 136, 136));
     classeLabel.setText("Classe :");
     Inscriptiton.add(classeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, 68, -1));
 
@@ -1207,7 +1276,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         GestionDesMaitieres.setVisible(false);
         Inscriptiton.setVisible(false);
         GestionDesAbsences.setVisible(false);
-        EcrireUnRapprots.setVisible(true);
+        GestionDesEnseignants.setVisible(true);
         EmploiDeTemps.setVisible(false);
         Abs_combobox.setVisible(false);
     }//GEN-LAST:event_jPanel18MouseClicked
@@ -1253,7 +1322,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         GestionDesMaitieres.setVisible(true);
         Inscriptiton.setVisible(false);
         GestionDesAbsences.setVisible(false);
-        EcrireUnRapprots.setVisible(false);
+        GestionDesEnseignants.setVisible(false);
         EmploiDeTemps.setVisible(false);
         Abs_combobox.setVisible(false);
     }//GEN-LAST:event_jPanel22MouseClicked
@@ -1270,7 +1339,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         GestionDesMaitieres.setVisible(false);
         Inscriptiton.setVisible(false);
         GestionDesAbsences.setVisible(false);
-        EcrireUnRapprots.setVisible(false);
+        GestionDesEnseignants.setVisible(false);
         EmploiDeTemps.setVisible(true);
         Abs_combobox.setVisible(false);
     }//GEN-LAST:event_jPanel24MouseClicked
@@ -1311,7 +1380,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         GestionDesMaitieres.setVisible(false);
         Inscriptiton.setVisible(true);
         GestionDesAbsences.setVisible(false);
-        EcrireUnRapprots.setVisible(false);
+        GestionDesEnseignants.setVisible(false);
         EmploiDeTemps.setVisible(false);
         Abs_combobox.setVisible(false);
         
@@ -1504,7 +1573,7 @@ public class AdminDashboard extends javax.swing.JFrame {
          GestionDesMaitieres.setVisible(false);
         Inscriptiton.setVisible(false);
         GestionDesAbsences.setVisible(true);
-        EcrireUnRapprots.setVisible(false);
+        GestionDesEnseignants.setVisible(false);
         EmploiDeTemps.setVisible(false);
         
         //invisible the combonent of the eleve like 
@@ -1514,8 +1583,8 @@ public class AdminDashboard extends javax.swing.JFrame {
         classecombo.setVisible(false);
         matiereLabel.setVisible(false);
         matiereCombo.setVisible(false);
-        siJustifierLabel.setVisible(false);
-        siJustifierCombo.setVisible(false);
+        siJustifierLabel.setVisible(true);
+        siJustifierCombo.setVisible(true);
         Abs_combobox.setVisible(false);
     }//GEN-LAST:event_absEns_labelMouseClicked
 
@@ -1525,7 +1594,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_absEns_labelMouseExited
 
     private void absEns_labelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_absEns_labelMouseEntered
-        absEns_label.setForeground(new Color(38,34,34));
+        absEns_label.setForeground(new Color(255,255,255));
         absEns_label.setFont(new Font(absEns_label.getName(), Font.BOLD, absEns_label.getFont().getSize()));
     }//GEN-LAST:event_absEns_labelMouseEntered
 
@@ -1537,7 +1606,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         GestionDesMaitieres.setVisible(false);
         Inscriptiton.setVisible(false);
         GestionDesAbsences.setVisible(true);
-        EcrireUnRapprots.setVisible(false);
+        GestionDesEnseignants.setVisible(false);
         EmploiDeTemps.setVisible(false);
         Abs_combobox.setVisible(false);
         
@@ -1558,7 +1627,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_absEleve_labelMouseExited
 
     private void absEleve_labelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_absEleve_labelMouseEntered
-        absEleve_label.setForeground(new Color(38,34,34));
+        absEleve_label.setForeground(new Color(255,255,255));
         absEleve_label.setFont(new Font(absEleve_label.getName(), Font.BOLD, absEleve_label.getFont().getSize()));
     }//GEN-LAST:event_absEleve_labelMouseEntered
 
@@ -1570,6 +1639,22 @@ public class AdminDashboard extends javax.swing.JFrame {
         EditerMatiere editerMatiere = new EditerMatiere();
         editerMatiere.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        Abs_combobox.setVisible(false);
+    }//GEN-LAST:event_formMouseClicked
+
+    private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
+       
+    }//GEN-LAST:event_jTextField6KeyTyped
+
+    private void classecombo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classecombo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_classecombo1ActionPerformed
+
+    private void classecombo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classecombo2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_classecombo2ActionPerformed
 
     
     
@@ -1612,16 +1697,19 @@ public class AdminDashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Abs_combobox;
     private javax.swing.JPanel AdminStrateurDashboard;
-    private javax.swing.JPanel EcrireUnRapprots;
     private javax.swing.JPanel EmploiDeTemps;
     private javax.swing.JPanel GestionDesAbsences;
+    private javax.swing.JPanel GestionDesEnseignants;
     private javax.swing.JPanel GestionDesMaitieres;
     private javax.swing.JPanel Inscriptiton;
     private javax.swing.JLabel absEleve_label;
     private javax.swing.JLabel absEns_label;
     private javax.swing.JLabel class_label;
+    private javax.swing.JLabel class_label1;
     private javax.swing.JLabel classeLabel;
     private javax.swing.JComboBox<String> classecombo;
+    private javax.swing.JComboBox<String> classecombo1;
+    private javax.swing.JComboBox<String> classecombo2;
     private javax.swing.JLabel currentTime;
     private datechooser.beans.DateChooserCombo dateChooserCombo1;
     private javax.swing.JButton jButton1;
@@ -1696,6 +1784,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JComboBox<String> matiereCombo;
     private javax.swing.JLabel matiereLabel;
+    private javax.swing.JLabel matiereLabel1;
     private javax.swing.JComboBox<String> niveauCombo;
     private javax.swing.JLabel niveauLabel;
     private javax.swing.JComboBox<String> siJustifierCombo;
