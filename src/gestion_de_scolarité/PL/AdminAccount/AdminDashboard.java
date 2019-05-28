@@ -39,10 +39,12 @@ public class AdminDashboard extends javax.swing.JFrame {
         //setBackground(new Color(0,0,0,0));
         //setBackground(new Color(0,0,0,0));
         setBackground(new ColorUIResource(0, 0, 0));
-        jTable2.getTableHeader().setForeground(new Color(66,76,247));
+        jTable2.getTableHeader().setForeground(new Color(60,60,60));
         jTable2.getTableHeader().setFont(new Font("segoe UI", Font.BOLD, 12));
-        jTable3.getTableHeader().setForeground(new Color(66,76,247));
+        jTable3.getTableHeader().setForeground(new Color(60,60,60));
         jTable3.getTableHeader().setFont(new Font("segoe UI", Font.BOLD, 12));
+        jTable4.getTableHeader().setForeground(new Color(60,60,60));
+        jTable4.getTableHeader().setFont(new Font("segoe UI", Font.BOLD, 12));
         //jTable1.setRowHeight(25);
         //jTable1.setBackground(new Color(255, 255, 253));
         
@@ -54,7 +56,6 @@ public class AdminDashboard extends javax.swing.JFrame {
         //to set the combobox of absence transparent
         Abs_combobox.setVisible(false);
         
-       test_list();
     }
 
     /**
@@ -129,8 +130,11 @@ public class AdminDashboard extends javax.swing.JFrame {
         siJustifierCombo = new javax.swing.JComboBox<>();
         siJustifierLabel = new javax.swing.JLabel();
         GestionDesMaitieres = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        jButton7 = new javax.swing.JButton();
         EmploiDeTemps = new javax.swing.JPanel();
         Inscriptiton = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
@@ -223,7 +227,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel15))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 428, Short.MAX_VALUE)
+                        .addGap(0, 450, Short.MAX_VALUE)
                         .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -461,7 +465,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestion_de_scolarité/PL/EnseignantAccount/Icons_EnseignantDashboard/ecrireRecours.png"))); // NOI18N
         jPanel20.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 30, 40));
 
-        Abs_combobox.setBackground(new java.awt.Color(119, 136, 235));
+        Abs_combobox.setBackground(new java.awt.Color(25, 56, 233));
         Abs_combobox.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         absEns_label.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
@@ -729,7 +733,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton6)
                 .addContainerGap())
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 957, Short.MAX_VALUE)
         );
         EcrireUnRapprotsLayout.setVerticalGroup(
             EcrireUnRapprotsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -753,10 +757,12 @@ public class AdminDashboard extends javax.swing.JFrame {
             }
         });
 
-        class_label.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        class_label.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        class_label.setForeground(new java.awt.Color(60, 60, 60));
         class_label.setText("Classe:");
 
-        niveauLabel.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        niveauLabel.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        niveauLabel.setForeground(new java.awt.Color(60, 60, 60));
         niveauLabel.setText("Niveau:");
 
         niveauCombo.setBackground(new java.awt.Color(254, 254, 254));
@@ -820,7 +826,8 @@ public class AdminDashboard extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(jTable3);
 
-        matiereLabel.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        matiereLabel.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        matiereLabel.setForeground(new java.awt.Color(60, 60, 60));
         matiereLabel.setText("Matière:");
 
         matiereCombo.setBackground(new java.awt.Color(254, 254, 254));
@@ -839,19 +846,14 @@ public class AdminDashboard extends javax.swing.JFrame {
             }
         });
 
-        siJustifierLabel.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        siJustifierLabel.setText("Justifier?");
+        siJustifierLabel.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        siJustifierLabel.setForeground(new java.awt.Color(60, 60, 60));
+        siJustifierLabel.setText("Justifier? :");
 
         javax.swing.GroupLayout GestionDesAbsencesLayout = new javax.swing.GroupLayout(GestionDesAbsences);
         GestionDesAbsences.setLayout(GestionDesAbsencesLayout);
         GestionDesAbsencesLayout.setHorizontalGroup(
             GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(GestionDesAbsencesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(51, 51, 51))
             .addGroup(GestionDesAbsencesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -872,24 +874,30 @@ public class AdminDashboard extends javax.swing.JFrame {
                         .addComponent(siJustifierLabel)
                         .addGap(18, 18, 18)
                         .addComponent(siJustifierCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GestionDesAbsencesLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         GestionDesAbsencesLayout.setVerticalGroup(
             GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(GestionDesAbsencesLayout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(class_label)
-                    .addComponent(classecombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(niveauLabel)
-                    .addComponent(niveauCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(siJustifierLabel)
+                        .addComponent(siJustifierCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(matiereLabel)
-                        .addComponent(matiereCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(siJustifierLabel)
-                            .addComponent(siJustifierCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(matiereCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(class_label)
+                        .addComponent(classecombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(niveauLabel)
+                        .addComponent(niveauCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 344, Short.MAX_VALUE)
@@ -903,17 +911,80 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         GestionDesMaitieres.setBackground(new java.awt.Color(254, 254, 254));
 
-        jScrollPane2.setViewportView(jList1);
+        jComboBox3.setBackground(new java.awt.Color(254, 254, 254));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toute les niveau", "1ere année", "2eme année", "3eme année", "4eme année" }));
+
+        jLabel20.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(60, 60, 60));
+        jLabel20.setText("Niveau :");
+
+        jTable4.setBackground(new java.awt.Color(254, 254, 254));
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Matière", "Coefficient", "Fondamental"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Short.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTable4.setFocusable(false);
+        jTable4.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        jTable4.setRowHeight(25);
+        jTable4.setSelectionBackground(new java.awt.Color(60, 60, 60));
+        jTable4.setShowVerticalLines(false);
+        jTable4.getTableHeader().setReorderingAllowed(false);
+        jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable4MouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(jTable4);
+
+        jButton7.setBackground(new java.awt.Color(66, 76, 247));
+        jButton7.setForeground(new java.awt.Color(254, 254, 254));
+        jButton7.setText("Éditer");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout GestionDesMaitieresLayout = new javax.swing.GroupLayout(GestionDesMaitieres);
         GestionDesMaitieres.setLayout(GestionDesMaitieresLayout);
         GestionDesMaitieresLayout.setHorizontalGroup(
             GestionDesMaitieresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
+            .addGroup(GestionDesMaitieresLayout.createSequentialGroup()
+                .addGap(114, 114, 114)
+                .addGroup(GestionDesMaitieresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GestionDesMaitieresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(GestionDesMaitieresLayout.createSequentialGroup()
+                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 685, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
         GestionDesMaitieresLayout.setVerticalGroup(
             GestionDesMaitieresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+            .addGroup(GestionDesMaitieresLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(GestionDesMaitieresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20))
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, Short.MAX_VALUE)
+                .addComponent(jButton7)
+                .addGap(50, 50, 50))
         );
 
         AdminStrateurDashboard.add(GestionDesMaitieres, "card4");
@@ -924,7 +995,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         EmploiDeTemps.setLayout(EmploiDeTempsLayout);
         EmploiDeTempsLayout.setHorizontalGroup(
             EmploiDeTempsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 933, Short.MAX_VALUE)
+            .addGap(0, 957, Short.MAX_VALUE)
         );
         EmploiDeTempsLayout.setVerticalGroup(
             EmploiDeTempsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1150,15 +1221,23 @@ public class AdminDashboard extends javax.swing.JFrame {
         jPanel21.setBackground(new Color(66,76,247));
         jPanel23.setBackground(new Color(66,76,247));
         
+        // to chose the enseignant or eleve absences dashboard
+        //this to make the Abs_combobox invisible or visible
+        if(Abs_combobox.isVisible()){
+            Abs_combobox.setVisible(false);
+        }else{
+            Abs_combobox.setVisible(true);
+        }
+        
         //GestionDesMaitieres.setVisible(false);
         //Inscriptiton.setVisible(false);
         //GestionDesAbsences.setVisible(true);
         //EcrireUnRapprots.setVisible(false);
         //EmploiDeTemps.setVisible(false);
         
-        // to chose the enseignant or eleve absences dashboard
-        //this affiche Abs_combobox
-        Abs_combobox.setVisible(true);
+        
+        
+        
        
     }//GEN-LAST:event_jPanel20MouseClicked
 
@@ -1483,15 +1562,15 @@ public class AdminDashboard extends javax.swing.JFrame {
         absEleve_label.setFont(new Font(absEleve_label.getName(), Font.BOLD, absEleve_label.getFont().getSize()));
     }//GEN-LAST:event_absEleve_labelMouseEntered
 
-    public void test_list(){
-        DefaultListModel<AnnanceModèl> defaultListModel = new DefaultListModel<AnnanceModèl>();
-        Date date = new Date();
-            for (int i = 0; i < 15; i++) {
-                defaultListModel.addElement(new AnnanceModèl(date, "Urgent"+i, "information"+i, "Vacance Academic"+i, "In the name of allah the most merci on va parlé sur la vacances \n"));
-            }
-            jList1.setModel(defaultListModel);
-            jList1.setCellRenderer(new ModèlePanel());
-    }
+    private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable4MouseClicked
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        EditerMatiere editerMatiere = new EditerMatiere();
+        editerMatiere.setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     
     
     /**
@@ -1551,8 +1630,10 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1565,6 +1646,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
@@ -1577,7 +1659,6 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<AnnanceModèl> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
@@ -1598,15 +1679,16 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
