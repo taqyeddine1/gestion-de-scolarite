@@ -12,6 +12,8 @@ package gestion_de_scolarité.BL;
 public class Rapport {
     
     private int idRapport;
+    private Enseignant auteur;
+    private Eleve eleve;
     private String sujet;
     private String Detail;
     private Date date;

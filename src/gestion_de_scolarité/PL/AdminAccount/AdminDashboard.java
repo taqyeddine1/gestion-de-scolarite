@@ -141,7 +141,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
         jButton7 = new javax.swing.JButton();
-        EmploiDeTemps = new javax.swing.JPanel();
+        GestionDesComptes = new javax.swing.JPanel();
         Inscriptiton = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -1051,20 +1051,20 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         AdminStrateurDashboard.add(GestionDesMaitieres, "card4");
 
-        EmploiDeTemps.setBackground(new java.awt.Color(254, 254, 254));
+        GestionDesComptes.setBackground(new java.awt.Color(254, 254, 254));
 
-        javax.swing.GroupLayout EmploiDeTempsLayout = new javax.swing.GroupLayout(EmploiDeTemps);
-        EmploiDeTemps.setLayout(EmploiDeTempsLayout);
-        EmploiDeTempsLayout.setHorizontalGroup(
-            EmploiDeTempsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout GestionDesComptesLayout = new javax.swing.GroupLayout(GestionDesComptes);
+        GestionDesComptes.setLayout(GestionDesComptesLayout);
+        GestionDesComptesLayout.setHorizontalGroup(
+            GestionDesComptesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 955, Short.MAX_VALUE)
         );
-        EmploiDeTempsLayout.setVerticalGroup(
-            EmploiDeTempsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        GestionDesComptesLayout.setVerticalGroup(
+            GestionDesComptesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 540, Short.MAX_VALUE)
         );
 
-        AdminStrateurDashboard.add(EmploiDeTemps, "card4");
+        AdminStrateurDashboard.add(GestionDesComptes, "card4");
 
         Inscriptiton.setBackground(new java.awt.Color(254, 254, 254));
         Inscriptiton.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1277,7 +1277,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         Inscriptiton.setVisible(false);
         GestionDesAbsences.setVisible(false);
         GestionDesEnseignants.setVisible(true);
-        EmploiDeTemps.setVisible(false);
+        GestionDesComptes.setVisible(false);
         Abs_combobox.setVisible(false);
     }//GEN-LAST:event_jPanel18MouseClicked
 
@@ -1323,7 +1323,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         Inscriptiton.setVisible(false);
         GestionDesAbsences.setVisible(false);
         GestionDesEnseignants.setVisible(false);
-        EmploiDeTemps.setVisible(false);
+        GestionDesComptes.setVisible(false);
         Abs_combobox.setVisible(false);
     }//GEN-LAST:event_jPanel22MouseClicked
 
@@ -1340,7 +1340,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         Inscriptiton.setVisible(false);
         GestionDesAbsences.setVisible(false);
         GestionDesEnseignants.setVisible(false);
-        EmploiDeTemps.setVisible(true);
+        GestionDesComptes.setVisible(true);
         Abs_combobox.setVisible(false);
     }//GEN-LAST:event_jPanel24MouseClicked
 
@@ -1381,7 +1381,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         Inscriptiton.setVisible(true);
         GestionDesAbsences.setVisible(false);
         GestionDesEnseignants.setVisible(false);
-        EmploiDeTemps.setVisible(false);
+        GestionDesComptes.setVisible(false);
         Abs_combobox.setVisible(false);
         
     }//GEN-LAST:event_jPanel16MouseClicked
@@ -1573,7 +1573,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         Inscriptiton.setVisible(false);
         GestionDesAbsences.setVisible(true);
         GestionDesEnseignants.setVisible(false);
-        EmploiDeTemps.setVisible(false);
+        GestionDesComptes.setVisible(false);
         
         //invisible the combonent of the eleve like 
         niveauLabel.setVisible(false);
@@ -1606,7 +1606,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         Inscriptiton.setVisible(false);
         GestionDesAbsences.setVisible(true);
         GestionDesEnseignants.setVisible(false);
-        EmploiDeTemps.setVisible(false);
+        GestionDesComptes.setVisible(false);
         Abs_combobox.setVisible(false);
         
         //invisible the combonent of the eleve like 
@@ -1696,8 +1696,8 @@ public class AdminDashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Abs_combobox;
     private javax.swing.JPanel AdminStrateurDashboard;
-    private javax.swing.JPanel EmploiDeTemps;
     private javax.swing.JPanel GestionDesAbsences;
+    private javax.swing.JPanel GestionDesComptes;
     private javax.swing.JPanel GestionDesEnseignants;
     private javax.swing.JPanel GestionDesMaitieres;
     private javax.swing.JPanel Inscriptiton;
