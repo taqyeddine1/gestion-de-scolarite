@@ -26,6 +26,7 @@ public class DatabaseConnection {
    public CallableStatement callable= null;
 
     public DatabaseConnection() {
+        getConnection();
     }
    
     public void getConnection(){

@@ -5,6 +5,8 @@
  */
 package gestion_de_scolarité.BL;
 
+import gestion_de_scolarité.DAL.DatabaseConnection;
+import java.sql.SQLException;
 import java.util.Date;
 
 /**
@@ -45,6 +47,24 @@ public class Administrateur extends Person{
     
     
    
-   
+   public boolean login(String username, String password){
+       DatabaseConnection dc = new DatabaseConnection();
+       boolean access = false;
+       try{ 
+            String sql = "select username, uPassword from Administrateur "
+                    + "where username = '" + username + "' and uPassword = '" + password +"';";
+            dc.stmt= dc.conn.createStatement();   
+            dc.rs= dc.stmt.executeQuery(sql);
+            
+            while(dc.rs.next()){
+                access = true;
+            }
+            
+         }catch(SQLException e){
+          System.out.print("error in login() Adminstrateur's Class .");
+         }
+       
+       return access;
+   }
     
 }

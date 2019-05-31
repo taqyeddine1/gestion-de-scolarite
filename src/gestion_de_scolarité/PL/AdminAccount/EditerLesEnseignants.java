@@ -59,6 +59,7 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,13 +68,13 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(89, 89, 89));
         jButton3.setForeground(new java.awt.Color(254, 254, 254));
-        jButton3.setText("Supprimer");
+        jButton3.setText("Annuler");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 330, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 340, -1, -1));
 
         jButton4.setBackground(new java.awt.Color(89, 89, 89));
         jButton4.setForeground(new java.awt.Color(254, 254, 254));
@@ -83,7 +84,7 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, -1, -1));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, -1, -1));
 
         jTextField1.setForeground(new java.awt.Color(66, 66, 66));
         jTextField1.setToolTipText("");
@@ -229,7 +230,7 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
             jButton5ActionPerformed(evt);
         }
     });
-    jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 330, -1, -1));
+    jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, -1, -1));
 
     classeLabel.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
     classeLabel.setForeground(new java.awt.Color(136, 136, 136));
@@ -298,6 +299,16 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
     jButton1.setText("Search");
     jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, -1, -1));
 
+    jButton6.setBackground(new java.awt.Color(89, 89, 89));
+    jButton6.setForeground(new java.awt.Color(254, 254, 254));
+    jButton6.setText("Supprimer");
+    jButton6.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton6ActionPerformed(evt);
+        }
+    });
+    jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 340, -1, -1));
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
@@ -315,7 +326,7 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -350,6 +361,10 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -394,6 +409,7 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
