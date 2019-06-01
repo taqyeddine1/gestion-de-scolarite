@@ -6,6 +6,7 @@
 package gestion_de_scolarité.BL;
 
 import java.util.Date;
+import javax.swing.Icon;
 
 /**
  *
@@ -19,11 +20,13 @@ public class Directeur extends Person{
     public Directeur() {
     }
 
-    public Directeur(String username, String password, int idPerson, String nom, String prenom, String address, Date dateDeNaissance, String lieuDeNaissance, String email, String phone, boolean sex) {
-        super(idPerson, nom, prenom, address, dateDeNaissance, lieuDeNaissance, email, phone, sex);
+    public Directeur(String username, String password, int idPerson, String nom, String prenom, String address, Date dateDeNaissance, String lieuDeNaissance, String email, String phone, boolean sex, Icon photos) {
+        super(idPerson, nom, prenom, address, dateDeNaissance, lieuDeNaissance, email, phone, sex, photos);
         this.username = username;
         this.password = password;
     }
+
+    
 
     public String getUsername() {
         return username;

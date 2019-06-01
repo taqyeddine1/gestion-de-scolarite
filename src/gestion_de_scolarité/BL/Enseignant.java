@@ -9,6 +9,7 @@ import gestion_de_scolarité.DAL.DatabaseConnection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.Icon;
 
 /**
  *
@@ -24,15 +25,17 @@ public class Enseignant extends Person{
 
     public Enseignant() {
     }
-    
-    public Enseignant(int nbClasse, Matière matière, ArrayList<Classe> classes, String username, String password, int idPerson, String nom, String prenom, String address, Date dateDeNaissance, String lieuDeNaissance, String email, String phone, boolean sex) {
-        super(idPerson, nom, prenom, address, dateDeNaissance, lieuDeNaissance, email, phone, sex);
+
+    public Enseignant(int nbClasse, Matière matière, ArrayList<Classe> classes, String username, String password, int idPerson, String nom, String prenom, String address, Date dateDeNaissance, String lieuDeNaissance, String email, String phone, boolean sex, Icon photos) {
+        super(idPerson, nom, prenom, address, dateDeNaissance, lieuDeNaissance, email, phone, sex, photos);
         this.nbClasse = nbClasse;
         this.matière = matière;
         this.classes = classes;
         this.username = username;
         this.password = password;
     }
+    
+    
 
     public int getNbClasse() {
         return nbClasse;

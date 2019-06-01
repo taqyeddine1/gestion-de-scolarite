@@ -6,6 +6,7 @@
 package gestion_de_scolarité.BL;
 
 import java.util.Date;
+import javax.swing.Icon;
 
 /**
  *
@@ -22,12 +23,13 @@ public class Person {
     private String email;
     private String phone;
     private boolean sex;
+    private Icon photos;
 
     public Person() {
     }
 
     
-    public Person(int idPerson, String nom, String prenom, String address, Date dateDeNaissance, String lieuDeNaissance, String email, String phone, boolean sex) {
+    public Person(int idPerson, String nom, String prenom, String address, Date dateDeNaissance, String lieuDeNaissance, String email, String phone, boolean sex, Icon photos) {
         this.idPerson = idPerson;
         this.nom = nom;
         this.prenom = prenom;
@@ -37,8 +39,18 @@ public class Person {
         this.email = email;
         this.phone = phone;
         this.sex = sex;
+        this.photos = photos;
     }
 
+    public Icon getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(Icon photos) {
+        this.photos = photos;
+    }
+
+    
     public int getIdPerson() {
         return idPerson;
     }
