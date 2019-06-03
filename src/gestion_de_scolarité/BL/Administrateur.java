@@ -305,13 +305,12 @@ public class Administrateur extends Person{
             dc.stmt= dc.conn.createStatement();
             System.out.println("create the statement in getEleve");
             dc.rs= dc.stmt.executeQuery(query);
-           while(dc.rs.next()){
-                
-                System.out.println("nom: " + dc.rs.getString(1) + " niveau: "+ dc.rs.getInt(6));
-            }
-           resultSet = dc.rs;
-           System.out.println("resultset = " + resultSet.last());
             
+           resultSet = dc.rs;
+           while(dc.rs.next()){
+                 System.out.println(" From getEleve() nom: " + dc.rs.getString(1) + " niveau: "+ dc.rs.getInt(6));
+
+              }
         } catch (SQLException ex) {
             System.out.println("message from : "+ex);
         }
