@@ -24,9 +24,37 @@ public class Person {
     private String phone;
     private boolean sex;
     private Icon photos;
+    private byte[] imgByte;
 
     public Person() {
     }
+
+    public Person(int idPerson, String nom, String prenom, String address, Date dateDeNaissance, String lieuDeNaissance, String email, String phone, boolean sex) {
+        this.idPerson = idPerson;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.address = address;
+        this.dateDeNaissance = dateDeNaissance;
+        this.lieuDeNaissance = lieuDeNaissance;
+        this.email = email;
+        this.phone = phone;
+        this.sex = sex;
+    }
+
+    public Person(int idPerson, String nom, String prenom, String address, Date dateDeNaissance, String lieuDeNaissance, String email, String phone, boolean sex, byte[] imgByte) {
+        this.idPerson = idPerson;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.address = address;
+        this.dateDeNaissance = dateDeNaissance;
+        this.lieuDeNaissance = lieuDeNaissance;
+        this.email = email;
+        this.phone = phone;
+        this.sex = sex;
+        this.imgByte = imgByte;
+    }
+    
+    
 
     
     public Person(int idPerson, String nom, String prenom, String address, Date dateDeNaissance, String lieuDeNaissance, String email, String phone, boolean sex, Icon photos) {
@@ -122,6 +150,16 @@ public class Person {
     public void setSex(boolean sex) {
         this.sex = sex;
     }
+
+    public byte[] getImgByte() {
+        return imgByte;
+    }
+
+    public void setImgByte(byte[] imgByte) {
+        this.imgByte = imgByte;
+    }
+    
+    
     
     
 }

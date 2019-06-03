@@ -5,6 +5,12 @@
  */
 package gestion_de_scolarité.PL.AdminAccount;
 
+import gestion_de_scolarité.BL.Administrateur;
+import java.awt.Color;
+import java.awt.Font;
+import java.sql.ResultSet;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author slimane
@@ -17,6 +23,11 @@ public class ElevesListeDetail extends javax.swing.JFrame {
     public ElevesListeDetail() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        jTable1.getTableHeader().setForeground(new Color(60,60,60));
+        jTable1.getTableHeader().setFont(new Font("segoe UI", Font.BOLD, 12));
+        
+        updateable();
     }
 
     /**
@@ -33,11 +44,11 @@ public class ElevesListeDetail extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
-        jComboBox6 = new javax.swing.JComboBox<>();
+        jComboNiveau = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jComboBox7 = new javax.swing.JComboBox<>();
+        jComboClasse = new javax.swing.JComboBox<>();
         jLabel24 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -70,8 +81,9 @@ public class ElevesListeDetail extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(254, 254, 254));
         jButton1.setText("Search");
 
-        jComboBox6.setBackground(new java.awt.Color(254, 254, 254));
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere année", "2eme année", "3eme année", "4eme année" }));
+        jComboNiveau.setBackground(new java.awt.Color(254, 254, 254));
+        jComboNiveau.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jComboNiveau.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere année", "2eme année", "3eme année", "4eme année" }));
 
         jLabel23.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(60, 60, 60));
@@ -107,11 +119,11 @@ public class ElevesListeDetail extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jComboBox7.setBackground(new java.awt.Color(254, 254, 254));
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N1C1", "N1C2", "N1C3", "N1C4" }));
-        jComboBox7.addActionListener(new java.awt.event.ActionListener() {
+        jComboClasse.setBackground(new java.awt.Color(254, 254, 254));
+        jComboClasse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N1C1", "N1C2", "N1C3", "N1C4" }));
+        jComboClasse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox7ActionPerformed(evt);
+                jComboClasseActionPerformed(evt);
             }
         });
 
@@ -168,11 +180,11 @@ public class ElevesListeDetail extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel23)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboNiveau, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel24)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboClasse, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -196,12 +208,12 @@ public class ElevesListeDetail extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboNiveau, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboClasse, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
                     .addComponent(jButton3)
@@ -233,9 +245,9 @@ public class ElevesListeDetail extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jComboBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox7ActionPerformed
+    private void jComboClasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboClasseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox7ActionPerformed
+    }//GEN-LAST:event_jComboClasseActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -250,6 +262,36 @@ public class ElevesListeDetail extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    public  void updateable(){
+        Administrateur admin = new Administrateur();
+        int idNiveau = 40;
+        System.out.println("from updattable() 1");
+        String niveau = jComboNiveau.getSelectedItem().toString();
+        System.out.println("from updatTable() jComboNiveau : "+niveau);
+        String classe = jComboClasse.getSelectedItem().toString();
+        System.out.println("from updatTable() jComboClasse : "+classe);
+        switch(niveau){
+            case "1ere Année": idNiveau = 40; break;
+            case "2eme Année": idNiveau = 41; break;
+            case "3eme Année": idNiveau = 42; break;
+            case "4eme Année": idNiveau = 43; break;
+        }
+        try {
+            System.out.println("from updatTable() idNiveau : "+idNiveau);
+       ResultSet rs = admin.getEleve(idNiveau, classe);
+       System.out.println("from updatTable() resultSet : "+rs);
+       jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+       System.out.println("from updatTable() its Done! ");
+        } catch (Exception e) {
+             System.out.println("from updatTable() error! :"+e);
+        }
+        
+    
+      
+      }
+      
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -290,8 +332,8 @@ public class ElevesListeDetail extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
+    private javax.swing.JComboBox<String> jComboClasse;
+    private javax.swing.JComboBox<String> jComboNiveau;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;

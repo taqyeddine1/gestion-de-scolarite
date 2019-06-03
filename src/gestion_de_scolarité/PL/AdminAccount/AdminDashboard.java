@@ -15,6 +15,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.io.File;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Enumeration;
@@ -24,6 +25,8 @@ import javax.swing.ButtonModel;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.text.Style;
 import javax.tools.Diagnostic;
@@ -39,6 +42,8 @@ public class AdminDashboard extends javax.swing.JFrame {
      * Creates new form EnseignantDashboard
      */
 
+    String path="";
+    
     public AdminDashboard() {
         initComponents();
         this.setLocationRelativeTo(null); // this line to set the frame on the center fo the screen
@@ -162,7 +167,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         emailField = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
         jLabel32 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
+        photoChooser = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         parentPhone = new javax.swing.JTextField();
         jLabel34 = new javax.swing.JLabel();
@@ -214,7 +219,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         classecombo6 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1100, 650));
+        setPreferredSize(new java.awt.Dimension(1100, 665));
         setResizable(false);
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -294,7 +299,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 822, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 630, Short.MAX_VALUE)
                         .addComponent(jLabel15))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel23)
@@ -988,7 +993,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     });
     GestionDesInscriptiton.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, -1, -1));
 
-    specifierClasse.setText("Vous voulez specifier l classe?");
+    specifierClasse.setText("Vous voulez specifier la classe?");
     specifierClasse.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             specifierClasseActionPerformed(evt);
@@ -1037,15 +1042,15 @@ public class AdminDashboard extends javax.swing.JFrame {
             phoneFieldActionPerformed(evt);
         }
     });
-    GestionDesInscriptiton.add(phoneField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 200, 30));
+    GestionDesInscriptiton.add(phoneField, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, 200, 30));
 
     jLabel31.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
     jLabel31.setForeground(new java.awt.Color(136, 136, 136));
     jLabel31.setText("Number phone :");
-    GestionDesInscriptiton.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 130, -1));
+    GestionDesInscriptiton.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 130, -1));
 
     jSeparator5.setBackground(new java.awt.Color(206, 202, 198));
-    GestionDesInscriptiton.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 200, 14));
+    GestionDesInscriptiton.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, 200, 14));
 
     emailField.setForeground(new java.awt.Color(66, 66, 66));
     emailField.setToolTipText("");
@@ -1056,21 +1061,26 @@ public class AdminDashboard extends javax.swing.JFrame {
             emailFieldActionPerformed(evt);
         }
     });
-    GestionDesInscriptiton.add(emailField, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 340, 200, 30));
+    GestionDesInscriptiton.add(emailField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 200, 30));
 
     jSeparator6.setBackground(new java.awt.Color(206, 202, 198));
-    GestionDesInscriptiton.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 370, 200, 14));
+    GestionDesInscriptiton.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 200, 14));
 
     jLabel32.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
     jLabel32.setForeground(new java.awt.Color(136, 136, 136));
     jLabel32.setText("Email :");
-    GestionDesInscriptiton.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 320, 130, -1));
+    GestionDesInscriptiton.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 130, -1));
 
-    jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestion_de_scolarité/PL/AdminAccount/icons/picturesmall.png"))); // NOI18N
-    jLabel24.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(179, 179, 179), 2));
-    jLabel24.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-    GestionDesInscriptiton.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, 160, 180));
+    photoChooser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    photoChooser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestion_de_scolarité/PL/AdminAccount/icons/picturesmall.png"))); // NOI18N
+    photoChooser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(179, 179, 179), 2));
+    photoChooser.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    photoChooser.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            photoChooserMouseClicked(evt);
+        }
+    });
+    GestionDesInscriptiton.add(photoChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, 160, 180));
 
     jLabel33.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
     jLabel33.setForeground(new java.awt.Color(136, 136, 136));
@@ -1086,15 +1096,15 @@ public class AdminDashboard extends javax.swing.JFrame {
             parentPhoneActionPerformed(evt);
         }
     });
-    GestionDesInscriptiton.add(parentPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, 200, 30));
+    GestionDesInscriptiton.add(parentPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 340, 160, 30));
 
     jLabel34.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
     jLabel34.setForeground(new java.awt.Color(136, 136, 136));
     jLabel34.setText("Parent phone :  *");
-    GestionDesInscriptiton.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 130, -1));
+    GestionDesInscriptiton.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, 130, -1));
 
     jSeparator7.setBackground(new java.awt.Color(206, 202, 198));
-    GestionDesInscriptiton.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, 200, 14));
+    GestionDesInscriptiton.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 370, 160, 14));
 
     AdminStrateurDashboard.add(GestionDesInscriptiton, "card4");
 
@@ -1175,7 +1185,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                             .addComponent(matiereLabel1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(classecombo2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 499, Short.MAX_VALUE)))
+                            .addGap(0, 307, Short.MAX_VALUE)))
                     .addContainerGap())))
     );
     GestionDesEnseignantsLayout.setVerticalGroup(
@@ -1315,7 +1325,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                     .addComponent(siJustifierLabel)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(siJustifierCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 245, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                     .addComponent(niveauLabel)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(niveauCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1417,7 +1427,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addGroup(GestionDesMaitieresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton7)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addContainerGap(364, Short.MAX_VALUE))
+            .addContainerGap(172, Short.MAX_VALUE))
     );
     GestionDesMaitieresLayout.setVerticalGroup(
         GestionDesMaitieresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1524,7 +1534,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                     .addComponent(matiereLabel2)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(classecombo4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 497, Short.MAX_VALUE))
+                    .addGap(0, 305, Short.MAX_VALUE))
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GestionDesComptesLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -1634,7 +1644,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                             .addComponent(matiereLabel3)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(classecombo6, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 499, Short.MAX_VALUE)))
+                            .addGap(0, 307, Short.MAX_VALUE)))
                     .addContainerGap())))
     );
     GestionDesSanctionsLayout.setVerticalGroup(
@@ -1922,6 +1932,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         String lieuNai = lieuField.getText();
         String email = emailField.getText();
         String numPhone = phoneField.getText();
+        
         boolean sex = true;
         String phoneParent = parentPhone.getText();
         String gender = getSelectedButtonText(buttonGroup1);
@@ -1930,7 +1941,17 @@ public class AdminDashboard extends javax.swing.JFrame {
         }else if(gender.equals("femalle")){
             sex = false;
         }
-        admin.inscrerEleve(nom, prenom, adress, dateNai, lieuNai, email, numPhone, sex, (short)0, phoneParent);
+        
+        short idNiveau=40;
+       String niv = comboNiveau.getSelectedItem().toString();
+       switch(niv){
+           case "1ere Année": idNiveau = 40; break;
+           case "2eme Année": idNiveau = 41; break;
+           case "3eme Année": idNiveau = 42; break;
+           case "4eme Année": idNiveau = 43; break;
+       }
+        
+        admin.inscrerEleve(nomField.getText(), prenomField.getText(), adressField.getText(), dateChooser.getSelectedDate().getTime(), lieuField.getText(), emailField.getText(), phoneField.getText(), sex, idNiveau, parentPhone.getText(), path);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
@@ -2145,6 +2166,24 @@ public class AdminDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_parentPhoneActionPerformed
 
+    private void photoChooserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_photoChooserMouseClicked
+        //browse photo
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+       // filter images
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images", "jpg","gif", "png");
+        fileChooser.addChoosableFileFilter(filter);
+        int result = fileChooser.showSaveDialog(null);
+        //if user click on save in  JFileChooser
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            path = selectedFile.getAbsolutePath();
+            photoChooser.setIcon(ResizeImage(path,null));
+        }else if (result == JFileChooser.CANCEL_OPTION) {
+            System.out.println("No data");
+        }
+    }//GEN-LAST:event_photoChooserMouseClicked
+
     /**
      * this method to get the text of the selected radioButton in buttonGroup
      * @param buttonGroup
@@ -2161,6 +2200,20 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     return null;
 }
+    
+    public ImageIcon ResizeImage(String imagePath, byte[] pic){
+        ImageIcon myImage = null;
+        if(imagePath != null){
+            myImage = new ImageIcon(imagePath);
+        }else{
+            myImage = new ImageIcon(pic);
+        }
+        
+        Image img = myImage.getImage();
+        Image newImg = img.getScaledInstance(photoChooser.getWidth(), photoChooser.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        return image;
+    }
     
     /**
      * @param args the command line arguments
@@ -2223,7 +2276,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> classecombo4;
     private javax.swing.JComboBox<String> classecombo5;
     private javax.swing.JComboBox<String> classecombo6;
-    private javax.swing.JComboBox<String> comboNiveau;
+    public javax.swing.JComboBox<String> comboNiveau;
     private javax.swing.JLabel currentTime;
     private datechooser.beans.DateChooserCombo dateChooser;
     private javax.swing.JTextField emailField;
@@ -2257,7 +2310,6 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
@@ -2327,6 +2379,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField nomField;
     private javax.swing.JTextField parentPhone;
     private javax.swing.JTextField phoneField;
+    private javax.swing.JLabel photoChooser;
     private javax.swing.JTextField prenomField;
     private javax.swing.JComboBox<String> siJustifierCombo;
     private javax.swing.JLabel siJustifierLabel;

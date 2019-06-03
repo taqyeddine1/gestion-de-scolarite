@@ -390,10 +390,10 @@ public class LoginForm extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         boolean access = false;
         LoginForm lf = new LoginForm();
-     if(theUser.getText().toString().equals(directeur.getText().toString()) || theUser.getText().toString().equals(admin.getText().toString()) || theUser.getText().toString().equals(enseignant.getText().toString())){
-        if(theUser.getText().toString().equals(admin.getText().toString())){
+     if(theUser.getText().equals(directeur.getText()) || theUser.getText().equals(admin.getText()) || theUser.getText().equals(enseignant.getText())){
+        if(theUser.getText().equals(admin.getText())){
             Administrateur admin = new Administrateur();
-            access = admin.login(usernameField.getText().toString(), passwordField.getText().toString());
+            access = admin.login(usernameField.getText(), passwordField.getText());
             if(access == true){
                 
                 AdminDashboard ad = new AdminDashboard();
@@ -404,10 +404,10 @@ public class LoginForm extends javax.swing.JFrame {
                 msg.setVisible(true);
             }
         }else{
-            if(theUser.getText().toString().equals(enseignant.getText().toString())){
+            if(theUser.getText().equals(enseignant.getText())){
              
              Enseignant ens = new Enseignant();
-             access = ens.login(usernameField.getText().toString(), passwordField.getText().toString());
+             access = ens.login(usernameField.getText(), passwordField.getText());
              if(access == true){
                  EnseignantDashboard  ensD= new EnseignantDashboard();
                  ensD.setVisible(true);
