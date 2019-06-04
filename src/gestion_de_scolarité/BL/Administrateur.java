@@ -64,7 +64,12 @@ public class Administrateur extends Person{
     }
     
     
-   
+   /**
+    * this method to get administrator users login into the system
+    * @param username
+    * @param password
+    * @return 
+    */
    public boolean login(String username, String password){
        DatabaseConnection dc = new DatabaseConnection();
        boolean access = false;
@@ -123,6 +128,11 @@ public class Administrateur extends Person{
        
    }
    
+   /**
+    * this method help us to get the years available in the annee table
+    * @param annee
+    * @return 
+    */
    public int getIdAnnee(String annee){
        
        int id=0;
@@ -319,4 +329,7 @@ public class Administrateur extends Person{
        
    }
     
+   public void diviser(){
+       
+   }
 }

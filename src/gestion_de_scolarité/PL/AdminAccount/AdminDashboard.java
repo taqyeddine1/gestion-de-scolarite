@@ -193,6 +193,8 @@ public class AdminDashboard extends javax.swing.JFrame {
         matiereCombo = new javax.swing.JComboBox<>();
         siJustifierCombo = new javax.swing.JComboBox<>();
         siJustifierLabel = new javax.swing.JLabel();
+        siJustifierCombo1 = new javax.swing.JComboBox<>();
+        siJustifierLabel1 = new javax.swing.JLabel();
         GestionDesMaitieres = new javax.swing.JPanel();
         jComboBox3 = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
@@ -1308,6 +1310,18 @@ public class AdminDashboard extends javax.swing.JFrame {
     siJustifierLabel.setForeground(new java.awt.Color(60, 60, 60));
     siJustifierLabel.setText("Justification :");
 
+    siJustifierCombo1.setBackground(new java.awt.Color(254, 254, 254));
+    siJustifierCombo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Eleve", "Enseignant" }));
+    siJustifierCombo1.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            siJustifierCombo1ActionPerformed(evt);
+        }
+    });
+
+    siJustifierLabel1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+    siJustifierLabel1.setForeground(new java.awt.Color(60, 60, 60));
+    siJustifierLabel1.setText("Absent :");
+
     javax.swing.GroupLayout GestionDesAbsencesLayout = new javax.swing.GroupLayout(GestionDesAbsences);
     GestionDesAbsences.setLayout(GestionDesAbsencesLayout);
     GestionDesAbsencesLayout.setHorizontalGroup(
@@ -1315,49 +1329,65 @@ public class AdminDashboard extends javax.swing.JFrame {
         .addGroup(GestionDesAbsencesLayout.createSequentialGroup()
             .addContainerGap()
             .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane4)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GestionDesAbsencesLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jButton2)
                     .addGap(18, 18, 18)
                     .addComponent(jButton1))
                 .addGroup(GestionDesAbsencesLayout.createSequentialGroup()
-                    .addComponent(siJustifierLabel)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(siJustifierCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                    .addComponent(niveauLabel)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(niveauCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(class_label)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(classecombo, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
+                    .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(GestionDesAbsencesLayout.createSequentialGroup()
+                            .addComponent(siJustifierLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(siJustifierCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(GestionDesAbsencesLayout.createSequentialGroup()
+                            .addComponent(niveauLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(niveauCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(62, 62, 62)
+                    .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(GestionDesAbsencesLayout.createSequentialGroup()
+                            .addComponent(siJustifierLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(siJustifierCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(classecombo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(class_label))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(matiereLabel)
                     .addGap(18, 18, 18)
-                    .addComponent(matiereCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(matiereCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(96, 96, 96))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 882, Short.MAX_VALUE))
             .addContainerGap())
     );
     GestionDesAbsencesLayout.setVerticalGroup(
         GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(GestionDesAbsencesLayout.createSequentialGroup()
-            .addGap(48, 48, 48)
+            .addGap(32, 32, 32)
             .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(siJustifierLabel)
-                    .addComponent(siJustifierCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(class_label)
-                    .addComponent(classecombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(niveauCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(niveauLabel))
-                .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(matiereLabel)
-                    .addComponent(matiereCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(GestionDesAbsencesLayout.createSequentialGroup()
+                    .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(siJustifierLabel1)
+                        .addComponent(siJustifierCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(niveauCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(niveauLabel)))
+                .addGroup(GestionDesAbsencesLayout.createSequentialGroup()
+                    .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(siJustifierLabel)
+                        .addComponent(siJustifierCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(classecombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(matiereLabel)
+                            .addComponent(matiereCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(class_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGap(18, 18, 18)
             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 360, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 331, Short.MAX_VALUE)
             .addGroup(GestionDesAbsencesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jButton1)
                 .addComponent(jButton2))
@@ -2184,6 +2214,10 @@ public class AdminDashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_photoChooserMouseClicked
 
+    private void siJustifierCombo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siJustifierCombo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_siJustifierCombo1ActionPerformed
+
     /**
      * this method to get the text of the selected radioButton in buttonGroup
      * @param buttonGroup
@@ -2382,7 +2416,9 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel photoChooser;
     private javax.swing.JTextField prenomField;
     private javax.swing.JComboBox<String> siJustifierCombo;
+    private javax.swing.JComboBox<String> siJustifierCombo1;
     private javax.swing.JLabel siJustifierLabel;
+    private javax.swing.JLabel siJustifierLabel1;
     private javax.swing.JCheckBox specifierClasse;
     private javax.swing.JLabel userAvatar;
     // End of variables declaration//GEN-END:variables

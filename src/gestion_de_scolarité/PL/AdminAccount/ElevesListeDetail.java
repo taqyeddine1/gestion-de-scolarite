@@ -115,7 +115,7 @@ public class ElevesListeDetail extends javax.swing.JFrame {
 
         jLabel23.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(60, 60, 60));
-        jLabel23.setText("Niveau:");
+        jLabel23.setText("Niveau :");
 
         jTable1.setBackground(new java.awt.Color(254, 254, 254));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -158,7 +158,7 @@ public class ElevesListeDetail extends javax.swing.JFrame {
 
         jLabel24.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(60, 60, 60));
-        jLabel24.setText("Classe:");
+        jLabel24.setText("Classe :");
         jLabel24.setEnabled(false);
 
         jButton3.setBackground(new java.awt.Color(66, 76, 247));
@@ -190,7 +190,7 @@ public class ElevesListeDetail extends javax.swing.JFrame {
 
         jLabel26.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(60, 60, 60));
-        jLabel26.setText("L'année:");
+        jLabel26.setText("L'année :");
         jLabel26.setEnabled(false);
 
         anneeCombo.setBackground(new java.awt.Color(254, 254, 254));
@@ -203,7 +203,7 @@ public class ElevesListeDetail extends javax.swing.JFrame {
             }
         });
 
-        questionCheckbox.setText("Vous voulez choisé l'année precedent?");
+        questionCheckbox.setText("Vous voulez choisissez l'année précedent?");
         questionCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 questionCheckboxActionPerformed(evt);
@@ -238,16 +238,17 @@ public class ElevesListeDetail extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton1))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel26)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(anneeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel23)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboNiveau, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(77, 77, 77)))
+                                .addGap(25, 25, 25))
+                            .addComponent(jLabel26))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jComboNiveau, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(anneeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(70, 70, 70)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel24)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -265,15 +266,18 @@ public class ElevesListeDetail extends javax.swing.JFrame {
                         .addComponent(jButton1)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(anneeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboNiveau, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboClasse, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboClasse, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(anneeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addComponent(jComboNiveau, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -283,7 +287,7 @@ public class ElevesListeDetail extends javax.swing.JFrame {
                         .addComponent(jButton3)
                         .addComponent(jButton5))
                     .addComponent(questionCheckbox, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -347,7 +351,7 @@ public class ElevesListeDetail extends javax.swing.JFrame {
     }//GEN-LAST:event_questionCheckboxActionPerformed
     
     /**
-     * this method to fill the table with the data
+     * this method to fill the jTable of this context with the student's data
      */
     public void updateTable2(){
        
@@ -401,6 +405,7 @@ public class ElevesListeDetail extends javax.swing.JFrame {
             System.out.println("message from : "+ex);
         }
     }
+    
     /**
      * this method get all the years that found in the table Annee in DB
      * @return 
