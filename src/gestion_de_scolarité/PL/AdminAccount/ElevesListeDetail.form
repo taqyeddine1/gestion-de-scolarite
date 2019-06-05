@@ -208,7 +208,7 @@
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="1ere ann&#xe9;e"/>
+                <StringItem index="0" value="6ere ann&#xe9;e"/>
                 <StringItem index="1" value="2eme ann&#xe9;e"/>
                 <StringItem index="2" value="3eme ann&#xe9;e"/>
                 <StringItem index="3" value="4eme ann&#xe9;e"/>
@@ -220,6 +220,7 @@
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel23">
@@ -372,11 +373,10 @@
               <Font name="Arial" size="15" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="all"/>
-                <StringItem index="1" value="2015"/>
-                <StringItem index="2" value="2016"/>
-                <StringItem index="3" value="2017"/>
+              <StringArray count="3">
+                <StringItem index="0" value="2015"/>
+                <StringItem index="1" value="2016"/>
+                <StringItem index="2" value="2017"/>
               </StringArray>
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
@@ -386,6 +386,7 @@
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="questionCheckbox">

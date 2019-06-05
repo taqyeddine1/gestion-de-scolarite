@@ -11,12 +11,26 @@ package gestion_de_scolarité.PL.AdminAccount;
  */
 public class Diviseure extends javax.swing.JFrame {
 
+    
+    
     /**
      * Creates new form Diviseure
      */
+    int annee, niveau;
+    ElevesListeDetail eld = new ElevesListeDetail();
+    
+    
     public Diviseure() {
         initComponents();
+        this.setLocationRelativeTo(null);        
+        
+    }
+    
+    public Diviseure(int annee, int niveau){
+        initComponents();
         this.setLocationRelativeTo(null);
+        this.annee = annee;
+        this.niveau = niveau;
     }
 
     /**

@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JRootPane;
+import javax.swing.WindowConstants;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -26,18 +28,18 @@ public class ElevesListeDetail extends javax.swing.JFrame {
     /**
      * Creates new form ElevesListeDetail
      */
+    
     public ElevesListeDetail() {
        
         initComponents();
         updateTable2();
         this.setLocationRelativeTo(null);
-        
         jTable1.getTableHeader().setForeground(new Color(60,60,60));
         jTable1.getTableHeader().setFont(new Font("segoe UI", Font.BOLD, 12));
         
         //populate combobox of the classes by data from DB
         ArrayList<String> classes = new ArrayList<>();
-         String niveau = jComboNiveau.getSelectedItem().toString();
+        String niveau = jComboNiveau.getSelectedItem().toString();
         String annee = anneeCombo.getSelectedItem().toString();
         classes = selectClasse(annee, niveau);
         if (!classes.isEmpty()) {
@@ -106,7 +108,7 @@ public class ElevesListeDetail extends javax.swing.JFrame {
 
         jComboNiveau.setBackground(new java.awt.Color(254, 254, 254));
         jComboNiveau.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jComboNiveau.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere année", "2eme année", "3eme année", "4eme année" }));
+        jComboNiveau.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "6ere année", "2eme année", "3eme année", "4eme année" }));
         jComboNiveau.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboNiveauItemStateChanged(evt);
@@ -195,7 +197,7 @@ public class ElevesListeDetail extends javax.swing.JFrame {
 
         anneeCombo.setBackground(new java.awt.Color(254, 254, 254));
         anneeCombo.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        anneeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "all", "2015", "2016", "2017" }));
+        anneeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2015", "2016", "2017" }));
         anneeCombo.setEnabled(false);
         anneeCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -319,8 +321,13 @@ public class ElevesListeDetail extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        Diviseure diviseur = new Diviseure();
-        diviseur.setVisible(true);
+       
+        
+        String niveau = jComboNiveau.getSelectedItem().toString();
+        String annee = anneeCombo.getSelectedItem().toString();
+        new Diviseure(Integer.parseInt(""+niveau.charAt(0)), Integer.parseInt(annee)).setVisible(true);
+        
+       
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -360,6 +367,7 @@ public class ElevesListeDetail extends javax.swing.JFrame {
         String niveau = jComboNiveau.getSelectedItem().toString();
         String classe = jComboClasse.getSelectedItem().toString();
         String annee = anneeCombo.getSelectedItem().toString();
+        
         switch(niveau){
             case "1ere année": idNiveau = 40; break;
             case "2eme année": idNiveau = 41; break;
@@ -368,24 +376,24 @@ public class ElevesListeDetail extends javax.swing.JFrame {
         }
         if (!jComboClasse.isEnabled() && !anneeCombo.isEnabled()) {
             query = "select nom, prenom,  dateDeNaissance, lieuDeNaissance, adress, niveau " +
-                      "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Eleve_Ni_An as ena on " +
+                      "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Classe as ena on " +
                       "ena.idEleve = el.idEleve join Niveau as n on ena.idNiveau = n.idNiveau left join Annee as a " +
                       "on a.idAnnee = ena.idAnnee where n.idNiveau ="+ idNiveau + ";";
 
         } else { if (!jComboClasse.isEnabled() && anneeCombo.isEnabled()) {
                 query = "select nom, prenom,  dateDeNaissance, lieuDeNaissance, adress, niveau " +
-                      "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Eleve_Ni_An as ena on " +
+                      "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Classe as ena on " +
                       "ena.idEleve = el.idEleve join Niveau as n on ena.idNiveau = n.idNiveau left join Annee as a " +
                       "on a.idAnnee = ena.idAnnee where n.idNiveau ="+ idNiveau + " and LEFT(a.annee, 4) = '"+ annee +"';";
             } else { if (jComboClasse.isEnabled() && !anneeCombo.isEnabled()) {
                 query = "select nom, prenom,  dateDeNaissance, lieuDeNaissance, adress, niveau " +
-                      "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Eleve_Ni_An as ena on " +
+                      "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Classe as ena on " +
                       "ena.idEleve = el.idEleve join Niveau as n on ena.idNiveau = n.idNiveau left join Annee as a " +
                       "on a.idAnnee = ena.idAnnee join Classe as c on c.idClasse = ena.idClasse where n.idNiveau ="+ idNiveau + " and c.Classe = '"+ classe +"';";
                 
             } else { if (jComboClasse.isEnabled() && anneeCombo.isEnabled()) {
                 query = "select nom, prenom,  dateDeNaissance, lieuDeNaissance, adress, niveau " +
-                      "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Eleve_Ni_An as ena on " +
+                      "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Classe as ena on " +
                       "ena.idEleve = el.idEleve join Niveau as n on ena.idNiveau = n.idNiveau left join Annee as a " +
                       "on a.idAnnee = ena.idAnnee join Classe as c on c.idClasse = ena.idClasse where n.idNiveau ="+ idNiveau + " and c.Classe = '"+ classe +"' and LEFT(a.annee, 4) = '"+ annee +"';";
             }
@@ -444,7 +452,7 @@ public class ElevesListeDetail extends javax.swing.JFrame {
             case "3eme année": idNiveau = 42; break;
             case "4eme année": idNiveau = 43; break;
         }
-        String query = "select c.classe from Classe as c right join Eleve_Ni_An as ena on ena.idClasse = c.idClasse left join Niveau as n on n.idNiveau = ena.idNiveau left join Annee as a on a.idAnnee = ena.idAnnee "
+        String query = "select c.classe from Classe as c right join Classe as ena on ena.idClasse = c.idClasse left join Niveau as n on n.idNiveau = ena.idNiveau left join Annee as a on a.idAnnee = ena.idAnnee "
                 + " where n.idNiveau = " + idNiveau + " and a.annee = '" + annee +"';";
         
         try {
@@ -497,13 +505,13 @@ public class ElevesListeDetail extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> anneeCombo;
+    public javax.swing.JComboBox<String> anneeCombo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboClasse;
-    private javax.swing.JComboBox<String> jComboNiveau;
+    public javax.swing.JComboBox<String> jComboNiveau;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;

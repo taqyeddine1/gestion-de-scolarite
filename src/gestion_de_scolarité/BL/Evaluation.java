@@ -11,7 +11,7 @@ package gestion_de_scolarité.BL;
  */
 public class Evaluation {
     
-    private Eleve_Niveau_Annee ena;
+    private Classe ena;
     private Trimester trimester;
     private Matière matiere;
     private float participation;

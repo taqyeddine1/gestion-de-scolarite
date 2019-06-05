@@ -188,7 +188,7 @@ public class Administrateur extends Person{
        String queryInsert = "insert into Person(nom, prenom, adress, dateDeNaissance, lieuDeNaissance, sex, email, numPhone, photos)"
                + "  values(?,?,?,?,?,?,?,?,?);";
        String queryInsertA = "insert ignore into Annee(annee) values(?);";
-       String queryInsert2 = "insert into Eleve_Ni_An(idEleve, idNiveau, idAnnee) values(?,?,?);";
+       String queryInsert2 = "insert into Classe(idEleve, idNiveau, idAnnee) values(?,?,?);";
        
        String queryInsert3 = "insert into Eleve(idEleve, parentPhone) values(?,?);";
        
@@ -273,11 +273,11 @@ public class Administrateur extends Person{
            idAnnee = getIdAnnee(currentDate);
            System.out.println("getIdAnnee bien executer");
            dc2.ps.setInt(1, idEleve);
-           System.out.println("idEleve  bien ajouter dans eleve_ni_an");
+           System.out.println("idEleve  bien ajouter dans Classe");
            dc2.ps.setInt(2, niveau);
-           System.out.println("idNiveau  bien ajouter dans eleve_ni_an");
+           System.out.println("idNiveau  bien ajouter dans Classe");
            dc2.ps.setInt(3, idAnnee);
-           System.out.println("idAnnee  bien ajouter dans eleve_ni_an");
+           System.out.println("idAnnee  bien ajouter dans Classe");
            
            dc2.ps.executeUpdate();
           System.out.println("dc2 bien executer");
@@ -293,43 +293,42 @@ public class Administrateur extends Person{
    }
    
    /**
-    * this method get the student list as result set to put it in a table
+    * this method get the id of the  student list as result set to put it in a table
     * @param niveau
-    * @param classe
+     * @param order
     * @return 
     */
-   public ResultSet getEleve(int niveau, String classe){
-          String query="";
-          ResultSet resultSet = null;
-       if(!classe.equals("")){
-            query = "select nom, prenom,  dateDeNaissance, lieuDeNaissance, adress, niveau " +
-                      "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Eleve_Ni_An as ena on " +
-                      "ena.idEleve = el.idEleve join Niveau as n on ena.idNiveau = n.idNiveau left join Annee as a " +
-                      "on a.idAnnee = ena.idAnnee ;";
-       }else{
-           System.out.println("classe is empty!");
-       }
+   public ArrayList<Integer> getIdEleve(int niveau, String order){
        
-       DatabaseConnection dc = new DatabaseConnection();
+         DatabaseConnection dc = new DatabaseConnection();
+         ArrayList<Integer> idList = new ArrayList<>();
+          String  query = "select idEleve " +
+                          "from Classe where idNiveau = "+niveau+" and idClasse is null;";
+         String sqlCommand = (order.equals("Aleatoire"))? "rand()" : "nom";
+          String query2 = "select c.idEleve, p.nom "
+                        + " from Classe c, Eleve e, Person p "
+                        + "where c.idEleve = e.idEleve and e.idEleve = p.idPerson and c.idNiveau = " + niveau + " order by "+ sqlCommand +" ;";
         try {
             dc.stmt= dc.conn.createStatement();
             System.out.println("create the statement in getEleve");
             dc.rs= dc.stmt.executeQuery(query);
-            
-           resultSet = dc.rs;
-           while(dc.rs.next()){
-                 System.out.println(" From getEleve() nom: " + dc.rs.getString(1) + " niveau: "+ dc.rs.getInt(6));
-
-              }
+            while(dc.rs.next()){
+                 idList.add(dc.rs.getInt(1));
+                 System.out.println(" From getEleve() nom: " + dc.rs.getInt(1));
+               }
         } catch (SQLException ex) {
             System.out.println("message from : "+ex);
         }
-        System.out.println("resultset = 2 " + resultSet);
-       return resultSet;
-       
+       return idList;  
    }
     
-   public void diviser(){
-       
+   public void diviser(int annee, int niveau, int nbClasse,String order, int nbEleve){
+       String query = "";
+       ArrayList<Integer> idsEleve = new ArrayList<>();
+
+       if (nbClasse!=0) {
+           
+       } else {
+       }
    }
 }

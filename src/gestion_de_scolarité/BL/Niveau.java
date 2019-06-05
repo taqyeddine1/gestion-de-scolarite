@@ -12,12 +12,12 @@ package gestion_de_scolarité.BL;
 public class Niveau {
     
     private int idNiveau;
-    private String niveau;
+    private short niveau;
 
     public Niveau() {
     }
 
-    public Niveau(int idNiveau, String niveau) {
+    public Niveau(int idNiveau, short niveau) {
         this.idNiveau = idNiveau;
         this.niveau = niveau;
     }
@@ -30,11 +30,11 @@ public class Niveau {
         this.idNiveau = idNiveau;
     }
 
-    public String getNiveau() {
+    public short getNiveau() {
         return niveau;
     }
 
-    public void setNiveau(String niveau) {
+    public void setNiveau(short niveau) {
         this.niveau = niveau;
     }
     
