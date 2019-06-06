@@ -13,7 +13,7 @@ public class Classe {
     
     private int idClasse;
     private String classe;
-    private String salle;
+    private short salle;
     private int nbEleve;
     private Enseignant enseignantResponsable;
     private Eleve eleve;
@@ -23,7 +23,7 @@ public class Classe {
     public Classe() {
     }
 
-    public Classe(int idClasse, String classe, String salle, int nbEleve, Enseignant enseignantResponsable, Eleve eleve, Niveau niveau, Annee annee) {
+    public Classe(int idClasse, String classe, short salle, int nbEleve, Enseignant enseignantResponsable, Eleve eleve, Niveau niveau, Annee annee) {
         this.idClasse = idClasse;
         this.classe = classe;
         this.salle = salle;
@@ -50,11 +50,11 @@ public class Classe {
         this.classe = classe;
     }
 
-    public String getSalle() {
+    public short getSalle() {
         return salle;
     }
 
-    public void setSalle(String salle) {
+    public void setSalle(short salle) {
         this.salle = salle;
     }
 

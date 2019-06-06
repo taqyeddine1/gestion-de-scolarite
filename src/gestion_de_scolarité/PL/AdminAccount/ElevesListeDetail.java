@@ -46,7 +46,7 @@ public class ElevesListeDetail extends javax.swing.JFrame {
             jComboClasse.setEnabled(true);
             jComboClasse.setModel(new DefaultComboBoxModel(classes.toArray()));
         }
-        //populate combobox by the years that is in the databases
+        //populate combobox by the years that is in the databases for the first time
         anneeCombo.setModel(new DefaultComboBoxModel(selectAnnee().toArray()));
         
         
@@ -321,11 +321,10 @@ public class ElevesListeDetail extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       
-        
+      
         String niveau = jComboNiveau.getSelectedItem().toString();
         String annee = anneeCombo.getSelectedItem().toString();
-        new Diviseure(Integer.parseInt(""+niveau.charAt(0)), Integer.parseInt(annee)).setVisible(true);
+        new Diviseure(annee, Integer.parseInt(""+niveau.charAt(0))).setVisible(true);
         
        
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -378,24 +377,24 @@ public class ElevesListeDetail extends javax.swing.JFrame {
             query = "select nom, prenom,  dateDeNaissance, lieuDeNaissance, adress, niveau " +
                       "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Classe as ena on " +
                       "ena.idEleve = el.idEleve join Niveau as n on ena.idNiveau = n.idNiveau left join Annee as a " +
-                      "on a.idAnnee = ena.idAnnee where n.idNiveau ="+ idNiveau + ";";
+                      "on a.idAnnee = ena.idAnnee where n.idNiveau ="+ idNiveau + " and el.idEleve is not null;";
 
         } else { if (!jComboClasse.isEnabled() && anneeCombo.isEnabled()) {
                 query = "select nom, prenom,  dateDeNaissance, lieuDeNaissance, adress, niveau " +
                       "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Classe as ena on " +
                       "ena.idEleve = el.idEleve join Niveau as n on ena.idNiveau = n.idNiveau left join Annee as a " +
-                      "on a.idAnnee = ena.idAnnee where n.idNiveau ="+ idNiveau + " and LEFT(a.annee, 4) = '"+ annee +"';";
+                      "on a.idAnnee = ena.idAnnee where n.idNiveau ="+ idNiveau + " and LEFT(a.annee, 4) = '"+ annee +"' and el.idEleve is not null;";
             } else { if (jComboClasse.isEnabled() && !anneeCombo.isEnabled()) {
                 query = "select nom, prenom,  dateDeNaissance, lieuDeNaissance, adress, niveau " +
                       "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Classe as ena on " +
                       "ena.idEleve = el.idEleve join Niveau as n on ena.idNiveau = n.idNiveau left join Annee as a " +
-                      "on a.idAnnee = ena.idAnnee join Classe as c on c.idClasse = ena.idClasse where n.idNiveau ="+ idNiveau + " and c.Classe = '"+ classe +"';";
+                      "on a.idAnnee = ena.idAnnee join Classe as c on c.idClasse = ena.idClasse where n.idNiveau ="+ idNiveau + " and c.Classe = '"+ classe +"' and el.idEleve is not null;";
                 
             } else { if (jComboClasse.isEnabled() && anneeCombo.isEnabled()) {
                 query = "select nom, prenom,  dateDeNaissance, lieuDeNaissance, adress, niveau " +
                       "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Classe as ena on " +
                       "ena.idEleve = el.idEleve join Niveau as n on ena.idNiveau = n.idNiveau left join Annee as a " +
-                      "on a.idAnnee = ena.idAnnee join Classe as c on c.idClasse = ena.idClasse where n.idNiveau ="+ idNiveau + " and c.Classe = '"+ classe +"' and LEFT(a.annee, 4) = '"+ annee +"';";
+                      "on a.idAnnee = ena.idAnnee join Classe as c on c.idClasse = ena.idClasse where n.idNiveau ="+ idNiveau + " and c.Classe = '"+ classe +"' and LEFT(a.annee, 4) = '"+ annee +"' and el.idEleve is not null;";
             }
             }
             }

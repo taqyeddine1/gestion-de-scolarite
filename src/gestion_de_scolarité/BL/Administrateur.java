@@ -25,6 +25,7 @@ import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 /**
  *
  * @author slimane
@@ -321,14 +322,71 @@ public class Administrateur extends Person{
         }
        return idList;  
    }
-    
-   public void diviser(int annee, int niveau, int nbClasse,String order, int nbEleve){
-       String query = "";
+   
+   /**
+    * this method allow us to diviser les eleves inscrer on groupe 
+    * @param annee
+    * @param niveau
+    * @param nbClasse
+    * @param order
+    * @param nbEleve
+    * @param nbClasseMax 
+    */
+   public void diviser(String annee, int niveau, int nbClasse,String order, int nbEleve, int nbClasseMax){
+       
        ArrayList<Integer> idsEleve = new ArrayList<>();
+       idsEleve = getIdEleve(niveau, order);
+       DatabaseConnection dc = new DatabaseConnection();
 
+       
        if (nbClasse!=0) {
-           
+           int j =0;
+           for (int i = 1; i <= nbClasse; i++) {
+               
+               while (j < idsEleve.size()/nbClasse) {                   
+                   String query = "update Classe set classeNb = ? , salle = ? , nbEleve = ? "
+                                + " where idAnnee = (select idAnnee from Annee where Left(annee, 4) = '" + annee + "') and idNiveau = (select idNiveau from Niveau "
+                               +    " where idNiveau = " + niveau +") and idEleve = "+idsEleve.get(j)+";";
+                   try {
+                       dc.ps = dc.conn.prepareStatement(query);
+                       dc.ps.setInt(1, i); // classe number
+                       dc.ps.setInt(2, i); // la salle
+                       dc.ps.setInt(3, idsEleve.size()/nbClasse ); // eleve number
+                       dc.ps.executeUpdate();
+                       System.out.println("update successfully!");
+                   } catch (SQLException ex) {
+                       System.out.println("message error from diviser "+ ex);
+                   }
+                   j++;
+               }
+           }
        } else {
+         if(nbClasseMax>idsEleve.size()/nbEleve){
+             int j =0;
+           for (int i = 1; i <= idsEleve.size()/nbEleve; i++) {
+               
+               while (j < nbEleve) {                   
+                   String query = "update Classe set classeNb = ? , salle = ? , nbEleve = ? "
+                                + " where idAnnee = (select idAnnee from Annee where Left(annee, 4) = '" + annee + "') and idNiveau = (select idNiveau from Niveau "
+                               +    " where idNiveau = " + niveau +") and idEleve = "+idsEleve.get(j)+";";
+                   try {
+                       dc.ps = dc.conn.prepareStatement(query);
+                       dc.ps.setInt(1, i); // classe number
+                       dc.ps.setInt(2, i); // la salle
+                       dc.ps.setInt(3, idsEleve.size()/nbClasse ); // eleve number
+                       dc.ps.executeUpdate();
+                       System.out.println("update successfully!");
+                   } catch (SQLException ex) {
+                       System.out.println("message error from diviser "+ ex);
+                   }
+                   j++;
+               }
+           }
+         }else{
+             JOptionPane.showMessageDialog(null, "you don't have mutch classes!");
+         }
+         
+         
        }
    }
 }

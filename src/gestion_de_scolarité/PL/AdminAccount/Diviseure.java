@@ -5,6 +5,8 @@
  */
 package gestion_de_scolarité.PL.AdminAccount;
 
+import gestion_de_scolarité.BL.Administrateur;
+
 /**
  *
  * @author slimane
@@ -16,7 +18,9 @@ public class Diviseure extends javax.swing.JFrame {
     /**
      * Creates new form Diviseure
      */
-    int annee, niveau;
+    String annee;
+    int niveau;
+    public final int maxClasses = 35;
     ElevesListeDetail eld = new ElevesListeDetail();
     
     
@@ -26,7 +30,7 @@ public class Diviseure extends javax.swing.JFrame {
         
     }
     
-    public Diviseure(int annee, int niveau){
+    public Diviseure(String annee, int niveau){
         initComponents();
         this.setLocationRelativeTo(null);
         this.annee = annee;
@@ -45,12 +49,12 @@ public class Diviseure extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        orderCombo = new javax.swing.JComboBox<>();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jTextField1 = new javax.swing.JTextField();
+        nbEleveField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        nbClasseField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -64,9 +68,9 @@ public class Diviseure extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 0, 17)); // NOI18N
         jLabel2.setText("Type de division :");
 
-        jComboBox1.setBackground(new java.awt.Color(254, 254, 254));
-        jComboBox1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aleatoire", "Alphabitique" }));
+        orderCombo.setBackground(new java.awt.Color(254, 254, 254));
+        orderCombo.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        orderCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aleatoire", "Alphabitique" }));
 
         jCheckBox1.setFont(new java.awt.Font("Arial", 0, 17)); // NOI18N
         jCheckBox1.setText("Eleve per classe?");
@@ -76,7 +80,7 @@ public class Diviseure extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setEnabled(false);
+        nbEleveField.setEnabled(false);
 
         jButton1.setBackground(new java.awt.Color(37, 41, 255));
         jButton1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
@@ -92,6 +96,11 @@ public class Diviseure extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jButton2.setForeground(new java.awt.Color(254, 254, 254));
         jButton2.setText("Appliquer");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(80, 116, 253));
@@ -119,9 +128,9 @@ public class Diviseure extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, 206, Short.MAX_VALUE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nbEleveField)
+                            .addComponent(orderCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, 206, Short.MAX_VALUE)
+                            .addComponent(nbClasseField, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -138,15 +147,15 @@ public class Diviseure extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nbClasseField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(orderCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nbEleveField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -172,12 +181,12 @@ public class Diviseure extends javax.swing.JFrame {
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         if (jCheckBox1.isSelected()) {
-            jTextField1.setEnabled(true);
-            jTextField2.setEnabled(false);
+            nbEleveField.setEnabled(true);
+            nbClasseField.setEnabled(false);
             jLabel1.setEnabled(false);
         }else{
-            jTextField1.setEnabled(false);
-            jTextField2.setEnabled(true);
+            nbEleveField.setEnabled(false);
+            nbClasseField.setEnabled(true);
             jLabel1.setEnabled(true);
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
@@ -185,6 +194,15 @@ public class Diviseure extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Administrateur admin = new Administrateur();
+        
+        int nbClasse = Integer.parseInt(nbClasseField.getText().toString());
+        int nbEleve = Integer.parseInt(nbEleveField.getText().toString());
+        String order = orderCombo.getSelectedItem().toString();
+        admin.diviser(annee, niveau, nbClasse, order, nbEleve, maxClasses);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,13 +243,13 @@ public class Diviseure extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField nbClasseField;
+    private javax.swing.JTextField nbEleveField;
+    private javax.swing.JComboBox<String> orderCombo;
     // End of variables declaration//GEN-END:variables
 }
