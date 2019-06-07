@@ -184,6 +184,7 @@ public class Administrateur extends Person{
        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
        String date = simpleDateFormat.format(dateNai);
        String currentDate = simpleDateFormat.format(new Date());
+       String year = String.valueOf(new Date().getYear()+1900);
        
        
        String queryInsert = "insert into Person(nom, prenom, adress, dateDeNaissance, lieuDeNaissance, sex, email, numPhone, photos)"
@@ -223,7 +224,7 @@ public class Administrateur extends Person{
           dc.ps.setString(4, date);
           System.out.println("date bien ajouter!");
                     
-          dc3.ps.setString(1, currentDate);
+          dc3.ps.setString(1, year);
           System.out.println("Annee dans Annee bien ajouter!");
           
           dc.ps.executeUpdate();
@@ -263,6 +264,7 @@ public class Administrateur extends Person{
           System.out.println("parentPhone bien ajouter!");
           
           eleve.ps.executeUpdate();
+          System.out.println("ps execute successfully!");
            }else{
                MessageDialog msg = new MessageDialog();
                msg.messageText.setText("idExist = false and idEleve = " + idEleve );
@@ -271,6 +273,7 @@ public class Administrateur extends Person{
            
            System.out.println("new Date()" + new Date());
            System.out.println("the current day : "+currentDate);
+           System.out.println("current année : " + year);
            idAnnee = getIdAnnee(currentDate);
            System.out.println("getIdAnnee bien executer");
            dc2.ps.setInt(1, idEleve);

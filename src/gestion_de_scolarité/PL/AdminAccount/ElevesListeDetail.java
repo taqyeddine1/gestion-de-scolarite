@@ -153,6 +153,11 @@ public class ElevesListeDetail extends javax.swing.JFrame {
         jComboClasse.setBackground(new java.awt.Color(254, 254, 254));
         jComboClasse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N1C1", "N1C2", "N1C3", "N1C4" }));
         jComboClasse.setEnabled(false);
+        jComboClasse.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboClasseItemStateChanged(evt);
+            }
+        });
         jComboClasse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboClasseActionPerformed(evt);
@@ -356,6 +361,10 @@ public class ElevesListeDetail extends javax.swing.JFrame {
             jLabel26.setEnabled(false);
         }
     }//GEN-LAST:event_questionCheckboxActionPerformed
+
+    private void jComboClasseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboClasseItemStateChanged
+        updateTable2();
+    }//GEN-LAST:event_jComboClasseItemStateChanged
     
     /**
      * this method to fill the jTable of this context with the student's data
@@ -378,7 +387,7 @@ public class ElevesListeDetail extends javax.swing.JFrame {
             query = "select nom, prenom,  dateDeNaissance, lieuDeNaissance, adress, niveau " +
                       "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Classe as ena on " +
                       "ena.idEleve = el.idEleve join Niveau as n on ena.idNiveau = n.idNiveau left join Annee as a " +
-                      "on a.idAnnee = ena.idAnnee where n.idNiveau ="+ idNiveau + " and el.idEleve is not null;";
+                      "on a.idAnnee = ena.idAnnee where n.idNiveau ="+ idNiveau + " and LEFT(a.annee, 4) = '"+ annee +"' and el.idEleve is not null;";
 
         } else { if (!jComboClasse.isEnabled() && anneeCombo.isEnabled()) {
                 query = "select nom, prenom,  dateDeNaissance, lieuDeNaissance, adress, niveau " +
@@ -389,7 +398,7 @@ public class ElevesListeDetail extends javax.swing.JFrame {
                 query = "select nom, prenom,  dateDeNaissance, lieuDeNaissance, adress, niveau " +
                       "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Classe as ena on " +
                       "ena.idEleve = el.idEleve join Niveau as n on ena.idNiveau = n.idNiveau left join Annee as a " +
-                      "on a.idAnnee = ena.idAnnee  where n.idNiveau ="+ idNiveau + " and ena.classeNb = '"+ classe +"' and el.idEleve is not null;";
+                      "on a.idAnnee = ena.idAnnee where n.idNiveau ="+ idNiveau + " and ena.classeNb = '"+ classe +"' and LEFT(a.annee, 4) = '"+ annee +"' and el.idEleve is not null;";
                 
             } else { if (jComboClasse.isEnabled() && anneeCombo.isEnabled()) {
                 query = "select nom, prenom,  dateDeNaissance, lieuDeNaissance, adress, niveau " +
