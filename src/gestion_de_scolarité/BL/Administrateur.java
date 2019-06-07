@@ -295,25 +295,29 @@ public class Administrateur extends Person{
    
    /**
     * this method get the id of the  student list as result set to put it in a table
+     * @param annee
     * @param niveau
      * @param order
     * @return 
     */
-   public ArrayList<Integer> getIdEleve(int niveau, String order){
+   public ArrayList<Integer> getIdEleve(String annee, int niveau, String order){
        
-         DatabaseConnection dc = new DatabaseConnection();
-         ArrayList<Integer> idList = new ArrayList<>();
-          String  query = "select idEleve " +
-                          "from Classe where idNiveau = "+niveau+" and idClasse is null;";
-         String sqlCommand = (order.equals("Aleatoire"))? "rand()" : "nom";
-          String query2 = "select c.idEleve, p.nom "
-                        + " from Classe c, Eleve e, Person p "
-                        + "where c.idEleve = e.idEleve and e.idEleve = p.idPerson and c.idNiveau = " + niveau + " order by "+ sqlCommand +" ;";
+        
+        ArrayList<Integer> idList = new ArrayList<>();
+        
+        String sqlCommand = (order.equals("Aleatoire"))? "rand()" : "nom";
+        System.out.println("sqlCommand :" +sqlCommand);
+        String query2 = "select c.idEleve "
+                        + "from Annee as a right join Classe as c on a.idAnnee = c.idAnnee left join Eleve as e on c.idEleve = e.idEleve left join Person as p on e.idEleve = p.idPerson join Niveau as n on n.idNiveau = c.idNiveau "
+                        + "where n.niveau = " + niveau + " and ClasseNb is null and Left(a.annee,4) = '" + annee +"' order by "+ sqlCommand +";";
+        DatabaseConnection dc = new DatabaseConnection();
         try {
             dc.stmt= dc.conn.createStatement();
             System.out.println("create the statement in getEleve");
-            dc.rs= dc.stmt.executeQuery(query);
+            dc.rs= dc.stmt.executeQuery(query2);
+            System.out.println("execute query in getEleve");
             while(dc.rs.next()){
+                System.out.println("enter to while boucle in getIdEleve");
                  idList.add(dc.rs.getInt(1));
                  System.out.println(" From getEleve() nom: " + dc.rs.getInt(1));
                }
@@ -334,59 +338,189 @@ public class Administrateur extends Person{
     */
    public void diviser(String annee, int niveau, int nbClasse,String order, int nbEleve, int nbClasseMax){
        
-       ArrayList<Integer> idsEleve = new ArrayList<>();
-       idsEleve = getIdEleve(niveau, order);
        DatabaseConnection dc = new DatabaseConnection();
-
+       DatabaseConnection dc2 = new DatabaseConnection();
+       ArrayList<Integer> idsEleve = new ArrayList<>();
+       idsEleve = getIdEleve(annee, niveau , order);
+       System.out.println(" From diviser niveau = " + niveau + " ****** order = " + order );
+       System.out.println("call the getIdEleve successfully!");
+       
        
        if (nbClasse!=0) {
-           int j =0;
+               System.out.println("entre la condition general!");
+               int nEleve = 0;
+               nEleve = idsEleve.size()/nbClasse;
+               
            for (int i = 1; i <= nbClasse; i++) {
                
-               while (j < idsEleve.size()/nbClasse) {                   
-                   String query = "update Classe set classeNb = ? , salle = ? , nbEleve = ? "
-                                + " where idAnnee = (select idAnnee from Annee where Left(annee, 4) = '" + annee + "') and idNiveau = (select idNiveau from Niveau "
-                               +    " where idNiveau = " + niveau +") and idEleve = "+idsEleve.get(j)+";";
+               System.out.println("enter la boucle for " + i);
+               System.out.println("le nomber de les éleves: " + idsEleve.size());
+               int j =0, k=0;
+               //if the value of (nEleve mod nbClasse ) less number of classe we are gonna add 1 to nEleve
+               while (k<nEleve) { 
+                   String query =  "update Classe set classeNb = ? , salle = ? "
+                                + " where idAnnee in (select idAnnee from Annee where Left(annee, 4) = '" + annee + "') and idNiveau in (select idNiveau from Niveau "
+                                +    " where niveau = " + niveau +") and idEleve = "+idsEleve.get(0)+";";
+                 String selectQuery = "select count(idClasse) from Classe "
+                                + " where idAnnee in (select idAnnee from Annee where Left(annee, 4) = '" + annee + "')"
+                                + " and idNiveau in (select idNiveau from Niveau where niveau = " + niveau +") and classeNb = "+i+";";
+                 String query2=  "update Classe set nbEleve = ? where classeNb = "+ i + " and salle = " + i + ";";
                    try {
+                       int count = 0;
                        dc.ps = dc.conn.prepareStatement(query);
+                       dc2.stmt = dc2.conn.createStatement();
                        dc.ps.setInt(1, i); // classe number
                        dc.ps.setInt(2, i); // la salle
-                       dc.ps.setInt(3, idsEleve.size()/nbClasse ); // eleve number
                        dc.ps.executeUpdate();
-                       System.out.println("update successfully!");
+                       dc2.rs = dc2.stmt.executeQuery(selectQuery);
+                       while(dc2.rs.next()){
+                           count = dc2.rs.getInt(1);
+                       }
+                       dc2.ps = dc2.conn.prepareStatement(query2);          
+                       dc2.ps.setInt(1, count ); // eleve number
+                       dc2.ps.executeUpdate();
                    } catch (SQLException ex) {
                        System.out.println("message error from diviser "+ ex);
                    }
-                   j++;
+                   
+                   idsEleve.remove(0);
+                   k++;
+               }
+           }
+           if (!idsEleve.isEmpty()) {
+               int l = 1;
+               while (!idsEleve.isEmpty()) {                   
+                   String query =  "update Classe set classeNb = ? , salle = ? "
+                                + " where idAnnee in (select idAnnee from Annee where Left(annee, 4) = '" + annee + "') and idNiveau in (select idNiveau from Niveau "
+                                +    " where niveau = " + niveau +") and idEleve = "+idsEleve.get(0)+";";
+                 String selectQuery = "select count(idClasse) from Classe "
+                                + " where idAnnee in (select idAnnee from Annee where Left(annee, 4) = '" + annee + "')"
+                                + " and idNiveau in (select idNiveau from Niveau where niveau = " + niveau +") and classeNb = "+l+";";
+                 String query2=  "update Classe set nbEleve = ? where classeNb = "+ l + " and salle = " + l + ";";
+                   try {
+                       int count = 0;
+                       dc.ps = dc.conn.prepareStatement(query);
+                       dc2.stmt = dc2.conn.createStatement();
+                       dc.ps.setInt(1, l); // classe number
+                       dc.ps.setInt(2, l); // la salle
+                       dc.ps.executeUpdate();
+                       dc2.rs = dc2.stmt.executeQuery(selectQuery);
+                       while(dc2.rs.next()){
+                           count = dc2.rs.getInt(1);
+                       }
+                       dc2.ps = dc2.conn.prepareStatement(query2);          
+                       dc2.ps.setInt(1, count ); // eleve number
+                       dc2.ps.executeUpdate();
+                   } catch (SQLException ex) {
+                       System.out.println("message error from diviser_ClasseNb"+ ex);
+                   }
+                   
+                   idsEleve.remove(0);
+                   l++;
+                   if(l == nbClasse){
+                       l = 1;
+                   }
                }
            }
        } else {
+            int s = 0;
+            int nClasses = 0;
+            nClasses = idsEleve.size()/nbEleve;
          if(nbClasseMax>idsEleve.size()/nbEleve){
-             int j =0;
+           
            for (int i = 1; i <= idsEleve.size()/nbEleve; i++) {
-               
-               while (j < nbEleve) {                   
-                   String query = "update Classe set classeNb = ? , salle = ? , nbEleve = ? "
-                                + " where idAnnee = (select idAnnee from Annee where Left(annee, 4) = '" + annee + "') and idNiveau = (select idNiveau from Niveau "
-                               +    " where idNiveau = " + niveau +") and idEleve = "+idsEleve.get(j)+";";
+               int j =0, k=0;
+               while (k < nbEleve) {                   
+                 String query =  "update Classe set classeNb = ? , salle = ? "
+                                + " where idAnnee in (select idAnnee from Annee where Left(annee, 4) = '" + annee + "') and idNiveau in (select idNiveau from Niveau "
+                                +    " where niveau = " + niveau +") and idEleve = "+idsEleve.get(0)+";";
+                 String selectQuery = "select count(idClasse) from Classe "
+                                + " where idAnnee in (select idAnnee from Annee where Left(annee, 4) = '" + annee + "')"
+                                + " and idNiveau in (select idNiveau from Niveau where niveau = " + niveau +") and classeNb = "+i+";";
+                 String query2=  "update Classe set nbEleve = ? where classeNb = "+ i + " and salle = " + i + ";";
                    try {
+                       int count = 0;
                        dc.ps = dc.conn.prepareStatement(query);
+                       dc2.stmt = dc2.conn.createStatement();
                        dc.ps.setInt(1, i); // classe number
                        dc.ps.setInt(2, i); // la salle
-                       dc.ps.setInt(3, idsEleve.size()/nbClasse ); // eleve number
                        dc.ps.executeUpdate();
-                       System.out.println("update successfully!");
+                       dc2.rs = dc2.stmt.executeQuery(selectQuery);
+                       while(dc2.rs.next()){
+                           count = dc2.rs.getInt(1);
+                       }
+                       dc2.ps = dc2.conn.prepareStatement(query2);          
+                       dc2.ps.setInt(1, count ); // eleve number
+                       dc2.ps.executeUpdate();
+                   } catch (SQLException ex) {
+                       System.out.println("message error from diviser_ eleve per classe "+ ex);
+                   }
+                  
+                   idsEleve.remove(0);
+                   k++;
+               }
+               s = i;
+           }
+         }else{
+             JOptionPane.showMessageDialog(null, "");
+             MessageDialog msg = new MessageDialog();
+               msg.messageText.setText("you don't have much classes!");
+               msg.setVisible(true);
+         }
+        
+         if (!idsEleve.isEmpty()) {
+               int l = 1;
+               while (!idsEleve.isEmpty()) {                   
+                   String query =  "update Classe set classeNb = ? , salle = ? "
+                                + " where idAnnee in (select idAnnee from Annee where Left(annee, 4) = '" + annee + "') and idNiveau in (select idNiveau from Niveau "
+                                +    " where niveau = " + niveau +") and idEleve = "+idsEleve.get(0)+";";
+                 String selectQuery = "select count(idClasse) from Classe "
+                                + " where idAnnee in (select idAnnee from Annee where Left(annee, 4) = '" + annee + "')"
+                                + " and idNiveau in (select idNiveau from Niveau where niveau = " + niveau +") and classeNb = "+(s+1)+";";
+                 String query2=  "update Classe set nbEleve = ? where classeNb = "+ (s+1) + " and salle = " + (s+1) + ";";
+                   try {
+                       int count = 0;
+                       dc.ps = dc.conn.prepareStatement(query);
+                       dc2.stmt = dc2.conn.createStatement();
+                       dc.ps.setInt(1, s+1); // classe number
+                       dc.ps.setInt(2, s+1); // la salle
+                       dc.ps.executeUpdate();
+                       dc2.rs = dc2.stmt.executeQuery(selectQuery);
+                       while(dc2.rs.next()){
+                           count = dc2.rs.getInt(1);
+                       }
+                       dc2.ps = dc2.conn.prepareStatement(query2);          
+                       dc2.ps.setInt(1, count ); // eleve number
+                       dc2.ps.executeUpdate();
                    } catch (SQLException ex) {
                        System.out.println("message error from diviser "+ ex);
                    }
-                   j++;
+                   
+                   idsEleve.remove(0);
+                   l++;
+                   if(l == nClasses){
+                       l = 1;
+                   }
                }
            }
-         }else{
-             JOptionPane.showMessageDialog(null, "you don't have mutch classes!");
-         }
-         
          
        }
+       
    }
+  
+   public int classeDesponible(){
+           String query = "select count(*) from Classe where classeNb is not null";
+           DatabaseConnection dc = new DatabaseConnection();
+           int nbClasse = 0;
+           try {
+           
+               dc.stmt = dc.conn.createStatement();
+               dc.rs = dc.stmt.executeQuery(query);
+               while(dc.rs.next()){
+                   nbClasse = dc.rs.getInt(1);
+               }
+       } catch (Exception e) {
+       }
+           return  (35-nbClasse);
+       }
 }

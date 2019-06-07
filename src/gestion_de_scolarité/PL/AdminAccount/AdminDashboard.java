@@ -12,6 +12,7 @@ import gestion_de_scolarité.PL.EnseignantAccount.LesAnnances.AnnanceModèl;
 import gestion_de_scolarité.PL.EnseignantAccount.LesAnnances.ModèlePanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
@@ -26,6 +27,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.text.Style;
@@ -1982,6 +1984,13 @@ public class AdminDashboard extends javax.swing.JFrame {
        }
         
         admin.inscrerEleve(nomField.getText(), prenomField.getText(), adressField.getText(), dateChooser.getSelectedDate().getTime(), lieuField.getText(), emailField.getText(), phoneField.getText(), sex, idNiveau, parentPhone.getText(), path);
+        JOptionPane.showMessageDialog(null, "bien ajouter!");
+        nomField.setText("");
+        prenomField.setText("");
+        adressField.setText("");
+        lieuField.setText("");
+        emailField.setText("");
+        phoneField.setText("");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked

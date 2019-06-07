@@ -6,6 +6,9 @@
 package gestion_de_scolarité.PL.AdminAccount;
 
 import gestion_de_scolarité.BL.Administrateur;
+import gestion_de_scolarité.DAL.DatabaseConnection;
+import gestion_de_scolarité.PL.MessageDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,9 +23,8 @@ public class Diviseure extends javax.swing.JFrame {
      */
     String annee;
     int niveau;
-    public final int maxClasses = 35;
+    public int maxClasses = 35;
     ElevesListeDetail eld = new ElevesListeDetail();
-    
     
     public Diviseure() {
         initComponents();
@@ -35,6 +37,10 @@ public class Diviseure extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.annee = annee;
         this.niveau = niveau;
+        Administrateur adm= new Administrateur();
+       maxClasses = adm.classeDesponible();
+       classeDespField.setText(String.valueOf(maxClasses));
+        
     }
 
     /**
@@ -56,9 +62,14 @@ public class Diviseure extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         nbClasseField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        classeDespField = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(254, 254, 254));
 
@@ -102,13 +113,21 @@ public class Diviseure extends javax.swing.JFrame {
             }
         });
 
+        nbClasseField.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                nbClasseFieldInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(80, 116, 253));
         jLabel3.setText("Classes disponible: ");
 
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(80, 116, 253));
-        jLabel4.setText("50");
+        classeDespField.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        classeDespField.setForeground(new java.awt.Color(80, 116, 253));
+        classeDespField.setText("50");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -134,7 +153,7 @@ public class Diviseure extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4)))))
+                                .addComponent(classeDespField)))))
                 .addGap(56, 56, 56))
         );
         jPanel1Layout.setVerticalGroup(
@@ -143,7 +162,7 @@ public class Diviseure extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(classeDespField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -183,10 +202,12 @@ public class Diviseure extends javax.swing.JFrame {
         if (jCheckBox1.isSelected()) {
             nbEleveField.setEnabled(true);
             nbClasseField.setEnabled(false);
+            nbClasseField.setText("");
             jLabel1.setEnabled(false);
         }else{
             nbEleveField.setEnabled(false);
             nbClasseField.setEnabled(true);
+            nbEleveField.setText("");
             jLabel1.setEnabled(true);
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
@@ -197,12 +218,47 @@ public class Diviseure extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Administrateur admin = new Administrateur();
+        maxClasses = admin.classeDesponible();
+        if (nbClasseField.isEnabled()) {
+            if (!nbClasseField.equals("")) {
+                 classeDespField.setText(String.valueOf(maxClasses-Integer.parseInt(nbClasseField.getText())));
+            }
+        }
         
-        int nbClasse = Integer.parseInt(nbClasseField.getText().toString());
-        int nbEleve = Integer.parseInt(nbEleveField.getText().toString());
+        
+        try {
+           // maxClasses = admin.classeDesponible();
+            //classeDespField.setText(String.valueOf(maxClasses));
+       
+        int nbClasse=0;
+        int nbEleve=0;
+        if(nbClasseField.isEnabled()){
+            nbClasse = (nbClasseField.getText().equals(""))? 0: Integer.parseInt(nbClasseField.getText());
+        }else{
+            nbEleve = (nbEleveField.getText().equals(""))? 0: Integer.parseInt(nbEleveField.getText().toString());
+        }
+        
         String order = orderCombo.getSelectedItem().toString();
         admin.diviser(annee, niveau, nbClasse, order, nbEleve, maxClasses);
+        MessageDialog msg = new MessageDialog();
+               msg.messageText.setText("Bien diviser");
+               msg.setVisible(true);
+        } catch (Exception e) {
+            MessageDialog msg = new MessageDialog();
+               msg.messageText.setText("Change the value to be not 0 !");
+               System.out.println(e);
+               msg.setVisible(true);
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        
+    }//GEN-LAST:event_formMouseClicked
+
+    private void nbClasseFieldInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_nbClasseFieldInputMethodTextChanged
+       
+    }//GEN-LAST:event_nbClasseFieldInputMethodTextChanged
 
     /**
      * @param args the command line arguments
@@ -240,13 +296,13 @@ public class Diviseure extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel classeDespField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nbClasseField;
     private javax.swing.JTextField nbEleveField;

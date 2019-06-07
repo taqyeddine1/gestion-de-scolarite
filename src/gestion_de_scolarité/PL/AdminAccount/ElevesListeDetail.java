@@ -41,7 +41,8 @@ public class ElevesListeDetail extends javax.swing.JFrame {
         ArrayList<String> classes = new ArrayList<>();
         String niveau = jComboNiveau.getSelectedItem().toString();
         String annee = anneeCombo.getSelectedItem().toString();
-        classes = selectClasse(annee, niveau);
+        System.out.println("annee = "  +annee +" ************* niveau = " + niveau);
+        //classes = selectClasse(annee, niveau);
         if (!classes.isEmpty()) {
             jComboClasse.setEnabled(true);
             jComboClasse.setModel(new DefaultComboBoxModel(classes.toArray()));
@@ -108,7 +109,7 @@ public class ElevesListeDetail extends javax.swing.JFrame {
 
         jComboNiveau.setBackground(new java.awt.Color(254, 254, 254));
         jComboNiveau.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jComboNiveau.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "6ere année", "2eme année", "3eme année", "4eme année" }));
+        jComboNiveau.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere année", "2eme année", "3eme année", "4eme année" }));
         jComboNiveau.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboNiveauItemStateChanged(evt);
@@ -361,8 +362,8 @@ public class ElevesListeDetail extends javax.swing.JFrame {
      */
     public void updateTable2(){
        
-          String query = null;
-          int idNiveau = 40;
+        String query = null;
+        int idNiveau = 40;
         String niveau = jComboNiveau.getSelectedItem().toString();
         String classe = jComboClasse.getSelectedItem().toString();
         String annee = anneeCombo.getSelectedItem().toString();
@@ -388,13 +389,13 @@ public class ElevesListeDetail extends javax.swing.JFrame {
                 query = "select nom, prenom,  dateDeNaissance, lieuDeNaissance, adress, niveau " +
                       "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Classe as ena on " +
                       "ena.idEleve = el.idEleve join Niveau as n on ena.idNiveau = n.idNiveau left join Annee as a " +
-                      "on a.idAnnee = ena.idAnnee join Classe as c on c.idClasse = ena.idClasse where n.idNiveau ="+ idNiveau + " and c.Classe = '"+ classe +"' and el.idEleve is not null;";
+                      "on a.idAnnee = ena.idAnnee  where n.idNiveau ="+ idNiveau + " and ena.classeNb = '"+ classe +"' and el.idEleve is not null;";
                 
             } else { if (jComboClasse.isEnabled() && anneeCombo.isEnabled()) {
                 query = "select nom, prenom,  dateDeNaissance, lieuDeNaissance, adress, niveau " +
                       "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Classe as ena on " +
                       "ena.idEleve = el.idEleve join Niveau as n on ena.idNiveau = n.idNiveau left join Annee as a " +
-                      "on a.idAnnee = ena.idAnnee join Classe as c on c.idClasse = ena.idClasse where n.idNiveau ="+ idNiveau + " and c.Classe = '"+ classe +"' and LEFT(a.annee, 4) = '"+ annee +"' and el.idEleve is not null;";
+                      "on a.idAnnee = ena.idAnnee where n.idNiveau ="+ idNiveau + " and ena.classeNb = '"+ classe +"' and LEFT(a.annee, 4) = '"+ annee +"' and el.idEleve is not null;";
             }
             }
             }
@@ -405,11 +406,10 @@ public class ElevesListeDetail extends javax.swing.JFrame {
        DatabaseConnection dc = new DatabaseConnection();
         try {
             dc.stmt= dc.conn.createStatement();
-            System.out.println("create the statement in getEleve");
             dc.rs= dc.stmt.executeQuery(query);
         jTable1.setModel(DbUtils.resultSetToTableModel(dc.rs));
     }catch (SQLException ex) {
-            System.out.println("message from : "+ex);
+            System.out.println("message error from updateTable2(): "+ex);
         }
     }
     
@@ -430,9 +430,8 @@ public class ElevesListeDetail extends javax.swing.JFrame {
                annee.add(dc.rs.getString(1));
               }
         } catch (SQLException ex) {
-            System.out.println("error message : " +ex);
+            System.out.println("error message in selectAnnee(): " +ex);
         }
-            System.out.println("create the statement in getEleve");
             
             return annee;
     }
@@ -442,8 +441,6 @@ public class ElevesListeDetail extends javax.swing.JFrame {
         
         ArrayList<String> classes = new ArrayList<>();
         DatabaseConnection dc = new DatabaseConnection();
-        niveau = jComboNiveau.getSelectedItem().toString();
-        annee = anneeCombo.getSelectedItem().toString();
         int idNiveau = 40;
         switch(niveau){
             case "1ere année": idNiveau = 40; break;
@@ -451,15 +448,20 @@ public class ElevesListeDetail extends javax.swing.JFrame {
             case "3eme année": idNiveau = 42; break;
             case "4eme année": idNiveau = 43; break;
         }
-        String query = "select c.classe from Classe as c right join Classe as ena on ena.idClasse = c.idClasse left join Niveau as n on n.idNiveau = ena.idNiveau left join Annee as a on a.idAnnee = ena.idAnnee "
-                + " where n.idNiveau = " + idNiveau + " and a.annee = '" + annee +"';";
+        
+        String query = "select Distinct(ena.classeNb) from  Niveau as n right join Classe as ena  on n.idNiveau = ena.idNiveau left join Annee as a on a.idAnnee = ena.idAnnee "
+                + " where n.idNiveau = " + idNiveau + " and Left(a.annee, 4) = '" + annee +"';";
         
         try {
             dc.stmt= dc.conn.createStatement();
+            System.out.println("statement created");
             dc.rs= dc.stmt.executeQuery(query);
+            System.out.println("query executed");
           
            while(dc.rs.next()){
-               classes.add(dc.rs.getString(1));
+               System.out.println("condition while entered");
+               classes.add("C"+dc.rs.getInt(1));
+               System.out.println("the result added to list()");
               }
         } catch (Exception e) {
             System.out.println("error message : " +e);
@@ -502,6 +504,7 @@ public class ElevesListeDetail extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JComboBox<String> anneeCombo;
