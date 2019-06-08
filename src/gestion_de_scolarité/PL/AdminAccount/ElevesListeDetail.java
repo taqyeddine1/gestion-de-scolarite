@@ -9,6 +9,8 @@ import gestion_de_scolarité.BL.Administrateur;
 import gestion_de_scolarité.DAL.DatabaseConnection;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -23,11 +25,15 @@ import net.proteanit.sql.DbUtils;
  *
  * @author slimane
  */
-public class ElevesListeDetail extends javax.swing.JFrame {
+public class ElevesListeDetail extends javax.swing.JFrame implements WindowListener{
 
     /**
      * Creates new form ElevesListeDetail
      */
+    
+    //this methods refresh the frame on i change any compoenent
+    // revalidate();
+   //repaint();
     
     public ElevesListeDetail() {
        
@@ -36,17 +42,21 @@ public class ElevesListeDetail extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         jTable1.getTableHeader().setForeground(new Color(60,60,60));
         jTable1.getTableHeader().setFont(new Font("segoe UI", Font.BOLD, 12));
-        
+        this.addWindowListener(this);
         anneeCombo.setModel(new DefaultComboBoxModel(selectAnnee().toArray()));
         //populate combobox of the classes by data from DB
         ArrayList<String> classes = new ArrayList<>();
         String niveau = jComboNiveau.getSelectedItem().toString();
         String annee = anneeCombo.getSelectedItem().toString();
-        System.out.println("annee = "  +annee +" ************* niveau = " + niveau);
+        //System.out.println("annee = "  +annee +" ************* niveau = " + niveau);
         classes = selectClasse(annee, niveau);
         if (!classes.isEmpty()) {
             jComboClasse.setEnabled(true);
+            jLabel24.setEnabled(true);
             jComboClasse.setModel(new DefaultComboBoxModel(classes.toArray()));
+        }else{
+            jComboClasse.setEnabled(false);
+            jLabel24.setEnabled(false);
         }
         //populate combobox by the years that is in the databases for the first time
         
@@ -332,8 +342,9 @@ public class ElevesListeDetail extends javax.swing.JFrame {
       
         String niveau = jComboNiveau.getSelectedItem().toString();
         String annee = anneeCombo.getSelectedItem().toString();
-        new Diviseure(annee, Integer.parseInt(""+niveau.charAt(0))).setVisible(true);
-        
+         
+        Diviseure  div = new Diviseure(annee, Integer.parseInt(""+niveau.charAt(0)));
+        div.setVisible(true);
        
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -346,6 +357,21 @@ public class ElevesListeDetail extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jComboNiveauItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboNiveauItemStateChanged
+       ArrayList<String> classes = new ArrayList<>();
+        String niveau = jComboNiveau.getSelectedItem().toString();
+        String annee = anneeCombo.getSelectedItem().toString();
+        //System.out.println("annee = "  +annee +" ************* niveau = " + niveau);
+        classes = selectClasse(annee, niveau);
+        if (!classes.isEmpty()) {
+            jComboClasse.setEnabled(true);
+            jLabel24.setEnabled(true);
+            jComboClasse.setModel(new DefaultComboBoxModel(classes.toArray()));
+        }else{
+            jComboClasse.setEnabled(false);
+            jLabel24.setEnabled(false);
+        }
+        //populate combobox by the years that is in the databases for the first time
+        
         updateTable2();
     }//GEN-LAST:event_jComboNiveauItemStateChanged
 
@@ -452,14 +478,17 @@ public class ElevesListeDetail extends javax.swing.JFrame {
         
         try {
             dc.stmt= dc.conn.createStatement();
-            System.out.println("statement created");
+            //System.out.println("statement created");
             dc.rs= dc.stmt.executeQuery(query);
-            System.out.println("query executed");
+            //System.out.println("query executed");
           
            while(dc.rs.next()){
-               System.out.println("condition while entered");
-               classes.add("C"+dc.rs.getInt(1));
-               System.out.println("the result added to list()");
+              // System.out.println("condition while entered");
+               if(dc.rs.getInt(1)!=0){
+                   classes.add("C"+dc.rs.getInt(1));
+                   //System.out.println("the result added to list()");
+               }
+               
               }
         } catch (Exception e) {
             System.out.println("error message : " +e);
@@ -523,4 +552,48 @@ public class ElevesListeDetail extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JCheckBox questionCheckbox;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+        System.out.println("this is windowActivated listener");
+        anneeCombo.setModel(new DefaultComboBoxModel(selectAnnee().toArray()));
+        //populate combobox of the classes by data from DB
+        ArrayList<String> classes = new ArrayList<>();
+        String niveau = jComboNiveau.getSelectedItem().toString();
+        String annee = anneeCombo.getSelectedItem().toString();
+        classes = selectClasse(annee, niveau);
+        if (!classes.isEmpty()) {
+            jComboClasse.setEnabled(true);
+            jLabel24.setEnabled(true);
+            jComboClasse.setModel(new DefaultComboBoxModel(classes.toArray()));
+        }
+        //populate combobox by the years that is in the databases for the first time
+        
+        updateTable2();
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+    }
 }

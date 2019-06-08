@@ -21,9 +21,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 /**
@@ -160,6 +163,7 @@ public class Administrateur extends Person{
    
    /**
     * this method used to insert new student into the database
+     * @param chB
     * @param nom
     * @param prenom
     * @param adress
@@ -171,7 +175,7 @@ public class Administrateur extends Person{
     * @param niveau 
     * @param parentPhone 
     */
-   public void inscrerEleve(String nom, String prenom, String adress, Date dateNai, String lieuNai, String email, String numPhone, boolean sex, short niveau, String parentPhone, String imagePath){
+   public void inscrerEleve(JComboBox chB, String nom, String prenom, String adress, Date dateNai, String lieuNai, String email, String numPhone, boolean sex, short niveau, String parentPhone, String imagePath){
        DatabaseConnection dc = new DatabaseConnection();
        DatabaseConnection dc2 = new DatabaseConnection();
        DatabaseConnection dc3 = new DatabaseConnection();
@@ -190,7 +194,13 @@ public class Administrateur extends Person{
        String queryInsert = "insert into Person(nom, prenom, adress, dateDeNaissance, lieuDeNaissance, sex, email, numPhone, photos)"
                + "  values(?,?,?,?,?,?,?,?,?);";
        String queryInsertA = "insert ignore into Annee(annee) values(?);";
-       String queryInsert2 = "insert into Classe(idEleve, idNiveau, idAnnee) values(?,?,?);";
+       String queryInsert2;
+       if(!chB.isVisible()){
+         queryInsert2 = "insert into Classe(idEleve, idNiveau, idAnnee) values(?,?,?);";
+       }else{
+           queryInsert2 = "insert into Classe(idEleve, idNiveau, idAnnee, classeNb, salle, nbEleve) values(?,?,?,?,?,?);";
+       }
+       
        
        String queryInsert3 = "insert into Eleve(idEleve, parentPhone) values(?,?);";
        
@@ -276,12 +286,20 @@ public class Administrateur extends Person{
            System.out.println("current année : " + year);
            idAnnee = getIdAnnee(currentDate);
            System.out.println("getIdAnnee bien executer");
+           
            dc2.ps.setInt(1, idEleve);
            System.out.println("idEleve  bien ajouter dans Classe");
            dc2.ps.setInt(2, niveau);
            System.out.println("idNiveau  bien ajouter dans Classe");
            dc2.ps.setInt(3, idAnnee);
            System.out.println("idAnnee  bien ajouter dans Classe");
+           
+           if(chB.isVisible()){    
+               int nbClasse =Integer.parseInt(""+chB.getSelectedItem().toString().charAt(1));
+              dc2.ps.setInt(4, nbClasse);
+              dc2.ps.setInt(5, nbClasse);
+              dc2.ps.setInt(6, selectNbEleve(year, niveau, nbClasse)+1);
+           }
            
            dc2.ps.executeUpdate();
           System.out.println("dc2 bien executer");
@@ -511,6 +529,10 @@ public class Administrateur extends Person{
        
    }
   
+   /**
+    * this method return the number of classe available
+    * @return 
+    */
    public int classeDesponible(){
            String query = "select count(*) from Classe where classeNb is not null";
            DatabaseConnection dc = new DatabaseConnection();
@@ -526,4 +548,33 @@ public class Administrateur extends Person{
        }
            return  (35-nbClasse);
        }
+   
+   /**
+    * this method return the number of student in one class
+    * @param annee
+    * @param niveau
+    * @param classeNb
+    * @return 
+    */
+   public int selectNbEleve(String annee, short niveau, int classeNb){
+        DatabaseConnection dc2 = new DatabaseConnection();
+        String selectQuery = "select count(idClasse) from Classe "
+                                + " where idAnnee in (select idAnnee from Annee where annee = '" + annee + "')"
+                                + " and idNiveau in (select idNiveau from Niveau where niveau = " + niveau +") and classeNb = "+classeNb+";";
+        int count = 0;
+        try {
+            dc2.stmt = dc2.conn.createStatement();
+            System.out.println("create statement in selectNbEleve()");
+            dc2.rs = dc2.stmt.executeQuery(selectQuery);
+            System.out.println("execute query from selectNbClasse()");
+                       while(dc2.rs.next()){
+                           System.out.println("enter boucle while in selectNbClasse()");
+                           count = dc2.rs.getInt(1);
+                       }
+        } catch (Exception e) {
+            System.out.println("message from selectNbClasse() :"+ e);
+        }
+        return count;
+    }
+    
 }

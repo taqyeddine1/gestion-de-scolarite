@@ -8,7 +8,6 @@ package gestion_de_scolarité.PL.AdminAccount;
 import gestion_de_scolarité.BL.Administrateur;
 import gestion_de_scolarité.DAL.DatabaseConnection;
 import gestion_de_scolarité.PL.MessageDialog;
-import javax.swing.JOptionPane;
 
 /**
  *

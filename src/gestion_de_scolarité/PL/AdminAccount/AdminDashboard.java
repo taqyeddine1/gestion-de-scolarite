@@ -6,6 +6,7 @@
 package gestion_de_scolarité.PL.AdminAccount;
 
 import gestion_de_scolarité.BL.Administrateur;
+import gestion_de_scolarité.DAL.DatabaseConnection;
 import gestion_de_scolarité.PL.EnseignantAccount.*;
 import gestion_de_scolarité.PL.EnseignantAccount.EcrireUnRapport.EcrireUnRapportt;
 import gestion_de_scolarité.PL.EnseignantAccount.LesAnnances.AnnanceModèl;
@@ -18,11 +19,13 @@ import java.awt.Font;
 import java.awt.Image;
 import java.io.File;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -67,7 +70,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         
         jTable2.setVisible(false);
         
-        jComboBox2.setVisible(false);
+        comboClasse.setVisible(false);
         classeLabel.setVisible(false);
         //add the current time to the view
         currentTime.setText(String.valueOf(new Date()));
@@ -158,7 +161,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         specifierClasse = new javax.swing.JCheckBox();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        comboClasse = new javax.swing.JComboBox<>();
         classeLabel = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         femalleRadioB = new javax.swing.JRadioButton();
@@ -979,7 +982,17 @@ public class AdminDashboard extends javax.swing.JFrame {
     comboNiveau.setBackground(new java.awt.Color(254, 254, 254));
     comboNiveau.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
     comboNiveau.setForeground(new java.awt.Color(93, 93, 93));
-    comboNiveau.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere Année", "2eme Année", "3eme Année", "4eme Année" }));
+    comboNiveau.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere année", "2eme année", "3eme année", "4eme année" }));
+    comboNiveau.addItemListener(new java.awt.event.ItemListener() {
+        public void itemStateChanged(java.awt.event.ItemEvent evt) {
+            comboNiveauItemStateChanged(evt);
+        }
+    });
+    comboNiveau.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            comboNiveauActionPerformed(evt);
+        }
+    });
     GestionDesInscriptiton.add(comboNiveau, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 200, 30));
 
     jLabel29.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
@@ -1005,12 +1018,11 @@ public class AdminDashboard extends javax.swing.JFrame {
     });
     GestionDesInscriptiton.add(specifierClasse, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, -1, -1));
 
-    jComboBox2.setBackground(new java.awt.Color(254, 254, 254));
-    jComboBox2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-    jComboBox2.setForeground(new java.awt.Color(93, 93, 93));
-    jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere Année", "2eme Année", "3eme Année", "4eme Année" }));
-    jComboBox2.setBorder(null);
-    GestionDesInscriptiton.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, 200, 30));
+    comboClasse.setBackground(new java.awt.Color(254, 254, 254));
+    comboClasse.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+    comboClasse.setForeground(new java.awt.Color(93, 93, 93));
+    comboClasse.setBorder(null);
+    GestionDesInscriptiton.add(comboClasse, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, 200, 30));
 
     classeLabel.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
     classeLabel.setForeground(new java.awt.Color(136, 136, 136));
@@ -1900,7 +1912,7 @@ public class AdminDashboard extends javax.swing.JFrame {
             jLabel13.setVisible(false);
             jLabel21.setVisible(false);
         }else{
-            jPanel3.setVisible(true);
+            jPanel3.    setVisible(true);
             jPanel9.setPreferredSize(new Dimension(258, 460));
             jLabel19.setIcon(new ImageIcon(getClass().getResource("/gestion_de_scolarité/PL/EnseignantAccount/Icons_EnseignantDashboard/less.png")));
             
@@ -1976,14 +1988,17 @@ public class AdminDashboard extends javax.swing.JFrame {
         
         short idNiveau=40;
        String niv = comboNiveau.getSelectedItem().toString();
-       switch(niv){
-           case "1ere Année": idNiveau = 40; break;
-           case "2eme Année": idNiveau = 41; break;
-           case "3eme Année": idNiveau = 42; break;
-           case "4eme Année": idNiveau = 43; break;
+       System.out.println("comboNiveau " + niv);
+       idNiveau =Short.parseShort(""+niv.charAt(0));
+       switch(idNiveau){
+           case 1: idNiveau = 40; break;
+           case 2: idNiveau = 41; break;
+           case 3: idNiveau = 42; break;
+           case 4: idNiveau = 43; break;
+           default : JOptionPane.showMessageDialog(null, "erro in idNiveau comboNiveau!");
        }
         
-        admin.inscrerEleve(nomField.getText(), prenomField.getText(), adressField.getText(), dateChooser.getSelectedDate().getTime(), lieuField.getText(), emailField.getText(), phoneField.getText(), sex, idNiveau, parentPhone.getText(), path);
+        admin.inscrerEleve(comboClasse, nomField.getText(), prenomField.getText(), adressField.getText(), dateChooser.getSelectedDate().getTime(), lieuField.getText(), emailField.getText(), phoneField.getText(), sex, idNiveau, parentPhone.getText(), path);
         JOptionPane.showMessageDialog(null, "bien ajouter!");
         nomField.setText("");
         prenomField.setText("");
@@ -1991,6 +2006,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         lieuField.setText("");
         emailField.setText("");
         phoneField.setText("");
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
@@ -2028,11 +2044,24 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void specifierClasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_specifierClasseActionPerformed
         if (specifierClasse.isSelected()){
-            jComboBox2.setVisible(true);
+            comboClasse.setVisible(true);
             classeLabel.setVisible(true);
         }else{
-            jComboBox2.setVisible(false);
+            comboClasse.setVisible(false);
             classeLabel.setVisible(false);
+        }
+        ElevesListeDetail eld = new ElevesListeDetail();
+        ArrayList<String> classes = new ArrayList<>();
+        System.out.println("create arraylist classes!");
+        String niveau = comboNiveau.getSelectedItem().toString();
+        System.out.println("get niveau from comboNiveau :"+niveau );
+        String annee = String.valueOf(new Date().getYear()+1900);
+        System.out.println("get the current year :" + annee);
+        classes = eld.selectClasse(annee, niveau);
+        System.out.println("execute selectClasse !");
+        if (!classes.isEmpty()) {
+            System.out.println("the classes in not empty!");
+            comboClasse.setModel(new DefaultComboBoxModel(classes.toArray()));
         }
     }//GEN-LAST:event_specifierClasseActionPerformed
 
@@ -2227,6 +2256,23 @@ public class AdminDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_siJustifierCombo1ActionPerformed
 
+    private void comboNiveauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNiveauActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboNiveauActionPerformed
+
+    private void comboNiveauItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboNiveauItemStateChanged
+        ElevesListeDetail eld = new ElevesListeDetail();
+        ArrayList<String> classes = new ArrayList<>();
+        String niveau = comboNiveau.getSelectedItem().toString();
+        String annee = String.valueOf(new Date().getYear()+1900);
+        classes = eld.selectClasse(annee, niveau);
+        if (!classes.isEmpty()) {
+            comboClasse.setModel(new DefaultComboBoxModel(classes.toArray()));
+        }else{
+            comboClasse.setEnabled(false);
+        }
+    }//GEN-LAST:event_comboNiveauItemStateChanged
+
     /**
      * this method to get the text of the selected radioButton in buttonGroup
      * @param buttonGroup
@@ -2257,6 +2303,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         ImageIcon image = new ImageIcon(newImg);
         return image;
     }
+    
     
     /**
      * @param args the command line arguments
@@ -2319,6 +2366,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> classecombo4;
     private javax.swing.JComboBox<String> classecombo5;
     private javax.swing.JComboBox<String> classecombo6;
+    private javax.swing.JComboBox<String> comboClasse;
     public javax.swing.JComboBox<String> comboNiveau;
     private javax.swing.JLabel currentTime;
     private datechooser.beans.DateChooserCombo dateChooser;
@@ -2335,7 +2383,6 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
