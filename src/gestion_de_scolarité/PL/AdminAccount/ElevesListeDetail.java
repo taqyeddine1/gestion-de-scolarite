@@ -32,24 +32,25 @@ public class ElevesListeDetail extends javax.swing.JFrame {
     public ElevesListeDetail() {
        
         initComponents();
-        updateTable2();
+        
         this.setLocationRelativeTo(null);
         jTable1.getTableHeader().setForeground(new Color(60,60,60));
         jTable1.getTableHeader().setFont(new Font("segoe UI", Font.BOLD, 12));
         
+        anneeCombo.setModel(new DefaultComboBoxModel(selectAnnee().toArray()));
         //populate combobox of the classes by data from DB
         ArrayList<String> classes = new ArrayList<>();
         String niveau = jComboNiveau.getSelectedItem().toString();
         String annee = anneeCombo.getSelectedItem().toString();
         System.out.println("annee = "  +annee +" ************* niveau = " + niveau);
-        //classes = selectClasse(annee, niveau);
+        classes = selectClasse(annee, niveau);
         if (!classes.isEmpty()) {
             jComboClasse.setEnabled(true);
             jComboClasse.setModel(new DefaultComboBoxModel(classes.toArray()));
         }
         //populate combobox by the years that is in the databases for the first time
-        anneeCombo.setModel(new DefaultComboBoxModel(selectAnnee().toArray()));
         
+        updateTable2();
         
     }
 
@@ -81,6 +82,7 @@ public class ElevesListeDetail extends javax.swing.JFrame {
         questionCheckbox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(254, 254, 254));
 
@@ -374,41 +376,28 @@ public class ElevesListeDetail extends javax.swing.JFrame {
         String query = null;
         int idNiveau = 40;
         String niveau = jComboNiveau.getSelectedItem().toString();
-        String classe = jComboClasse.getSelectedItem().toString();
+        String classe = ""+jComboClasse.getSelectedItem().toString().charAt(1);
         String annee = anneeCombo.getSelectedItem().toString();
-        
+        System.out.println("annee is in updateTable2 is :" + annee);
         switch(niveau){
             case "1ere année": idNiveau = 40; break;
             case "2eme année": idNiveau = 41; break;
             case "3eme année": idNiveau = 42; break;
             case "4eme année": idNiveau = 43; break;
         }
-        if (!jComboClasse.isEnabled() && !anneeCombo.isEnabled()) {
+        if (!jComboClasse.isEnabled()) {
             query = "select nom, prenom,  dateDeNaissance, lieuDeNaissance, adress, niveau " +
                       "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Classe as ena on " +
                       "ena.idEleve = el.idEleve join Niveau as n on ena.idNiveau = n.idNiveau left join Annee as a " +
                       "on a.idAnnee = ena.idAnnee where n.idNiveau ="+ idNiveau + " and LEFT(a.annee, 4) = '"+ annee +"' and el.idEleve is not null;";
 
-        } else { if (!jComboClasse.isEnabled() && anneeCombo.isEnabled()) {
-                query = "select nom, prenom,  dateDeNaissance, lieuDeNaissance, adress, niveau " +
-                      "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Classe as ena on " +
-                      "ena.idEleve = el.idEleve join Niveau as n on ena.idNiveau = n.idNiveau left join Annee as a " +
-                      "on a.idAnnee = ena.idAnnee where n.idNiveau ="+ idNiveau + " and LEFT(a.annee, 4) = '"+ annee +"' and el.idEleve is not null;";
-            } else { if (jComboClasse.isEnabled() && !anneeCombo.isEnabled()) {
+        } else {  if (jComboClasse.isEnabled()) {
                 query = "select nom, prenom,  dateDeNaissance, lieuDeNaissance, adress, niveau " +
                       "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Classe as ena on " +
                       "ena.idEleve = el.idEleve join Niveau as n on ena.idNiveau = n.idNiveau left join Annee as a " +
                       "on a.idAnnee = ena.idAnnee where n.idNiveau ="+ idNiveau + " and ena.classeNb = '"+ classe +"' and LEFT(a.annee, 4) = '"+ annee +"' and el.idEleve is not null;";
                 
-            } else { if (jComboClasse.isEnabled() && anneeCombo.isEnabled()) {
-                query = "select nom, prenom,  dateDeNaissance, lieuDeNaissance, adress, niveau " +
-                      "from Person as pe right join Eleve as el on pe.idPerson = el.idEleve right join Classe as ena on " +
-                      "ena.idEleve = el.idEleve join Niveau as n on ena.idNiveau = n.idNiveau left join Annee as a " +
-                      "on a.idAnnee = ena.idAnnee where n.idNiveau ="+ idNiveau + " and ena.classeNb = '"+ classe +"' and LEFT(a.annee, 4) = '"+ annee +"' and el.idEleve is not null;";
             }
-            }
-            }
-            
         }
                    
        
@@ -427,7 +416,7 @@ public class ElevesListeDetail extends javax.swing.JFrame {
      * @return 
      */
     public ArrayList<String> selectAnnee(){
-        String query = "select Left(annee, 4) from Annee;";
+        String query = "select Left(annee, 4) from Annee order by annee DESC;";
         DatabaseConnection dc = new DatabaseConnection();
         ArrayList<String> annee = new ArrayList<>();
         
@@ -458,8 +447,8 @@ public class ElevesListeDetail extends javax.swing.JFrame {
             case "4eme année": idNiveau = 43; break;
         }
         
-        String query = "select Distinct(ena.classeNb) from  Niveau as n right join Classe as ena  on n.idNiveau = ena.idNiveau left join Annee as a on a.idAnnee = ena.idAnnee "
-                + " where n.idNiveau = " + idNiveau + " and Left(a.annee, 4) = '" + annee +"';";
+        String query = "select distinct(ena.classeNb) from  Niveau as n right join Classe as ena  on n.idNiveau = ena.idNiveau left join Annee as a on a.idAnnee = ena.idAnnee "
+                + " where n.idNiveau = " + idNiveau + " and Left(a.annee, 4) = '" + annee +"' order by ena.classeNb;";
         
         try {
             dc.stmt= dc.conn.createStatement();
