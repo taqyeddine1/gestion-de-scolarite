@@ -90,6 +90,7 @@ public class Administrateur extends Person{
          }catch(SQLException e){
           System.out.print("error in login() Adminstrateur's Class .");
          }
+       dc.closeConnection();
        
        return access;
    }
@@ -128,6 +129,7 @@ public class Administrateur extends Person{
          }catch(SQLException e){
           System.out.println("message error from getPerson:" + e);
          }
+         dc.closeConnection();
          return list;
        
    }
@@ -157,7 +159,7 @@ public class Administrateur extends Person{
          }catch(SQLException e){
           System.out.println("message error from getIdAnnee():" + e);
          }
-       
+       dc.closeConnection();
        return id;
    }
    
@@ -310,8 +312,6 @@ public class Administrateur extends Person{
        }
       
        
-       
-       
    }
    
    /**
@@ -345,6 +345,7 @@ public class Administrateur extends Person{
         } catch (SQLException ex) {
             System.out.println("message from : "+ex);
         }
+        dc.closeConnection();
        return idList;  
    }
    
@@ -449,7 +450,7 @@ public class Administrateur extends Person{
             nClasses = idsEleve.size()/nbEleve;
          if(nbClasseMax>idsEleve.size()/nbEleve){
            
-           for (int i = 1; i <= idsEleve.size()/nbEleve; i++) {
+           for (int i = 1; i <= idsEleve.size()/nbEleve; i++){
                int j =0, k=0;
                while (k < nbEleve) {                   
                  String query =  "update Classe set classeNb = ? , salle = ? "
@@ -482,6 +483,7 @@ public class Administrateur extends Person{
                }
                s = i;
            }
+               
          }else{
              JOptionPane.showMessageDialog(null, "");
              MessageDialog msg = new MessageDialog();
@@ -527,6 +529,9 @@ public class Administrateur extends Person{
          
        }
        
+       dc.closeConnection();
+       dc2.closeConnection();
+       
    }
   
    /**
@@ -545,7 +550,9 @@ public class Administrateur extends Person{
                    nbClasse = dc.rs.getInt(1);
                }
        } catch (Exception e) {
+           System.out.println("error from classeDesponible()!");
        }
+           dc.closeConnection();
            return  (35-nbClasse);
        }
    
@@ -574,7 +581,92 @@ public class Administrateur extends Person{
         } catch (Exception e) {
             System.out.println("message from selectNbClasse() :"+ e);
         }
+        dc2.closeConnection();
         return count;
     }
+   
+   
+   public int selectIdMatiere(String matiere){
+       int idMatiere= 1;
+       String query = "select idMatiere from Matiere where matiere = '" + matiere + "';";
+       DatabaseConnection dc = new DatabaseConnection();
+       try {
+           dc.stmt = dc.conn.createStatement();
+           dc.rs= dc.stmt.executeQuery(query);
+           while(dc.rs.next()){
+               idMatiere = dc.rs.getInt(1);
+           }
+       } catch (Exception e) {
+           System.out.println("error from selectIdMatiere() :" +e);
+       }
+       
+       return idMatiere;
+   }
+   
+   public void ajouterMatiere(Matière matiere, ArrayList<Integer> MatNiv){
+       
+       int idNiveau = 40;
+       int idMatiere = 1;
+       String query = "insert into Matiere(matiere, fondamental, coefficient) values "
+                      +"(?,?,?);";
+       String query2 = "insert into Matiere_Niveau(idMatiere, idNiveau) values(?,?)";
+       DatabaseConnection dc = new DatabaseConnection();
+       DatabaseConnection dc2 = new DatabaseConnection();
+       try {
+           dc.ps = dc.conn.prepareStatement(query);
+           dc2.ps = dc2.conn.prepareStatement(query2);
+           
+           dc.ps.setString(1, matiere.getMatière());
+           dc.ps.setBoolean(2, matiere.isFondamental());
+           dc.ps.setInt(3, matiere.getCoeficient());
+           dc.ps.executeUpdate();
+           
+           idMatiere = selectIdMatiere(matiere.getMatière());
+           for (int i = 0; i < MatNiv.size(); i++) {
+               
+               dc2.ps.setInt(1, idMatiere);
+               dc2.ps.setInt(2, MatNiv.get(i));
+               dc2.ps.executeUpdate();
+           }
+           
+           
+          
+           dc2.ps.executeUpdate();
+       } catch (Exception e) {
+           System.out.println("error from ajouterMatiere() :" + e);
+       }
+        
+   }
+   
+   public Matière searchMatiere(String matiere){ 
+       DatabaseConnection dc = new DatabaseConnection();
+       DatabaseConnection dc2 = new DatabaseConnection();
+       Matière mtr  = new Matière();
+       String query = "select idMatiere, matiere, fondamental, coefficient, idEnseignantResponsable from Matiere where matiere = '"+matiere+"';";
+       String query2 = "select idNiveau from Matiere_Niveau as mn left join Matiere as m on m.idMatiere = mn.idMatiere"
+                     + " where m.matiere = '"+matiere+"';";
+       ArrayList<Integer> idNiveau =new  ArrayList<>();
+       
+       try {
+           
+           dc2.stmt = dc2.conn.createStatement();
+           dc2.rs = dc2.stmt.executeQuery(query2);
+           System.out.println("execute query2");
+           while(dc2.rs.next()){
+               System.out.println("Enter la boucle query2");
+               idNiveau.add(dc2.rs.getInt(1));
+           }
+           dc.stmt = dc.conn.createStatement();
+           dc.rs = dc.stmt.executeQuery(query);
+           System.out.println("execute query");
+           while(dc.rs.next()){
+               System.out.println("Enter la boucle query");
+               mtr = new Matière(dc.rs.getInt(1), dc.rs.getString(2), dc.rs.getBoolean(3), dc.rs.getInt(4),dc.rs.getInt(5), idNiveau);
+           }
+       } catch (Exception e) {
+           System.out.println("error from searchMatiere() : " +e);
+       }
+       return mtr;
+   }
     
 }

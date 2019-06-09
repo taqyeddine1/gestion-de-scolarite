@@ -5,6 +5,11 @@
  */
 package gestion_de_scolarité.PL.AdminAccount;
 
+import gestion_de_scolarité.BL.Administrateur;
+import gestion_de_scolarité.BL.Matière;
+import gestion_de_scolarité.PL.MessageDialog;
+import java.util.ArrayList;
+
 /**
  *
  * @author slimane
@@ -14,6 +19,8 @@ public class EditerMatiere extends javax.swing.JFrame {
     /**
      * Creates new form EditerMatiere
      */
+    Administrateur admin  = new Administrateur();
+    Matière matiere = new Matière();
     public EditerMatiere() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -28,27 +35,31 @@ public class EditerMatiere extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        fondamentalRadio = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        searchField = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
-        jTextField2 = new javax.swing.JTextField();
+        matiereField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        coefficientField = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
+        checkBox1 = new javax.swing.JCheckBox();
+        checkBox2 = new javax.swing.JCheckBox();
+        checkBox3 = new javax.swing.JCheckBox();
+        checkBox4 = new javax.swing.JCheckBox();
+        tousLesBox = new javax.swing.JCheckBox();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,16 +68,16 @@ public class EditerMatiere extends javax.swing.JFrame {
         jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestion_de_scolarité/PL/EnseignantAccount/VérifierLaPresence/search.png"))); // NOI18N
         jLabel25.setText("jLabel13");
 
-        jTextField1.setBackground(new java.awt.Color(254, 254, 254));
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(185, 185, 185));
-        jTextField1.setText(" Search");
-        jTextField1.setToolTipText("");
-        jTextField1.setBorder(null);
-        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        searchField.setBackground(new java.awt.Color(254, 254, 254));
+        searchField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        searchField.setForeground(new java.awt.Color(89, 89, 89));
+        searchField.setText(" Search");
+        searchField.setToolTipText("");
+        searchField.setBorder(null);
+        searchField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        searchField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                searchFieldActionPerformed(evt);
             }
         });
 
@@ -76,18 +87,23 @@ public class EditerMatiere extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(254, 254, 254));
         jButton1.setText("Search");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jSeparator2.setBackground(new java.awt.Color(206, 202, 198));
 
-        jTextField2.setBackground(new java.awt.Color(254, 254, 254));
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(185, 185, 185));
-        jTextField2.setToolTipText("");
-        jTextField2.setBorder(null);
-        jTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        matiereField.setBackground(new java.awt.Color(254, 254, 254));
+        matiereField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        matiereField.setForeground(new java.awt.Color(89, 89, 89));
+        matiereField.setToolTipText("");
+        matiereField.setBorder(null);
+        matiereField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        matiereField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                matiereFieldActionPerformed(evt);
             }
         });
 
@@ -99,15 +115,15 @@ public class EditerMatiere extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(60, 60, 60));
         jLabel2.setText("Coefficient :");
 
-        jTextField3.setBackground(new java.awt.Color(254, 254, 254));
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(185, 185, 185));
-        jTextField3.setToolTipText("");
-        jTextField3.setBorder(null);
-        jTextField3.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        coefficientField.setBackground(new java.awt.Color(254, 254, 254));
+        coefficientField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        coefficientField.setForeground(new java.awt.Color(89, 89, 89));
+        coefficientField.setToolTipText("");
+        coefficientField.setBorder(null);
+        coefficientField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        coefficientField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                coefficientFieldActionPerformed(evt);
             }
         });
 
@@ -117,33 +133,33 @@ public class EditerMatiere extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(60, 60, 60));
         jLabel3.setText("Niveau :");
 
-        jCheckBox1.setBackground(new java.awt.Color(254, 254, 254));
-        jCheckBox1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jCheckBox1.setText("1ere ");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        checkBox1.setBackground(new java.awt.Color(254, 254, 254));
+        checkBox1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        checkBox1.setText("1ere ");
+        checkBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                checkBox1ActionPerformed(evt);
             }
         });
 
-        jCheckBox2.setBackground(new java.awt.Color(254, 254, 254));
-        jCheckBox2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jCheckBox2.setText("2eme ");
+        checkBox2.setBackground(new java.awt.Color(254, 254, 254));
+        checkBox2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        checkBox2.setText("2eme ");
 
-        jCheckBox3.setBackground(new java.awt.Color(254, 254, 254));
-        jCheckBox3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jCheckBox3.setText("3eme ");
+        checkBox3.setBackground(new java.awt.Color(254, 254, 254));
+        checkBox3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        checkBox3.setText("3eme ");
 
-        jCheckBox4.setBackground(new java.awt.Color(254, 254, 254));
-        jCheckBox4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jCheckBox4.setText("4eme ");
+        checkBox4.setBackground(new java.awt.Color(254, 254, 254));
+        checkBox4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        checkBox4.setText("4eme ");
 
-        jCheckBox5.setBackground(new java.awt.Color(254, 254, 254));
-        jCheckBox5.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        jCheckBox5.setText("Tous les niveaux");
-        jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
+        tousLesBox.setBackground(new java.awt.Color(254, 254, 254));
+        tousLesBox.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tousLesBox.setText("Tous les niveaux");
+        tousLesBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox5ActionPerformed(evt);
+                tousLesBoxActionPerformed(evt);
             }
         });
 
@@ -183,133 +199,165 @@ public class EditerMatiere extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(60, 60, 60));
+        jLabel4.setText("Fondamental :");
+
+        fondamentalRadio.add(jRadioButton1);
+        jRadioButton1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jRadioButton1.setText("Oui");
+
+        fondamentalRadio.add(jRadioButton2);
+        jRadioButton2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        jRadioButton2.setText("Non");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox1)
-                            .addComponent(jCheckBox5)
-                            .addComponent(jCheckBox2)
-                            .addComponent(jCheckBox3)
-                            .addComponent(jCheckBox4)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jButton10)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jButton9)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jButton8)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jButton7))
+                        .addComponent(jButton10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton7))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jSeparator2)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(75, 75, 75)
+                                .addComponent(matiereField, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(66, 66, 66)
                             .addComponent(jLabel2)
-                            .addGap(18, 18, 18)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField3)
-                                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(41, Short.MAX_VALUE))
+                                .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                                .addComponent(coefficientField)))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton1))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(checkBox2)
+                                .addComponent(checkBox3)
+                                .addComponent(checkBox4)
+                                .addComponent(checkBox1)
+                                .addComponent(tousLesBox))
+                            .addGap(141, 141, 141)
+                            .addComponent(jLabel4)
+                            .addGap(18, 18, 18)
+                            .addComponent(jRadioButton1)
+                            .addGap(18, 18, 18)
+                            .addComponent(jRadioButton2))))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
                     .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, 0)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(matiereField, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, 0)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(tousLesBox)
+                            .addComponent(jLabel4)
+                            .addComponent(jRadioButton1)
+                            .addComponent(jRadioButton2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(checkBox1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(checkBox2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(checkBox3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(checkBox4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(coefficientField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jCheckBox5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton7)
                     .addComponent(jButton8)
                     .addComponent(jButton9)
                     .addComponent(jButton10))
-                .addGap(24, 24, 24))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_searchFieldActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void matiereFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matiereFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_matiereFieldActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void coefficientFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coefficientFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_coefficientFieldActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void checkBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_checkBox1ActionPerformed
 
-    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox5ActionPerformed
+    private void tousLesBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tousLesBoxActionPerformed
+        if(tousLesBox.isSelected()){
+            checkBox1.setSelected(true);
+            checkBox2.setSelected(true);
+            checkBox3.setSelected(true);
+            checkBox4.setSelected(true);
+        }else{
+            checkBox1.setSelected(false);
+            checkBox2.setSelected(false);
+            checkBox3.setSelected(false);
+            checkBox4.setSelected(false);
+        }
+    }//GEN-LAST:event_tousLesBoxActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         this.setVisible(false);
@@ -324,8 +372,64 @@ public class EditerMatiere extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
+        jRadioButton1.setActionCommand("oui");
+        jRadioButton2.setActionCommand("non");
+        ArrayList<Integer> niveaux = new ArrayList<>();
+        if(checkBox1.isSelected()){
+            niveaux.add(40);
+        }
+        if(checkBox2.isSelected()){
+            niveaux.add(41);
+        }
+        if(checkBox3.isSelected()){
+            niveaux.add(42);
+        }
+        if(checkBox4.isSelected()){
+            niveaux.add(43);
+        }
+        boolean fond = fondamentalRadio.getSelection().getActionCommand().equals("oui")? true : false;
+        System.out.println("fond :"+ fond + " ********** fondamentalRadio : "+ fondamentalRadio.getSelection().getActionCommand());
+        admin.ajouterMatiere(new Matière(matiereField.getText(), fond, Integer.parseInt(coefficientField.getText())), niveaux);
+        MessageDialog msg = new MessageDialog();
+        msg.messageText.setText("Matière bien ajouter !");
+        msg.setVisible(true);
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        matiere = admin.searchMatiere(searchField.getText());
+        matiereField.setText(matiere.getMatière());
+        coefficientField.setText(String.valueOf(matiere.getCoeficient()));
+        if(matiere.isFondamental()){
+            jRadioButton1.setSelected(true);
+        }else{
+            jRadioButton2.setSelected(true);
+        }
+
+        tousLesBox.setSelected(false);
+        checkBox1.setSelected(false);
+        checkBox2.setSelected(false);
+        checkBox3.setSelected(false);
+        checkBox4.setSelected(false);
+        for (int i = 0; i < matiere.getNiveau().size(); i++) {
+            if(matiere.getNiveau().get(i) == 40){
+                checkBox1.setSelected(true);
+            }
+            if(matiere.getNiveau().get(i) == 41){
+                checkBox2.setSelected(true);
+            }
+            if(matiere.getNiveau().get(i) == 42){
+                checkBox3.setSelected(true);
+            }
+            if(matiere.getNiveau().get(i) == 43){
+                checkBox4.setSelected(true);
+            }
+        }
+        if (checkBox1.isSelected() && checkBox2.isSelected() && checkBox3.isSelected() && checkBox4.isSelected()) {
+            tousLesBox.setSelected(true);
+            
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -363,26 +467,30 @@ public class EditerMatiere extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox checkBox1;
+    private javax.swing.JCheckBox checkBox2;
+    private javax.swing.JCheckBox checkBox3;
+    private javax.swing.JCheckBox checkBox4;
+    private javax.swing.JTextField coefficientField;
+    private javax.swing.ButtonGroup fondamentalRadio;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField matiereField;
+    private javax.swing.JTextField searchField;
+    private javax.swing.JCheckBox tousLesBox;
     // End of variables declaration//GEN-END:variables
 }

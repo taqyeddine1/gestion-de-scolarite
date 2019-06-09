@@ -6,6 +6,7 @@
 package gestion_de_scolarité.PL.AdminAccount;
 
 import gestion_de_scolarité.BL.Administrateur;
+import gestion_de_scolarité.BL.Matière;
 import gestion_de_scolarité.DAL.DatabaseConnection;
 import gestion_de_scolarité.PL.EnseignantAccount.*;
 import gestion_de_scolarité.PL.EnseignantAccount.EcrireUnRapport.EcrireUnRapportt;
@@ -17,6 +18,8 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -33,15 +36,17 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.ColorUIResource;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.Style;
 import javax.tools.Diagnostic;
+import net.proteanit.sql.DbUtils;
 import sun.rmi.runtime.Log;
 
 /**
  *
  * @author slimane
  */
-public class AdminDashboard extends javax.swing.JFrame {
+public class AdminDashboard extends javax.swing.JFrame implements WindowListener{
 
     /**
      * Creates new form EnseignantDashboard
@@ -1468,9 +1473,8 @@ public class AdminDashboard extends javax.swing.JFrame {
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(GestionDesMaitieresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton7)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addContainerGap(172, Short.MAX_VALUE))
     );
     GestionDesMaitieresLayout.setVerticalGroup(
@@ -1481,8 +1485,8 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jLabel20))
             .addGap(36, 36, 36)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 342, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
             .addComponent(jButton7)
             .addGap(57, 57, 57))
     );
@@ -1764,6 +1768,9 @@ public class AdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel20MouseClicked
 
     private void jPanel22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel22MouseClicked
+       
+        updateTableMatiere(jComboBox3.getSelectedIndex());
+        
         jPanel22.setBackground(new Color(106,114,245));
         
         jPanel15.setBackground(new Color(66,76,247));
@@ -1976,13 +1983,15 @@ public class AdminDashboard extends javax.swing.JFrame {
         String lieuNai = lieuField.getText();
         String email = emailField.getText();
         String numPhone = phoneField.getText();
+        String phoneParent = parentPhone.getText();
+        maleRadioB.setActionCommand("male");
+        femalleRadioB.setActionCommand("female");
         
         boolean sex = true;
-        String phoneParent = parentPhone.getText();
-        String gender = getSelectedButtonText(buttonGroup1);
-        if(gender.equals("male")){
+        
+        if(buttonGroup1.getSelection().getActionCommand().equals("male")){
             sex = true;
-        }else if(gender.equals("femalle")){
+        }else {
             sex = false;
         }
         
@@ -2304,6 +2313,37 @@ public class AdminDashboard extends javax.swing.JFrame {
         return image;
     }
     
+    public void updateTableMatiere(int niveau){
+        DatabaseConnection dc = new DatabaseConnection();
+       Matière mtr  = new Matière();
+       String query = null;
+        if (niveau == 0) {
+            query = "select idMatiere, matiere, fondamental, coefficient, idEnseignantResponsable from Matiere ;";
+        }else if (niveau == 1) {
+            query = "select idMatiere, matiere, fondamental, coefficient, idEnseignantResponsable from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere "
+                  + " where mn.idNiveau = 40;";
+        }else if (niveau == 2) {
+            query = "select idMatiere, matiere, fondamental, coefficient, idEnseignantResponsable from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere "
+                  + " where mn.idNiveau = 41;";
+        }else if (niveau == 3) {
+            query = "select idMatiere, matiere, fondamental, coefficient, idEnseignantResponsable from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere "
+                  + " where mn.idNiveau = 42;";
+        }else if (niveau == 4) {
+            query = "select idMatiere, matiere, fondamental, coefficient, idEnseignantResponsable from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere "
+                  + " where mn.idNiveau = 43;";
+        }
+       String query2 = "select idNiveau from Matiere_Niveau as mn left join Matiere as m on m.idMatiere = mn.idMatiere ;";
+       ArrayList<Integer> idNiveau =new  ArrayList<>();
+       
+       try {
+           dc.stmt = dc.conn.createStatement();
+           dc.rs = dc.stmt.executeQuery(query);
+           jTable4.setModel(DbUtils.resultSetToTableModel(dc.rs));
+       } catch (Exception e) {
+           System.out.println("error from searchMatiere() : " +e);
+       }
+        
+    }
     
     /**
      * @param args the command line arguments
@@ -2478,4 +2518,33 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JCheckBox specifierClasse;
     private javax.swing.JLabel userAvatar;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+        updateTableMatiere(jComboBox3.getSelectedIndex());
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+    }
 }
