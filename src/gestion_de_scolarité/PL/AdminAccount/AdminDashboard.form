@@ -1720,7 +1720,7 @@
                                       <Component id="matiereLabel1" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="classecombo2" min="-2" pref="145" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="307" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="241" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1741,7 +1741,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="jScrollPane5" min="-2" pref="25" max="-2" attributes="0"/>
-                      <EmptySpace pref="314" max="32767" attributes="0"/>
+                      <EmptySpace pref="291" max="32767" attributes="0"/>
                       <Component id="jButton6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                   </Group>

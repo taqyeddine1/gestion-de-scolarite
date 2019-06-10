@@ -28,6 +28,7 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -58,6 +59,13 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        jSeparator7 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,7 +80,7 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 340, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 390, -1, -1));
 
         jButton4.setBackground(new java.awt.Color(89, 89, 89));
         jButton4.setForeground(new java.awt.Color(254, 254, 254));
@@ -82,7 +90,7 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, -1, -1));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, -1, -1));
 
         jTextField1.setForeground(new java.awt.Color(66, 66, 66));
         jTextField1.setToolTipText("");
@@ -93,10 +101,10 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 170, 30));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 150, 30));
 
         jSeparator1.setBackground(new java.awt.Color(206, 202, 198));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 170, 14));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 150, 14));
 
         jLabel17.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(136, 136, 136));
@@ -112,15 +120,15 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
                 jTextField2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 170, 30));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 150, 30));
 
         jLabel18.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(136, 136, 136));
         jLabel18.setText("Adresse : ");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 70, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 70, -1));
 
         jSeparator2.setBackground(new java.awt.Color(206, 202, 198));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 170, 14));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 150, 14));
 
         jTextField3.setForeground(new java.awt.Color(66, 66, 66));
         jTextField3.setToolTipText("");
@@ -131,15 +139,15 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
                 jTextField3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 170, 30));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 150, 30));
 
         jLabel26.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(136, 136, 136));
         jLabel26.setText("Prenom : ");
-        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 79, -1));
+        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 79, -1));
 
         jSeparator3.setBackground(new java.awt.Color(206, 202, 198));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 170, 14));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 150, 14));
 
         jTextField4.setForeground(new java.awt.Color(66, 66, 66));
         jTextField4.setToolTipText("");
@@ -150,15 +158,15 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
                 jTextField4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 170, 30));
+        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 150, 30));
 
         jLabel27.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(136, 136, 136));
-        jLabel27.setText("Niveau : ");
-        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 69, -1));
+        jLabel27.setText("Sex :");
+        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 40, -1));
 
         jSeparator4.setBackground(new java.awt.Color(206, 202, 198));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 170, 14));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 150, 14));
 
         dateChooserCombo1.setCurrentView(new datechooser.view.appearance.AppearancesList("Swing",
             new datechooser.view.appearance.ViewAppearance("custom",
@@ -203,22 +211,22 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
                 true)));
     dateChooserCombo1.setCalendarBackground(new java.awt.Color(254, 254, 254));
     dateChooserCombo1.setFieldFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 15));
-    jPanel1.add(dateChooserCombo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 170, 30));
+    jPanel1.add(dateChooserCombo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, 150, 30));
 
     jLabel28.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
     jLabel28.setForeground(new java.awt.Color(136, 136, 136));
-    jLabel28.setText("Date de naissance : ");
-    jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 170, 144, -1));
+    jLabel28.setText("Date de nai : ");
+    jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 144, -1));
 
     jComboBox1.setBackground(new java.awt.Color(254, 254, 254));
     jComboBox1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
     jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere Année", "2eme Année", "3eme Année", "4eme Année" }));
-    jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 170, 30));
+    jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, 150, 30));
 
     jLabel29.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
     jLabel29.setForeground(new java.awt.Color(136, 136, 136));
-    jLabel29.setText("Lieu de naissance : ");
-    jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 147, -1));
+    jLabel29.setText("Lieu de nai : ");
+    jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 147, -1));
 
     jButton5.setBackground(new java.awt.Color(89, 89, 89));
     jButton5.setForeground(new java.awt.Color(254, 254, 254));
@@ -228,22 +236,22 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
             jButton5ActionPerformed(evt);
         }
     });
-    jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, -1, -1));
+    jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 390, -1, -1));
 
     jComboBox4.setBackground(new java.awt.Color(254, 254, 254));
     jComboBox4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
     jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Math", "physics", "Arab", "English", "Islamic" }));
     jComboBox4.setBorder(null);
-    jPanel1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 170, 30));
+    jPanel1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 150, 30));
 
     classeLabel1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
     classeLabel1.setForeground(new java.awt.Color(136, 136, 136));
     classeLabel1.setText("Matière :");
-    jPanel1.add(classeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, 68, -1));
+    jPanel1.add(classeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 68, -1));
 
     jLabel19.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
     jLabel19.setForeground(new java.awt.Color(136, 136, 136));
-    jLabel19.setText("Numéro telephone :");
+    jLabel19.setText("Numéro tele :");
     jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 150, -1));
 
     jTextField5.setForeground(new java.awt.Color(66, 66, 66));
@@ -255,10 +263,10 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
             jTextField5ActionPerformed(evt);
         }
     });
-    jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 170, 30));
+    jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 150, 30));
 
     jSeparator5.setBackground(new java.awt.Color(206, 202, 198));
-    jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 170, 14));
+    jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 150, 14));
 
     jTextField6.setBackground(new java.awt.Color(254, 254, 254));
     jTextField6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -294,18 +302,57 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
             jButton6ActionPerformed(evt);
         }
     });
-    jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 340, -1, -1));
+    jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 390, -1, -1));
+
+    jLabel20.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+    jLabel20.setForeground(new java.awt.Color(136, 136, 136));
+    jLabel20.setText("Email :");
+    jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 70, -1));
+
+    jTextField7.setForeground(new java.awt.Color(66, 66, 66));
+    jTextField7.setToolTipText("");
+    jTextField7.setBorder(null);
+    jTextField7.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+    jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jTextField7ActionPerformed(evt);
+        }
+    });
+    jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 150, 30));
+
+    jSeparator7.setBackground(new java.awt.Color(206, 202, 198));
+    jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 150, 14));
+
+    jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestion_de_scolarité/PL/AdminAccount/icons/picturesmall.png"))); // NOI18N
+    jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(136, 136, 136)));
+    jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 110, 140, 190));
+
+    jLabel30.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+    jLabel30.setForeground(new java.awt.Color(136, 136, 136));
+    jLabel30.setText("Niveau : ");
+    jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, 69, -1));
+
+    buttonGroup1.add(jRadioButton1);
+    jRadioButton1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+    jRadioButton1.setText("male");
+    jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, -1, 20));
+
+    buttonGroup1.add(jRadioButton2);
+    jRadioButton2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+    jRadioButton2.setText("female");
+    jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, -1, 20));
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 825, javax.swing.GroupLayout.PREFERRED_SIZE)
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup()
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(0, 0, Short.MAX_VALUE))
     );
 
@@ -353,6 +400,10 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -389,6 +440,7 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel classeLabel1;
     private datechooser.beans.DateChooserCombo dateChooserCombo1;
     private javax.swing.JButton jButton1;
@@ -398,26 +450,33 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

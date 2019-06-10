@@ -616,6 +616,7 @@ public class Administrateur extends Person{
    public void ajouterMatiere(Matière matiere, ArrayList<Integer> MatNiv){
        MessageDialog msg = new MessageDialog();
        int idMatiere = 1;
+       boolean siAjouter = false;
        String query = "insert into Matiere(matiere, fondamental, coefficient) values "
                       +"(?,?,?);";
        String query2 = "insert into Matiere_Niveau(idMatiere, idNiveau) values(?,?)";
@@ -638,17 +639,19 @@ public class Administrateur extends Person{
                dc2.ps.executeUpdate();
            }
            
-           dc2.ps.executeUpdate();
+           siAjouter = true;
            
-           msg.messageText.setText("Matière bien ajouter !");
-           msg.setVisible(true);
            
        } catch (Exception e) {
            System.out.println("error from ajouterMatiere() :" + e);
-           msg.messageText.setText("Matière déja exist !");
-           msg.setVisible(true);
+           
        }
-        
+       if (siAjouter) {
+           msg.messageText.setText("Matière bien ajouter !");
+       } else {
+           msg.messageText.setText("Matière déja exist !");
+       }
+        msg.setVisible(true);
    }
    
    /**
@@ -758,10 +761,11 @@ public class Administrateur extends Person{
        return isDeleted;
    }
    
-   public void inscritEnseignant(String nom, String prenom, String matiere, String phoneNumber, Date dateNai, String lieuNai, String adress, int niveau){
-       
-   }
-   
+   /**
+    * the method get an arrayList of 'Matière'
+    * @param niveau
+    * @return ArrayList<Matière>
+    */
    public ArrayList<Matière> selectMatiere(int niveau){
        ArrayList<Matière> listMatiere = new ArrayList<>();
        DatabaseConnection dc = new DatabaseConnection();
@@ -792,5 +796,131 @@ public class Administrateur extends Person{
        }
        
        return listMatiere;
+   }
+   
+   public void inscritEnseignant(String nom, String prenom, String matiere, String phoneNumber, Date dateNai, String lieuNai, String adress, int indexNiveau, String email, boolean sex, String imagePath){
+       
+       String pattern = "yyyy-MM-dd";
+       SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+       String date = simpleDateFormat.format(dateNai);
+       
+       DatabaseConnection person = new DatabaseConnection();
+       DatabaseConnection classe = new DatabaseConnection();
+       DatabaseConnection ens = new DatabaseConnection();
+       String personQuery = " insert into Person(nom ,prenom, phoneNumber, dateDeNaissance, lieuDeNaissance, adress, email, sex, photos)"
+                                + " values(?,?,?,?,?,?,?,?,?);";
+       String classeQuery = "insert into Enseignant_Classe(idEnseignant, idClasse) values(?,?)";
+       String ensQuery = "insert into Enseignant(idEnseignant, nbClasse, idMatiere) values(?,?,?);";
+       int idperson = idPerson(nom, prenom, dateNai);
+       try{
+           
+           InputStream img = new FileInputStream(new File(imagePath));
+           System.out.println(" path: "+ imagePath);
+           
+       person.ps = person.conn.prepareStatement(personQuery);
+       person.ps.setString(1,nom);
+       person.ps.setString(2, prenom);
+       person.ps.setString(3, phoneNumber);
+       person.ps.setString(4, date);
+       person.ps.setString(5, lieuNai);
+       person.ps.setString(6, adress);
+       person.ps.setString(7, email);
+       person.ps.setBoolean(8, sex);
+       person.ps.setBlob(9, img);
+       person.ps.executeUpdate();
+        
+       classe.ps = classe.conn.prepareStatement(classeQuery);
+       classe.ps.setInt(1, idPerson(nom, prenom, dateNai));
+       classe.ps.setInt(2, idClasse(indexNiveau));
+       classe.ps.executeUpdate();
+       
+       ens.ps = ens.conn.prepareStatement(ensQuery);
+       ens.ps.setInt(1, idPerson(nom, prenom, dateNai));
+       ens.ps.setInt(2, nbClasseEns(indexNiveau));
+       ens.ps.setInt(3, selectIdMatiere(matiere));
+       ens.ps.executeUpdate();
+       } catch (Exception e) {
+           System.out.println("error from inscritEnseignant() : " + e);
+       }
+   
+   }
+   
+   /**
+    * this method help us to get the idClasse to use in inscritEnseignant method
+    * @param niveau
+    * @return 
+    */
+   public int idClasse(int niveau){
+       String year = String.valueOf(new Date().getYear()+1900);
+       int idAnnee = getIdAnnee(year);
+       int idClasse = 2; // inisialization aleatoire
+       int idNiveau = 40;
+       switch(niveau){
+            case 0: idNiveau = 40; break;
+            case 1: idNiveau = 41; break;
+            case 2: idNiveau = 42; break;
+            case 3: idNiveau = 43; break;
+        }
+       
+       String idClasseQuery = "select idClasse from Classe where idNiveau = " + idNiveau +" and idAnnee = "+idAnnee+" limit 1 ;"; 
+       DatabaseConnection dc = new DatabaseConnection();
+       try {
+           dc.stmt = dc.conn.createStatement();
+           dc.rs = dc.stmt.executeQuery(idClasseQuery);
+           while(dc.rs.next()){
+               idClasse = dc.rs.getInt(1);
+           }
+       } catch (Exception e) {
+           System.out.println("error from inscritEnseignant  : "+e);
+       }
+     return idClasse;
+   }
+   
+   /**
+    * this to get the id of specific person
+    * @param nom
+    * @param prenom
+    * @param dateNai
+    * @return 
+    */
+   public int idPerson(String nom, String prenom, Date dateNai){
+       int idPerson = 1;
+       String pattern = "yyyy-MM-dd";
+       SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+       String date = simpleDateFormat.format(dateNai);
+       String query = "select idPerson from Person where nom = '" + nom +"' and prenom = '" + prenom +"' and dateDeNaissance = '" + date + "';";
+       DatabaseConnection dc = new DatabaseConnection();
+       try {
+           dc.stmt = dc.conn.createStatement();
+           dc.rs = dc.stmt.executeQuery(query);
+           while(dc.rs.next()){
+               idPerson = dc.rs.getInt(1);
+           }
+       } catch (Exception e) {
+           System.out.println("error from idPerson()" +e);
+       }
+       
+       return idPerson;
+   }
+   
+   /**
+    * cette methode permet de sauvgarder le nbClasses;
+    * @param idNiveau
+    * @return 
+    */
+   public int nbClasseEns(int idNiveau){
+       int nbClasse= 0;
+       String query = "select count(*) from Classe where idNiveau = "+ idNiveau+";";
+       DatabaseConnection dc = new DatabaseConnection();
+       try {
+           dc.stmt = dc.conn.createStatement();
+           dc.rs = dc.stmt.executeQuery(query);
+           while(dc.rs.next()){
+               nbClasse = dc.rs.getInt(1);
+           }
+       } catch (Exception e) {
+           System.out.println("error from nbClasseEns() :" + e);
+       }
+       return nbClasse;
    }
 }

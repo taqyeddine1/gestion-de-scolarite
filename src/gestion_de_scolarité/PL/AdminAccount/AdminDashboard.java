@@ -2349,18 +2349,18 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
        Matière mtr  = new Matière();
        String query = null;
         if (niveau == 0) {
-            query = "select idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, idEnseignantResponsable as 'Enseignant responsable' from Matiere ;";
+            query = "select m.idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, concat(p.nom,' ',p.prenom) as 'Enseignant responsable' from Matiere as m left join Enseignant as en on en.idEnseignant = m.idEnseignantResponsable left join Person as p on p.idPerson = en.idEnseignant ;";
         }else if (niveau == 1) {
-            query = "select m.idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, idEnseignantResponsable as 'Enseignant responsable' from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere "
+            query = "select m.idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, concat(p.nom,' ',p.prenom) as 'Enseignant responsable' from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere left join Enseignant as en on en.idEnseignant = m.idEnseignantResponsable left join Person as p on p.idPerson = en.idEnseignant "
                   + " where mn.idNiveau = 40;";
         }else if (niveau == 2) {
-            query = "select m.idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, idEnseignantResponsable as 'Enseignant responsable' from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere "
+            query = "select m.idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, concat(p.nom,' ',p.prenom) as 'Enseignant responsable' from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere  left join Enseignant as en on en.idEnseignant = m.idEnseignantResponsable left join Person as p on p.idPerson = en.idEnseignant "
                   + " where mn.idNiveau = 41;";
         }else if (niveau == 3) {
-            query = "select m.idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, idEnseignantResponsable as 'Enseignant responsable' from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere "
+            query = "select m.idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, concat(p.nom,' ',p.prenom) as 'Enseignant responsable' from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere left join Enseignant as en on en.idEnseignant = m.idEnseignantResponsable left join Person as p on p.idPerson = en.idEnseignant  "
                   + " where mn.idNiveau = 42;";
         }else if (niveau == 4) {
-            query = "select m.idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, idEnseignantResponsable as 'Enseignant responsable' from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere "
+            query = "select m.idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, concat(p.nom,' ',p.prenom) as 'Enseignant responsable' from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere left join Enseignant as en on en.idEnseignant = m.idEnseignantResponsable left join Person as p on p.idPerson = en.idEnseignant  "
                   + " where mn.idNiveau = 43;";
         }
              
