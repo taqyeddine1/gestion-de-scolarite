@@ -145,14 +145,29 @@ public class EditerMatiere extends javax.swing.JFrame {
         checkBox2.setBackground(new java.awt.Color(254, 254, 254));
         checkBox2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         checkBox2.setText("2eme ");
+        checkBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBox2ActionPerformed(evt);
+            }
+        });
 
         checkBox3.setBackground(new java.awt.Color(254, 254, 254));
         checkBox3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         checkBox3.setText("3eme ");
+        checkBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBox3ActionPerformed(evt);
+            }
+        });
 
         checkBox4.setBackground(new java.awt.Color(254, 254, 254));
         checkBox4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         checkBox4.setText("4eme ");
+        checkBox4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBox4ActionPerformed(evt);
+            }
+        });
 
         tousLesBox.setBackground(new java.awt.Color(254, 254, 254));
         tousLesBox.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
@@ -342,7 +357,9 @@ public class EditerMatiere extends javax.swing.JFrame {
     }//GEN-LAST:event_coefficientFieldActionPerformed
 
     private void checkBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox1ActionPerformed
-        // TODO add your handling code here:
+        if (!checkBox1.isSelected()) {
+            tousLesBox.setSelected(false);
+        }
     }//GEN-LAST:event_checkBox1ActionPerformed
 
     private void tousLesBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tousLesBoxActionPerformed
@@ -364,11 +381,47 @@ public class EditerMatiere extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+        Administrateur admin = new Administrateur();
+        MessageDialog msg = new MessageDialog();
+        boolean isDeleted = admin.deleteMatiere(searchField.getText());
+        if (isDeleted) {
+        //set the button group to default
+        jRadioButton1.setSelected(false);
+        jRadioButton2.setSelected(false);
+        
+        // set all the checkbox to default status
+        checkBox1.setSelected(false);
+        checkBox2.setSelected(false);
+        checkBox3.setSelected(false);
+        checkBox4.setSelected(false);
+        
+        matiereField.setText("");
+        coefficientField.setText("");
+        msg.messageText.setText("Matiere bien supprimer !");
+        } else {
+            msg.messageText.setText("Matiere ne pas supprimer !");
+        }
+        msg.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+        jRadioButton1.setActionCommand("oui");
+        jRadioButton2.setActionCommand("non");
+        ArrayList<Integer> niveaux = new ArrayList<>();
+        if(checkBox1.isSelected()){
+            niveaux.add(40);
+        }
+        if(checkBox2.isSelected()){
+            niveaux.add(41);
+        }
+        if(checkBox3.isSelected()){
+            niveaux.add(42);
+        }
+        if(checkBox4.isSelected()){
+            niveaux.add(43);
+        }
+        boolean fond = fondamentalRadio.getSelection().getActionCommand().equals("oui")? true : false;
+        admin.modifierMatiere(searchField.getText(),new Matière(matiereField.getText(), fond, Integer.parseInt(coefficientField.getText())), niveaux);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -388,16 +441,16 @@ public class EditerMatiere extends javax.swing.JFrame {
             niveaux.add(43);
         }
         boolean fond = fondamentalRadio.getSelection().getActionCommand().equals("oui")? true : false;
-        System.out.println("fond :"+ fond + " ********** fondamentalRadio : "+ fondamentalRadio.getSelection().getActionCommand());
         admin.ajouterMatiere(new Matière(matiereField.getText(), fond, Integer.parseInt(coefficientField.getText())), niveaux);
         MessageDialog msg = new MessageDialog();
-        msg.messageText.setText("Matière bien ajouter !");
-        msg.setVisible(true);
+        
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         matiere = admin.searchMatiere(searchField.getText());
-        matiereField.setText(matiere.getMatière());
+        System.out.println("the matiere from butto :" + matiere.getMatière());
+        if (matiere.getMatière() != null) {
+            matiereField.setText(matiere.getMatière());
         coefficientField.setText(String.valueOf(matiere.getCoeficient()));
         if(matiere.isFondamental()){
             jRadioButton1.setSelected(true);
@@ -426,10 +479,36 @@ public class EditerMatiere extends javax.swing.JFrame {
         }
         if (checkBox1.isSelected() && checkBox2.isSelected() && checkBox3.isSelected() && checkBox4.isSelected()) {
             tousLesBox.setSelected(true);
-            
+        }else{
+            tousLesBox.setSelected(false);
         }
         
+        } else {
+            MessageDialog msg = new MessageDialog();
+            msg.messageText.setText(searchField.getText() + " n'exist pas !");
+            msg.setVisible(true);
+        }
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void checkBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox2ActionPerformed
+        if (!checkBox2.isSelected()) {
+            tousLesBox.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBox2ActionPerformed
+
+    private void checkBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox3ActionPerformed
+        if (!checkBox3.isSelected()) {
+            tousLesBox.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBox3ActionPerformed
+
+    private void checkBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox4ActionPerformed
+        if (!checkBox4.isSelected()) {
+            tousLesBox.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBox4ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -48,8 +48,6 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel29 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
-        classeLabel = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
         jComboBox4 = new javax.swing.JComboBox<>();
         classeLabel1 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -119,7 +117,7 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(136, 136, 136));
         jLabel18.setText("Adresse : ");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 70, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 70, -1));
 
         jSeparator2.setBackground(new java.awt.Color(206, 202, 198));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 170, 14));
@@ -133,7 +131,7 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
                 jTextField3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 170, 30));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 170, 30));
 
         jLabel26.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(136, 136, 136));
@@ -141,7 +139,7 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
         jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 79, -1));
 
         jSeparator3.setBackground(new java.awt.Color(206, 202, 198));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, 170, 14));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 170, 14));
 
         jTextField4.setForeground(new java.awt.Color(66, 66, 66));
         jTextField4.setToolTipText("");
@@ -157,7 +155,7 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
         jLabel27.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(136, 136, 136));
         jLabel27.setText("Niveau : ");
-        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 69, -1));
+        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 69, -1));
 
         jSeparator4.setBackground(new java.awt.Color(206, 202, 198));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 170, 14));
@@ -215,7 +213,7 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
     jComboBox1.setBackground(new java.awt.Color(254, 254, 254));
     jComboBox1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
     jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere Année", "2eme Année", "3eme Année", "4eme Année" }));
-    jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 170, 30));
+    jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 170, 30));
 
     jLabel29.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
     jLabel29.setForeground(new java.awt.Color(136, 136, 136));
@@ -231,17 +229,6 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
         }
     });
     jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, -1, -1));
-
-    classeLabel.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
-    classeLabel.setForeground(new java.awt.Color(136, 136, 136));
-    classeLabel.setText("Classe :");
-    jPanel1.add(classeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 68, -1));
-
-    jComboBox3.setBackground(new java.awt.Color(254, 254, 254));
-    jComboBox3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-    jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "c1n1", "c1c2", "n1c3" }));
-    jComboBox3.setBorder(null);
-    jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 170, 30));
 
     jComboBox4.setBackground(new java.awt.Color(254, 254, 254));
     jComboBox4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
@@ -402,7 +389,6 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel classeLabel;
     private javax.swing.JLabel classeLabel1;
     private datechooser.beans.DateChooserCombo dateChooserCombo1;
     private javax.swing.JButton jButton1;
@@ -411,7 +397,6 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;

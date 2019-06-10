@@ -346,6 +346,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="2eme "/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBox2ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkBox3">
           <Properties>
@@ -357,6 +360,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="3eme "/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBox3ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkBox4">
           <Properties>
@@ -368,6 +374,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="4eme "/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBox4ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="tousLesBox">
           <Properties>

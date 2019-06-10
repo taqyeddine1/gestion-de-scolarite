@@ -29,6 +29,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
 /**
  *
  * @author slimane
@@ -585,7 +586,11 @@ public class Administrateur extends Person{
         return count;
     }
    
-   
+   /**
+    * this method give us the idMatiere of the chosen matiere
+    * @param matiere
+    * @return 
+    */
    public int selectIdMatiere(String matiere){
        int idMatiere= 1;
        String query = "select idMatiere from Matiere where matiere = '" + matiere + "';";
@@ -603,9 +608,13 @@ public class Administrateur extends Person{
        return idMatiere;
    }
    
+   /**
+    * this method allow to insert new matiere into the Matiere table in DB
+    * @param matiere
+    * @param MatNiv 
+    */
    public void ajouterMatiere(Matière matiere, ArrayList<Integer> MatNiv){
-       
-       int idNiveau = 40;
+       MessageDialog msg = new MessageDialog();
        int idMatiere = 1;
        String query = "insert into Matiere(matiere, fondamental, coefficient) values "
                       +"(?,?,?);";
@@ -629,15 +638,24 @@ public class Administrateur extends Person{
                dc2.ps.executeUpdate();
            }
            
-           
-          
            dc2.ps.executeUpdate();
+           
+           msg.messageText.setText("Matière bien ajouter !");
+           msg.setVisible(true);
+           
        } catch (Exception e) {
            System.out.println("error from ajouterMatiere() :" + e);
+           msg.messageText.setText("Matière déja exist !");
+           msg.setVisible(true);
        }
         
    }
    
+   /**
+    * this method get all the information about the chosen matiere
+    * @param matiere
+    * @return 
+    */
    public Matière searchMatiere(String matiere){ 
        DatabaseConnection dc = new DatabaseConnection();
        DatabaseConnection dc2 = new DatabaseConnection();
@@ -668,5 +686,111 @@ public class Administrateur extends Person{
        }
        return mtr;
    }
+   
+   /**
+    * this method allow us to update module if exist in DB
+    * @param mMatiere
+    * @param matiere
+    * @param MatNiv 
+    */
+   public void modifierMatiere(String mMatiere, Matière matiere, ArrayList<Integer> MatNiv){
+       int idMatiere = 0;
+       MessageDialog msg = new MessageDialog();
+       boolean siModifier = false;
+       String updateQuery = "update Matiere set matiere = ?, fondamental = ?, coefficient = ? where matiere = '" + mMatiere +"';";
+       String insertQuery =  "insert into Matiere_Niveau(idMatiere, idNiveau) values(?,?)";
+       String deleteQuery = "delete from Matiere_Niveau where idMatiere = (select idMatiere from Matiere where matiere = '"+mMatiere+"');";
+       
+       DatabaseConnection updateDB = new DatabaseConnection();
+       DatabaseConnection insertDB = new DatabaseConnection();
+       DatabaseConnection deleteDB = new DatabaseConnection();
+       
+       try {
+           updateDB.ps = updateDB.conn.prepareStatement(updateQuery);
+           insertDB.ps = insertDB.conn.prepareStatement(insertQuery);
+           deleteDB.ps = deleteDB.conn.prepareStatement(deleteQuery);
+           
+           deleteDB.ps.executeUpdate();
+           
+           updateDB.ps.setString(1, matiere.getMatière());
+           updateDB.ps.setBoolean(2, matiere.isFondamental());
+           updateDB.ps.setInt(3, matiere.getCoeficient());
+           updateDB.ps.executeUpdate();
+           idMatiere = selectIdMatiere(matiere.getMatière());
+           for (int i = 0; i < MatNiv.size(); i++) {
+               
+               insertDB.ps.setInt(1, idMatiere);
+               insertDB.ps.setInt(2, MatNiv.get(i));
+               insertDB.ps.executeUpdate();
+           }
+           
+           siModifier = true;
+       } catch (Exception e) {
+           System.out.println("error from modifierMatiere : " + e );
+       }
+       if (siModifier) {
+           msg.messageText.setText("Matiere bien modifier");
+       } else {
+           msg.messageText.setText("Matiere ne pas modifier!");
+       }
+       msg.setVisible(true);
+       
+           
+   }
     
+   /**
+    * this method allow to delete a module 'matiere' if exist in DB
+    * @param matiere 
+    */
+   public boolean deleteMatiere(String matiere){
+       boolean isDeleted = false;
+       String deleteQuery = "delete from Matiere where matiere = ? ;";
+       DatabaseConnection deleteDb = new DatabaseConnection();
+       try {
+           deleteDb.ps = deleteDb.conn.prepareStatement(deleteQuery);
+           deleteDb.ps.setString(1, matiere);
+           deleteDb.ps.executeUpdate();
+           isDeleted = true;
+       } catch (Exception e) {
+           System.out.println("error from deleteMatiere() : " + e);
+       }
+       
+       return isDeleted;
+   }
+   
+   public void inscritEnseignant(String nom, String prenom, String matiere, String phoneNumber, Date dateNai, String lieuNai, String adress, int niveau){
+       
+   }
+   
+   public ArrayList<Matière> selectMatiere(int niveau){
+       ArrayList<Matière> listMatiere = new ArrayList<>();
+       DatabaseConnection dc = new DatabaseConnection();
+       Matière mtr  = new Matière();
+       String query = null;
+        if (niveau == 0) {
+            query = "select m.idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, concat(p.nom,' ',p.prenom) as 'Enseignant responsable' from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere left join Enseignant as en on en.idEnseignant = m.idEnseignantResponsable left join Person as p on p.idPerson = en.idEnseignant "
+                  + " where mn.idNiveau = 40;";
+        }else if (niveau == 1) {
+            query = "select m.idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, concat(p.nom,' ',p.prenom) as 'Enseignant responsable' from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere  left join Enseignant as en on en.idEnseignant = m.idEnseignantResponsable left join Person as p on p.idPerson = en.idEnseignant "
+                  + " where mn.idNiveau = 41;";
+        }else if (niveau == 2) {
+            query = "select m.idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, concat(p.nom,' ',p.prenom) as 'Enseignant responsable' from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere left join Enseignant as en on en.idEnseignant = m.idEnseignantResponsable left join Person as p on p.idPerson = en.idEnseignant  "
+                  + " where mn.idNiveau = 42;";
+        }else if (niveau == 3) {
+            query = "select m.idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, concat(p.nom,' ',p.prenom) as 'Enseignant responsable' from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere left join Enseignant as en on en.idEnseignant = m.idEnseignantResponsable left join Person as p on p.idPerson = en.idEnseignant  "
+                  + " where mn.idNiveau = 43;";
+        }
+             
+       try {
+           dc.stmt = dc.conn.createStatement();
+           dc.rs = dc.stmt.executeQuery(query);
+           while(dc.rs.next()){
+               listMatiere.add(new Matière(dc.rs.getInt(1), dc.rs.getString(2), dc.rs.getBoolean(3), dc.rs.getInt(4), dc.rs.getString(5)));
+           }
+       } catch (Exception e) {
+           System.out.println("error from searchMatiere() : " +e);
+       }
+       
+       return listMatiere;
+   }
 }

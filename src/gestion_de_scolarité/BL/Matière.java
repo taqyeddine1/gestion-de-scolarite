@@ -18,9 +18,20 @@ public class Matière {
     private boolean fondamental;
     private int coeficient;
     private int ensResponsable;
+    private String enseignant;
     
     private ArrayList<Integer> niveau;
 
+    public Matière(int idMatière, String matière, boolean fondamental, int coeficient, String enseignant) {
+        this.idMatière = idMatière;
+        this.matière = matière;
+        this.fondamental = fondamental;
+        this.coeficient = coeficient;
+        this.enseignant = enseignant;
+    }
+
+    
+    
     public Matière() {
     }
 
@@ -63,6 +74,14 @@ public class Matière {
 
     public void setNiveau(ArrayList<Integer> niveau) {
         this.niveau = niveau;
+    }
+
+    public String getEnseignant() {
+        return enseignant;
+    }
+
+    public void setEnseignant(String enseignant) {
+        this.enseignant = enseignant;
     }
 
     

@@ -34,9 +34,12 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.text.Style;
 import javax.tools.Diagnostic;
 import net.proteanit.sql.DbUtils;
@@ -70,6 +73,13 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
         jTable5.getTableHeader().setFont(new Font("segoe UI", Font.BOLD, 12));
         jTable6.getTableHeader().setForeground(new Color(60,60,60));
         jTable6.getTableHeader().setFont(new Font("segoe UI", Font.BOLD, 12));
+        
+        // change the background of the tables to be white
+        jTable2.setFillsViewportHeight(true);
+        jTable3.setFillsViewportHeight(true);
+        jTable4.setFillsViewportHeight(true);
+        jTable5.setFillsViewportHeight(true);
+        jTable6.setFillsViewportHeight(true);
         //jTable1.setRowHeight(25);
         //jTable1.setBackground(new Color(255, 255, 253));
         
@@ -1420,12 +1430,18 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
 
     jComboBox3.setBackground(new java.awt.Color(254, 254, 254));
     jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toute les niveau", "1ere année", "2eme année", "3eme année", "4eme année" }));
+    jComboBox3.addItemListener(new java.awt.event.ItemListener() {
+        public void itemStateChanged(java.awt.event.ItemEvent evt) {
+            jComboBox3ItemStateChanged(evt);
+        }
+    });
 
     jLabel20.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
     jLabel20.setForeground(new java.awt.Color(60, 60, 60));
     jLabel20.setText("Niveau :");
 
     jTable4.setBackground(new java.awt.Color(254, 254, 254));
+    jTable4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
     jTable4.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
 
@@ -1442,6 +1458,7 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
             return types [columnIndex];
         }
     });
+    jTable4.setFillsViewportHeight(true);
     jTable4.setFocusable(false);
     jTable4.setRowHeight(25);
     jTable4.setSelectionBackground(new java.awt.Color(60, 60, 60));
@@ -1467,28 +1484,29 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
     GestionDesMaitieresLayout.setHorizontalGroup(
         GestionDesMaitieresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(GestionDesMaitieresLayout.createSequentialGroup()
-            .addGap(114, 114, 114)
-            .addGroup(GestionDesMaitieresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(GestionDesMaitieresLayout.createSequentialGroup()
-                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(172, Short.MAX_VALUE))
+            .addGap(57, 57, 57)
+            .addGroup(GestionDesMaitieresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(GestionDesMaitieresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(GestionDesMaitieresLayout.createSequentialGroup()
+                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addContainerGap(119, Short.MAX_VALUE))
     );
     GestionDesMaitieresLayout.setVerticalGroup(
         GestionDesMaitieresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(GestionDesMaitieresLayout.createSequentialGroup()
-            .addGap(41, 41, 41)
+            .addGap(47, 47, 47)
             .addGroup(GestionDesMaitieresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jLabel20))
             .addGap(36, 36, 36)
             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
             .addComponent(jButton7)
-            .addGap(57, 57, 57))
+            .addGap(78, 78, 78))
     );
 
     AdminStrateurDashboard.add(GestionDesMaitieres, "card4");
@@ -2282,6 +2300,10 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
         }
     }//GEN-LAST:event_comboNiveauItemStateChanged
 
+    private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
+        updateTableMatiere(jComboBox3.getSelectedIndex());
+    }//GEN-LAST:event_jComboBox3ItemStateChanged
+
     /**
      * this method to get the text of the selected radioButton in buttonGroup
      * @param buttonGroup
@@ -2298,7 +2320,12 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
 
     return null;
 }
-    
+    /**
+     * this method to get the resize the photos of the student
+     * @param imagePath
+     * @param pic
+     * @return 
+     */
     public ImageIcon ResizeImage(String imagePath, byte[] pic){
         ImageIcon myImage = null;
         if(imagePath != null){
@@ -2313,28 +2340,30 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
         return image;
     }
     
+    /**
+     * this method to fill the table 'gestion'matiere' panel
+     * @param niveau 
+     */
     public void updateTableMatiere(int niveau){
         DatabaseConnection dc = new DatabaseConnection();
        Matière mtr  = new Matière();
        String query = null;
         if (niveau == 0) {
-            query = "select idMatiere, matiere, fondamental, coefficient, idEnseignantResponsable from Matiere ;";
+            query = "select idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, idEnseignantResponsable as 'Enseignant responsable' from Matiere ;";
         }else if (niveau == 1) {
-            query = "select idMatiere, matiere, fondamental, coefficient, idEnseignantResponsable from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere "
+            query = "select m.idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, idEnseignantResponsable as 'Enseignant responsable' from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere "
                   + " where mn.idNiveau = 40;";
         }else if (niveau == 2) {
-            query = "select idMatiere, matiere, fondamental, coefficient, idEnseignantResponsable from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere "
+            query = "select m.idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, idEnseignantResponsable as 'Enseignant responsable' from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere "
                   + " where mn.idNiveau = 41;";
         }else if (niveau == 3) {
-            query = "select idMatiere, matiere, fondamental, coefficient, idEnseignantResponsable from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere "
+            query = "select m.idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, idEnseignantResponsable as 'Enseignant responsable' from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere "
                   + " where mn.idNiveau = 42;";
         }else if (niveau == 4) {
-            query = "select idMatiere, matiere, fondamental, coefficient, idEnseignantResponsable from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere "
+            query = "select m.idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, idEnseignantResponsable as 'Enseignant responsable' from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere "
                   + " where mn.idNiveau = 43;";
         }
-       String query2 = "select idNiveau from Matiere_Niveau as mn left join Matiere as m on m.idMatiere = mn.idMatiere ;";
-       ArrayList<Integer> idNiveau =new  ArrayList<>();
-       
+             
        try {
            dc.stmt = dc.conn.createStatement();
            dc.rs = dc.stmt.executeQuery(query);
@@ -2521,6 +2550,7 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
 
     @Override
     public void windowOpened(WindowEvent e) {
+        updateTableMatiere(jComboBox3.getSelectedIndex());
     }
 
     @Override
@@ -2542,9 +2572,14 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
     @Override
     public void windowActivated(WindowEvent e) {
         updateTableMatiere(jComboBox3.getSelectedIndex());
+        GestionDesMaitieres.updateUI();
     }
 
     @Override
     public void windowDeactivated(WindowEvent e) {
+        updateTableMatiere(jComboBox3.getSelectedIndex());
     }
+    
+    
+    
 }
