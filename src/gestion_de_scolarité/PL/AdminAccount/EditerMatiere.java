@@ -53,10 +53,10 @@ public class EditerMatiere extends javax.swing.JFrame {
         checkBox3 = new javax.swing.JCheckBox();
         checkBox4 = new javax.swing.JCheckBox();
         tousLesBox = new javax.swing.JCheckBox();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        annulerButton = new javax.swing.JButton();
+        supprimerButto = new javax.swing.JButton();
+        modifierButton = new javax.swing.JButton();
+        ajouterButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
@@ -178,39 +178,39 @@ public class EditerMatiere extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setBackground(new java.awt.Color(107, 107, 107));
-        jButton7.setForeground(new java.awt.Color(254, 254, 254));
-        jButton7.setText("Annuler");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        annulerButton.setBackground(new java.awt.Color(107, 107, 107));
+        annulerButton.setForeground(new java.awt.Color(254, 254, 254));
+        annulerButton.setText("Annuler");
+        annulerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                annulerButtonActionPerformed(evt);
             }
         });
 
-        jButton8.setBackground(new java.awt.Color(107, 107, 107));
-        jButton8.setForeground(new java.awt.Color(254, 254, 254));
-        jButton8.setText("Supprimer");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        supprimerButto.setBackground(new java.awt.Color(107, 107, 107));
+        supprimerButto.setForeground(new java.awt.Color(254, 254, 254));
+        supprimerButto.setText("Supprimer");
+        supprimerButto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                supprimerButtoActionPerformed(evt);
             }
         });
 
-        jButton9.setBackground(new java.awt.Color(107, 107, 107));
-        jButton9.setForeground(new java.awt.Color(254, 254, 254));
-        jButton9.setText("Modifier");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        modifierButton.setBackground(new java.awt.Color(107, 107, 107));
+        modifierButton.setForeground(new java.awt.Color(254, 254, 254));
+        modifierButton.setText("Modifier");
+        modifierButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                modifierButtonActionPerformed(evt);
             }
         });
 
-        jButton10.setBackground(new java.awt.Color(107, 107, 107));
-        jButton10.setForeground(new java.awt.Color(254, 254, 254));
-        jButton10.setText("Ajouter");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        ajouterButton.setBackground(new java.awt.Color(107, 107, 107));
+        ajouterButton.setForeground(new java.awt.Color(254, 254, 254));
+        ajouterButton.setText("Ajouter");
+        ajouterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                ajouterButtonActionPerformed(evt);
             }
         });
 
@@ -234,13 +234,13 @@ public class EditerMatiere extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton10)
+                        .addComponent(ajouterButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton9)
+                        .addComponent(modifierButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton8)
+                        .addComponent(supprimerButto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton7))
+                        .addComponent(annulerButton))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel1)
@@ -321,10 +321,10 @@ public class EditerMatiere extends javax.swing.JFrame {
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9)
-                    .addComponent(jButton10))
+                    .addComponent(annulerButton)
+                    .addComponent(supprimerButto)
+                    .addComponent(modifierButton)
+                    .addComponent(ajouterButton))
                 .addGap(21, 21, 21))
         );
 
@@ -376,11 +376,11 @@ public class EditerMatiere extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tousLesBoxActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void annulerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annulerButtonActionPerformed
         this.setVisible(false);
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_annulerButtonActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void supprimerButtoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerButtoActionPerformed
         Administrateur admin = new Administrateur();
         MessageDialog msg = new MessageDialog();
         boolean isDeleted = admin.deleteMatiere(searchField.getText());
@@ -402,9 +402,9 @@ public class EditerMatiere extends javax.swing.JFrame {
             msg.messageText.setText("Matiere ne pas supprimer !");
         }
         msg.setVisible(true);
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_supprimerButtoActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void modifierButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifierButtonActionPerformed
         jRadioButton1.setActionCommand("oui");
         jRadioButton2.setActionCommand("non");
         ArrayList<Integer> niveaux = new ArrayList<>();
@@ -422,9 +422,10 @@ public class EditerMatiere extends javax.swing.JFrame {
         }
         boolean fond = fondamentalRadio.getSelection().getActionCommand().equals("oui")? true : false;
         admin.modifierMatiere(searchField.getText(),new Matière(matiereField.getText(), fond, Integer.parseInt(coefficientField.getText())), niveaux);
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_modifierButtonActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void ajouterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterButtonActionPerformed
+        
         jRadioButton1.setActionCommand("oui");
         jRadioButton2.setActionCommand("non");
         ArrayList<Integer> niveaux = new ArrayList<>();
@@ -444,7 +445,7 @@ public class EditerMatiere extends javax.swing.JFrame {
         admin.ajouterMatiere(new Matière(matiereField.getText(), fond, Integer.parseInt(coefficientField.getText())), niveaux);
         MessageDialog msg = new MessageDialog();
         
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_ajouterButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         matiere = admin.searchMatiere(searchField.getText());
@@ -546,6 +547,8 @@ public class EditerMatiere extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ajouterButton;
+    private javax.swing.JButton annulerButton;
     private javax.swing.JCheckBox checkBox1;
     private javax.swing.JCheckBox checkBox2;
     private javax.swing.JCheckBox checkBox3;
@@ -553,10 +556,6 @@ public class EditerMatiere extends javax.swing.JFrame {
     private javax.swing.JTextField coefficientField;
     private javax.swing.ButtonGroup fondamentalRadio;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel25;
@@ -569,7 +568,9 @@ public class EditerMatiere extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextField matiereField;
+    private javax.swing.JButton modifierButton;
     private javax.swing.JTextField searchField;
+    private javax.swing.JButton supprimerButto;
     private javax.swing.JCheckBox tousLesBox;
     // End of variables declaration//GEN-END:variables
 }

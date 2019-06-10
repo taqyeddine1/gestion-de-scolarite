@@ -1216,7 +1216,7 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
                             .addComponent(matiereLabel1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(classecombo2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 307, Short.MAX_VALUE)))
+                            .addGap(0, 241, Short.MAX_VALUE)))
                     .addContainerGap())))
     );
     GestionDesEnseignantsLayout.setVerticalGroup(
@@ -1230,7 +1230,7 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
                 .addComponent(classecombo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(33, 33, 33)
             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 314, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 291, Short.MAX_VALUE)
             .addComponent(jButton6)
             .addGap(90, 90, 90))
     );

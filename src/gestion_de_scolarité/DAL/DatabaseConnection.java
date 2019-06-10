@@ -32,7 +32,9 @@ public class DatabaseConnection {
     public void getConnection(){
       try{
         Class.forName("com.mysql.jdbc.Driver");
-        conn= DriverManager.getConnection("jdbc:mysql://localhost/GestionDeScolarite","root","bismi llah&");        
+        String path = "jdbc:mysql://localhost/GestionDeScolarite";
+        String path2 = "jdbc:mysql://localhost:3306/GestionDeScolarite?autoReconnect=true&useSSL=false";
+        conn= DriverManager.getConnection(path2,"root","bismi llah&");        
       }catch(Exception e){
        System.out.println("DAL getConnection failed !!!");
       }

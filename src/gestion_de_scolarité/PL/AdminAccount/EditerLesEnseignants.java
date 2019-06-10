@@ -5,6 +5,17 @@
  */
 package gestion_de_scolarité.PL.AdminAccount;
 
+import gestion_de_scolarité.BL.Administrateur;
+import gestion_de_scolarité.BL.Matière;
+import java.awt.Image;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author slimane
@@ -14,9 +25,19 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
     /**
      * Creates new form EditerLesEnseignants
      */
+    Administrateur admin = new Administrateur();
+    String path="";
+    
     public EditerLesEnseignants() {
         initComponents();
         this.setLocationRelativeTo(null);
+        ArrayList<Matière> listMat = new ArrayList<>();
+        listMat = admin.selectMatiere(niveauCombo.getSelectedIndex());
+        ArrayList<String> mStringList = new ArrayList<>();
+        for (int i = 0; i < listMat.size(); i++) {
+            mStringList.add(listMat.get(i).getMatière());
+        }
+        matiereCombo.setModel(new DefaultComboBoxModel(mStringList.toArray()));
     }
 
     /**
@@ -30,78 +51,78 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        annulerButton = new javax.swing.JButton();
+        ajouterButton = new javax.swing.JButton();
+        nomField = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel17 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        lieuNaiField = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jTextField3 = new javax.swing.JTextField();
+        adressField = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jTextField4 = new javax.swing.JTextField();
+        prenomField = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
+        dateChooser = new datechooser.beans.DateChooserCombo();
         jLabel28 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        niveauCombo = new javax.swing.JComboBox<>();
         jLabel29 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        modifierButton = new javax.swing.JButton();
+        matiereCombo = new javax.swing.JComboBox<>();
         classeLabel1 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        phoneField = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
-        jTextField6 = new javax.swing.JTextField();
+        searchField = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        searchButton = new javax.swing.JButton();
+        supprimerButton = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        emailField = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
+        imageLabel = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        maleRadio = new javax.swing.JRadioButton();
+        femaleRadio = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(254, 254, 254));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton3.setBackground(new java.awt.Color(89, 89, 89));
-        jButton3.setForeground(new java.awt.Color(254, 254, 254));
-        jButton3.setText("Annuler");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        annulerButton.setBackground(new java.awt.Color(89, 89, 89));
+        annulerButton.setForeground(new java.awt.Color(254, 254, 254));
+        annulerButton.setText("Annuler");
+        annulerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                annulerButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 390, -1, -1));
+        jPanel1.add(annulerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 390, -1, -1));
 
-        jButton4.setBackground(new java.awt.Color(89, 89, 89));
-        jButton4.setForeground(new java.awt.Color(254, 254, 254));
-        jButton4.setText("Ajouter");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        ajouterButton.setBackground(new java.awt.Color(89, 89, 89));
+        ajouterButton.setForeground(new java.awt.Color(254, 254, 254));
+        ajouterButton.setText("Ajouter");
+        ajouterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                ajouterButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, -1, -1));
+        jPanel1.add(ajouterButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, -1, -1));
 
-        jTextField1.setForeground(new java.awt.Color(66, 66, 66));
-        jTextField1.setToolTipText("");
-        jTextField1.setBorder(null);
-        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        nomField.setForeground(new java.awt.Color(66, 66, 66));
+        nomField.setToolTipText("");
+        nomField.setBorder(null);
+        nomField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        nomField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                nomFieldActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 150, 30));
+        jPanel1.add(nomField, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 150, 30));
 
         jSeparator1.setBackground(new java.awt.Color(206, 202, 198));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 150, 14));
@@ -111,16 +132,16 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
         jLabel17.setText("Nom :");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 49, -1));
 
-        jTextField2.setForeground(new java.awt.Color(66, 66, 66));
-        jTextField2.setToolTipText("");
-        jTextField2.setBorder(null);
-        jTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        lieuNaiField.setForeground(new java.awt.Color(66, 66, 66));
+        lieuNaiField.setToolTipText("");
+        lieuNaiField.setBorder(null);
+        lieuNaiField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        lieuNaiField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                lieuNaiFieldActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 150, 30));
+        jPanel1.add(lieuNaiField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 150, 30));
 
         jLabel18.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(136, 136, 136));
@@ -130,16 +151,16 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
         jSeparator2.setBackground(new java.awt.Color(206, 202, 198));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 150, 14));
 
-        jTextField3.setForeground(new java.awt.Color(66, 66, 66));
-        jTextField3.setToolTipText("");
-        jTextField3.setBorder(null);
-        jTextField3.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        adressField.setForeground(new java.awt.Color(66, 66, 66));
+        adressField.setToolTipText("");
+        adressField.setBorder(null);
+        adressField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        adressField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                adressFieldActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 150, 30));
+        jPanel1.add(adressField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 150, 30));
 
         jLabel26.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(136, 136, 136));
@@ -149,16 +170,16 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
         jSeparator3.setBackground(new java.awt.Color(206, 202, 198));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 150, 14));
 
-        jTextField4.setForeground(new java.awt.Color(66, 66, 66));
-        jTextField4.setToolTipText("");
-        jTextField4.setBorder(null);
-        jTextField4.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        prenomField.setForeground(new java.awt.Color(66, 66, 66));
+        prenomField.setToolTipText("");
+        prenomField.setBorder(null);
+        prenomField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        prenomField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                prenomFieldActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 150, 30));
+        jPanel1.add(prenomField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 150, 30));
 
         jLabel27.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(136, 136, 136));
@@ -168,7 +189,7 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
         jSeparator4.setBackground(new java.awt.Color(206, 202, 198));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 150, 14));
 
-        dateChooserCombo1.setCurrentView(new datechooser.view.appearance.AppearancesList("Swing",
+        dateChooser.setCurrentView(new datechooser.view.appearance.AppearancesList("Swing",
             new datechooser.view.appearance.ViewAppearance("custom",
                 new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Ubuntu", java.awt.Font.PLAIN, 15),
                     new java.awt.Color(76, 76, 76),
@@ -209,40 +230,40 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
                 (datechooser.view.BackRenderer)null,
                 false,
                 true)));
-    dateChooserCombo1.setCalendarBackground(new java.awt.Color(254, 254, 254));
-    dateChooserCombo1.setFieldFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 15));
-    jPanel1.add(dateChooserCombo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, 150, 30));
+    dateChooser.setCalendarBackground(new java.awt.Color(254, 254, 254));
+    dateChooser.setFieldFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 15));
+    jPanel1.add(dateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, 150, 30));
 
     jLabel28.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
     jLabel28.setForeground(new java.awt.Color(136, 136, 136));
     jLabel28.setText("Date de nai : ");
     jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 144, -1));
 
-    jComboBox1.setBackground(new java.awt.Color(254, 254, 254));
-    jComboBox1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-    jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere Année", "2eme Année", "3eme Année", "4eme Année" }));
-    jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, 150, 30));
+    niveauCombo.setBackground(new java.awt.Color(254, 254, 254));
+    niveauCombo.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+    niveauCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ere Année", "2eme Année", "3eme Année", "4eme Année" }));
+    jPanel1.add(niveauCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, 150, 30));
 
     jLabel29.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
     jLabel29.setForeground(new java.awt.Color(136, 136, 136));
     jLabel29.setText("Lieu de nai : ");
     jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 147, -1));
 
-    jButton5.setBackground(new java.awt.Color(89, 89, 89));
-    jButton5.setForeground(new java.awt.Color(254, 254, 254));
-    jButton5.setText("Modifier");
-    jButton5.addActionListener(new java.awt.event.ActionListener() {
+    modifierButton.setBackground(new java.awt.Color(89, 89, 89));
+    modifierButton.setForeground(new java.awt.Color(254, 254, 254));
+    modifierButton.setText("Modifier");
+    modifierButton.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton5ActionPerformed(evt);
+            modifierButtonActionPerformed(evt);
         }
     });
-    jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 390, -1, -1));
+    jPanel1.add(modifierButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 390, -1, -1));
 
-    jComboBox4.setBackground(new java.awt.Color(254, 254, 254));
-    jComboBox4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-    jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Math", "physics", "Arab", "English", "Islamic" }));
-    jComboBox4.setBorder(null);
-    jPanel1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 150, 30));
+    matiereCombo.setBackground(new java.awt.Color(254, 254, 254));
+    matiereCombo.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+    matiereCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Math", "physics", "Arab", "English", "Islamic" }));
+    matiereCombo.setBorder(null);
+    jPanel1.add(matiereCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 150, 30));
 
     classeLabel1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
     classeLabel1.setForeground(new java.awt.Color(136, 136, 136));
@@ -251,36 +272,36 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
 
     jLabel19.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
     jLabel19.setForeground(new java.awt.Color(136, 136, 136));
-    jLabel19.setText("Numéro tele :");
+    jLabel19.setText("Téléphone :");
     jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 150, -1));
 
-    jTextField5.setForeground(new java.awt.Color(66, 66, 66));
-    jTextField5.setToolTipText("");
-    jTextField5.setBorder(null);
-    jTextField5.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-    jTextField5.addActionListener(new java.awt.event.ActionListener() {
+    phoneField.setForeground(new java.awt.Color(66, 66, 66));
+    phoneField.setToolTipText("");
+    phoneField.setBorder(null);
+    phoneField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+    phoneField.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jTextField5ActionPerformed(evt);
+            phoneFieldActionPerformed(evt);
         }
     });
-    jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 150, 30));
+    jPanel1.add(phoneField, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 150, 30));
 
     jSeparator5.setBackground(new java.awt.Color(206, 202, 198));
     jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 150, 14));
 
-    jTextField6.setBackground(new java.awt.Color(254, 254, 254));
-    jTextField6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-    jTextField6.setForeground(new java.awt.Color(185, 185, 185));
-    jTextField6.setText(" Search");
-    jTextField6.setToolTipText("");
-    jTextField6.setBorder(null);
-    jTextField6.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-    jTextField6.addActionListener(new java.awt.event.ActionListener() {
+    searchField.setBackground(new java.awt.Color(254, 254, 254));
+    searchField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+    searchField.setForeground(new java.awt.Color(185, 185, 185));
+    searchField.setText(" Search");
+    searchField.setToolTipText("");
+    searchField.setBorder(null);
+    searchField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+    searchField.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jTextField6ActionPerformed(evt);
+            searchFieldActionPerformed(evt);
         }
     });
-    jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 210, 30));
+    jPanel1.add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 210, 30));
 
     jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestion_de_scolarité/PL/EnseignantAccount/VérifierLaPresence/search.png"))); // NOI18N
     jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
@@ -288,60 +309,65 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
     jSeparator6.setBackground(new java.awt.Color(206, 202, 198));
     jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 220, 10));
 
-    jButton1.setBackground(new java.awt.Color(103, 103, 103));
-    jButton1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-    jButton1.setForeground(new java.awt.Color(254, 254, 254));
-    jButton1.setText("Search");
-    jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, -1, -1));
+    searchButton.setBackground(new java.awt.Color(103, 103, 103));
+    searchButton.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+    searchButton.setForeground(new java.awt.Color(254, 254, 254));
+    searchButton.setText("Search");
+    jPanel1.add(searchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, -1, -1));
 
-    jButton6.setBackground(new java.awt.Color(89, 89, 89));
-    jButton6.setForeground(new java.awt.Color(254, 254, 254));
-    jButton6.setText("Supprimer");
-    jButton6.addActionListener(new java.awt.event.ActionListener() {
+    supprimerButton.setBackground(new java.awt.Color(89, 89, 89));
+    supprimerButton.setForeground(new java.awt.Color(254, 254, 254));
+    supprimerButton.setText("Supprimer");
+    supprimerButton.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton6ActionPerformed(evt);
+            supprimerButtonActionPerformed(evt);
         }
     });
-    jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 390, -1, -1));
+    jPanel1.add(supprimerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 390, -1, -1));
 
     jLabel20.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
     jLabel20.setForeground(new java.awt.Color(136, 136, 136));
     jLabel20.setText("Email :");
     jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 70, -1));
 
-    jTextField7.setForeground(new java.awt.Color(66, 66, 66));
-    jTextField7.setToolTipText("");
-    jTextField7.setBorder(null);
-    jTextField7.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-    jTextField7.addActionListener(new java.awt.event.ActionListener() {
+    emailField.setForeground(new java.awt.Color(66, 66, 66));
+    emailField.setToolTipText("");
+    emailField.setBorder(null);
+    emailField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+    emailField.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jTextField7ActionPerformed(evt);
+            emailFieldActionPerformed(evt);
         }
     });
-    jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 150, 30));
+    jPanel1.add(emailField, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 150, 30));
 
     jSeparator7.setBackground(new java.awt.Color(206, 202, 198));
     jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 150, 14));
 
-    jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestion_de_scolarité/PL/AdminAccount/icons/picturesmall.png"))); // NOI18N
-    jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(136, 136, 136)));
-    jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 110, 140, 190));
+    imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gestion_de_scolarité/PL/AdminAccount/icons/picturesmall.png"))); // NOI18N
+    imageLabel.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(136, 136, 136)));
+    imageLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            imageLabelMouseClicked(evt);
+        }
+    });
+    jPanel1.add(imageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 110, 140, 190));
 
     jLabel30.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
     jLabel30.setForeground(new java.awt.Color(136, 136, 136));
     jLabel30.setText("Niveau : ");
     jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, 69, -1));
 
-    buttonGroup1.add(jRadioButton1);
-    jRadioButton1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-    jRadioButton1.setText("male");
-    jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, -1, 20));
+    buttonGroup1.add(maleRadio);
+    maleRadio.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+    maleRadio.setText("male");
+    jPanel1.add(maleRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, -1, 20));
 
-    buttonGroup1.add(jRadioButton2);
-    jRadioButton2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-    jRadioButton2.setText("female");
-    jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, -1, 20));
+    buttonGroup1.add(femaleRadio);
+    femaleRadio.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+    femaleRadio.setText("female");
+    jPanel1.add(femaleRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, -1, 20));
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -359,51 +385,99 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
     pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void annulerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annulerButtonActionPerformed
         this.setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_annulerButtonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void ajouterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterButtonActionPerformed
+        String nom = nomField.getText();
+        String prenom = prenomField.getText();
+        String adress = adressField.getText();
+        String phone = phoneField.getText();
+        String email = emailField.getText();
+        String lieuDeNai = lieuNaiField.getText();
+        String matiere = matiereCombo.getSelectedItem().toString();
+        Date dateNai = dateChooser.getSelectedDate().getTime();
+        int idNiveau = niveauCombo.getSelectedIndex();
+        
+        maleRadio.setActionCommand("male");
+        femaleRadio.setActionCommand("female");
+        boolean sex = true;
+        if(buttonGroup1.getSelection().getActionCommand().equals("male")){ sex = true;}
+        else { sex = false;}
+        admin.inscritEnseignant(nom, prenom, matiere, phone, dateNai, lieuDeNai, adress, idNiveau, email, sex, path);
+        
+        
+    }//GEN-LAST:event_ajouterButtonActionPerformed
+
+    private void nomFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_nomFieldActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void lieuNaiFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lieuNaiFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_lieuNaiFieldActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void adressFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adressFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_adressFieldActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void prenomFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prenomFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_prenomFieldActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void modifierButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifierButtonActionPerformed
         ElevesListeDetail eld = new ElevesListeDetail();
         eld.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_modifierButtonActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void phoneFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_phoneFieldActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_searchFieldActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void supprimerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_supprimerButtonActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_emailFieldActionPerformed
 
+    private void imageLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageLabelMouseClicked
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        // filter images
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images", "jpg","gif", "png");
+        fileChooser.addChoosableFileFilter(filter);
+        int result = fileChooser.showSaveDialog(null);
+        //if user click on save in  JFileChooser
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            path = selectedFile.getAbsolutePath();
+            imageLabel.setIcon(ResizeImage(path,null));
+        }else if (result == JFileChooser.CANCEL_OPTION) {
+            System.out.println("No data");
+        }
+    }//GEN-LAST:event_imageLabelMouseClicked
+
+    public ImageIcon ResizeImage(String imagePath, byte[] pic){
+        ImageIcon myImage = null;
+        if(imagePath != null){
+            myImage = new ImageIcon(imagePath);
+        }else{
+            myImage = new ImageIcon(pic);
+        }
+        
+        Image img = myImage.getImage();
+        Image newImg = img.getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        return image;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -440,17 +514,15 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField adressField;
+    private javax.swing.JButton ajouterButton;
+    private javax.swing.JButton annulerButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel classeLabel1;
-    private datechooser.beans.DateChooserCombo dateChooserCombo1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JLabel jLabel1;
+    private datechooser.beans.DateChooserCombo dateChooser;
+    private javax.swing.JTextField emailField;
+    private javax.swing.JRadioButton femaleRadio;
+    private javax.swing.JLabel imageLabel;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -462,8 +534,6 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -471,12 +541,16 @@ public class EditerLesEnseignants extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField lieuNaiField;
+    private javax.swing.JRadioButton maleRadio;
+    private javax.swing.JComboBox<String> matiereCombo;
+    private javax.swing.JButton modifierButton;
+    private javax.swing.JComboBox<String> niveauCombo;
+    private javax.swing.JTextField nomField;
+    private javax.swing.JTextField phoneField;
+    private javax.swing.JTextField prenomField;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JTextField searchField;
+    private javax.swing.JButton supprimerButton;
     // End of variables declaration//GEN-END:variables
 }

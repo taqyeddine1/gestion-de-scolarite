@@ -799,7 +799,8 @@ public class Administrateur extends Person{
    }
    
    public void inscritEnseignant(String nom, String prenom, String matiere, String phoneNumber, Date dateNai, String lieuNai, String adress, int indexNiveau, String email, boolean sex, String imagePath){
-       
+       MessageDialog msg = new MessageDialog();
+       boolean inscrit = false;
        String pattern = "yyyy-MM-dd";
        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
        String date = simpleDateFormat.format(dateNai);
@@ -807,7 +808,7 @@ public class Administrateur extends Person{
        DatabaseConnection person = new DatabaseConnection();
        DatabaseConnection classe = new DatabaseConnection();
        DatabaseConnection ens = new DatabaseConnection();
-       String personQuery = " insert into Person(nom ,prenom, phoneNumber, dateDeNaissance, lieuDeNaissance, adress, email, sex, photos)"
+       String personQuery = " insert into Person(nom ,prenom, numPhone, dateDeNaissance, lieuDeNaissance, adress, email, sex, photos)"
                                 + " values(?,?,?,?,?,?,?,?,?);";
        String classeQuery = "insert into Enseignant_Classe(idEnseignant, idClasse) values(?,?)";
        String ensQuery = "insert into Enseignant(idEnseignant, nbClasse, idMatiere) values(?,?,?);";
@@ -839,8 +840,15 @@ public class Administrateur extends Person{
        ens.ps.setInt(2, nbClasseEns(indexNiveau));
        ens.ps.setInt(3, selectIdMatiere(matiere));
        ens.ps.executeUpdate();
+       inscrit = true;
        } catch (Exception e) {
            System.out.println("error from inscritEnseignant() : " + e);
+       }
+       
+       if (inscrit) {
+           msg.messageText.setText("Enseignant bien ajouter !");
+       } else {
+           msg.messageText.setText("insertion failed !");
        }
    
    }
