@@ -21,6 +21,7 @@ import java.awt.Image;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -60,8 +61,6 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
     public AdminDashboard() {
         initComponents();
         this.setLocationRelativeTo(null); // this line to set the frame on the center fo the screen
-        //setBackground(new Color(0,0,0,0));
-        //setBackground(new Color(0,0,0,0));
         setBackground(new ColorUIResource(0, 0, 0));
         jTable2.getTableHeader().setForeground(new Color(60,60,60));
         jTable2.getTableHeader().setFont(new Font("segoe UI", Font.BOLD, 12));
@@ -92,6 +91,9 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
         
         //to set the combobox of absence transparent
         Abs_combobox.setVisible(false);
+         // make additional combox in gestion des enseignant to none visible
+        filterLabel.setVisible(false);
+        methodCombo.setVisible(false);
         
     }
 
@@ -197,9 +199,9 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
         jTable2 = new javax.swing.JTable();
         jButton6 = new javax.swing.JButton();
         class_label1 = new javax.swing.JLabel();
-        classecombo1 = new javax.swing.JComboBox<>();
-        matiereLabel1 = new javax.swing.JLabel();
-        classecombo2 = new javax.swing.JComboBox<>();
+        filterCombo = new javax.swing.JComboBox<>();
+        filterLabel = new javax.swing.JLabel();
+        methodCombo = new javax.swing.JComboBox<>();
         GestionDesAbsences = new javax.swing.JPanel();
         classecombo = new javax.swing.JComboBox<>();
         class_label = new javax.swing.JLabel();
@@ -1175,23 +1177,33 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
     class_label1.setForeground(new java.awt.Color(60, 60, 60));
     class_label1.setText("Filter par :");
 
-    classecombo1.setBackground(new java.awt.Color(254, 254, 254));
-    classecombo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tous", "Niveau", "Matière" }));
-    classecombo1.addActionListener(new java.awt.event.ActionListener() {
+    filterCombo.setBackground(new java.awt.Color(254, 254, 254));
+    filterCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tous", "Niveau", "Matière" }));
+    filterCombo.addItemListener(new java.awt.event.ItemListener() {
+        public void itemStateChanged(java.awt.event.ItemEvent evt) {
+            filterComboItemStateChanged(evt);
+        }
+    });
+    filterCombo.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            classecombo1ActionPerformed(evt);
+            filterComboActionPerformed(evt);
         }
     });
 
-    matiereLabel1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
-    matiereLabel1.setForeground(new java.awt.Color(60, 60, 60));
-    matiereLabel1.setText("Matière:");
+    filterLabel.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+    filterLabel.setForeground(new java.awt.Color(60, 60, 60));
+    filterLabel.setText("Matière:");
 
-    classecombo2.setBackground(new java.awt.Color(254, 254, 254));
-    classecombo2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tous", "Niveau", "Matière" }));
-    classecombo2.addActionListener(new java.awt.event.ActionListener() {
+    methodCombo.setBackground(new java.awt.Color(254, 254, 254));
+    methodCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tous", "Niveau", "Matière" }));
+    methodCombo.addItemListener(new java.awt.event.ItemListener() {
+        public void itemStateChanged(java.awt.event.ItemEvent evt) {
+            methodComboItemStateChanged(evt);
+        }
+    });
+    methodCombo.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            classecombo2ActionPerformed(evt);
+            methodComboActionPerformed(evt);
         }
     });
 
@@ -1202,35 +1214,35 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
         .addGroup(GestionDesEnseignantsLayout.createSequentialGroup()
             .addContainerGap()
             .addGroup(GestionDesEnseignantsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jScrollPane5)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GestionDesEnseignantsLayout.createSequentialGroup()
-                    .addGroup(GestionDesEnseignantsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GestionDesEnseignantsLayout.createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addComponent(jButton6))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GestionDesEnseignantsLayout.createSequentialGroup()
-                            .addComponent(class_label1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(classecombo1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(131, 131, 131)
-                            .addComponent(matiereLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(classecombo2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 241, Short.MAX_VALUE)))
-                    .addContainerGap())))
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jButton6))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GestionDesEnseignantsLayout.createSequentialGroup()
+                    .addComponent(class_label1)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(filterCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(143, 143, 143)
+                    .addComponent(filterLabel)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(methodCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 295, Short.MAX_VALUE)))
+            .addContainerGap())
     );
     GestionDesEnseignantsLayout.setVerticalGroup(
         GestionDesEnseignantsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GestionDesEnseignantsLayout.createSequentialGroup()
             .addGap(39, 39, 39)
-            .addGroup(GestionDesEnseignantsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(matiereLabel1)
-                .addComponent(class_label1)
-                .addComponent(classecombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(classecombo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(GestionDesEnseignantsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(GestionDesEnseignantsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(filterLabel)
+                    .addComponent(methodCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(GestionDesEnseignantsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(class_label1)
+                    .addComponent(filterCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGap(33, 33, 33)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 291, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+            .addGap(18, 18, 18)
             .addComponent(jButton6)
             .addGap(90, 90, 90))
     );
@@ -2183,13 +2195,13 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
        
     }//GEN-LAST:event_jTextField6KeyTyped
 
-    private void classecombo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classecombo1ActionPerformed
+    private void filterComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterComboActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_classecombo1ActionPerformed
+    }//GEN-LAST:event_filterComboActionPerformed
 
-    private void classecombo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classecombo2ActionPerformed
+    private void methodComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_methodComboActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_classecombo2ActionPerformed
+    }//GEN-LAST:event_methodComboActionPerformed
 
     private void classecombo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classecombo3ActionPerformed
         // TODO add your handling code here:
@@ -2304,6 +2316,21 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
         updateTableMatiere(jComboBox3.getSelectedIndex());
     }//GEN-LAST:event_jComboBox3ItemStateChanged
 
+    private void filterComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_filterComboItemStateChanged
+        updateTableEnseignant();
+        if (filterCombo.getSelectedIndex()==0) {
+            filterLabel.setVisible(false);
+            methodCombo.setVisible(false);
+        } else {
+            filterLabel.setVisible(true);
+            methodCombo.setVisible(true);
+        }
+    }//GEN-LAST:event_filterComboItemStateChanged
+
+    private void methodComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_methodComboItemStateChanged
+        updateTableEnseignant();
+    }//GEN-LAST:event_methodComboItemStateChanged
+
     /**
      * this method to get the text of the selected radioButton in buttonGroup
      * @param buttonGroup
@@ -2374,6 +2401,72 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
         
     }
     
+    public void updateTableEnseignant(){
+       
+        String query = null;
+        int idNiveau = 40;
+        int filter = filterCombo.getSelectedIndex();
+        Administrateur admin = new Administrateur();
+        
+        
+        
+        switch(filter){
+            case 0:
+                filterLabel.setVisible(false);
+                methodCombo.setVisible(false);
+                query = "select nom, prenom,  dateDeNaissance, lieuDeNaissance, adress, numPhone, m.matiere " +
+                        "from Person as pe right join Enseignant as en on pe.idPerson = en.idEnseignant left join matiere as m on " +
+                        "m.idMatiere = en.idMatiere ;"; break;
+            case 1:
+                filterLabel.setVisible(true);
+                methodCombo.setVisible(true);
+                filterLabel.setText("Niveau :");
+                ArrayList<String> niMbo = new ArrayList<>(); 
+                niMbo.add("1ere année");
+                niMbo.add("2eme année");
+                niMbo.add("3eme année");
+                niMbo.add("4eme année");
+                methodCombo.setModel(new DefaultComboBoxModel(niMbo.toArray()));
+                int filterMethod = methodCombo.getSelectedIndex();
+                //this take the turn the index of niveau combo
+                switch(filterMethod){
+                    case 0: idNiveau = 40; break;
+                    case 1: idNiveau = 41; break;
+                    case 2: idNiveau = 42; break;
+                    case 3: idNiveau = 43; break;
+                }
+                query = "select pe.nom, pe.prenom,  pe.dateDeNaissance, pe.lieuDeNaissance, pe.adress, pe.numPhone, m.matiere " +
+                        "from Person as pe right join Enseignant as en on pe.idPerson = en.idEnseignant left join Matiere as m on " +
+                        "m.idMatiere = en.idMatiere left join Enseignant_Classe ec on en.idEnseignant = ec.idEnseignant left join Classe c on c.idClasse = ec.idClasse " +
+                        "where c.idNiveau = "+idNiveau+";"; break;
+            case 2:
+                filterLabel.setVisible(true);
+                methodCombo.setVisible(true);
+                filterLabel.setText("Matiere :");
+                ArrayList<Matière> listMat = new ArrayList<>();
+                listMat = admin.selectMatiere(10); //the paramatre should be here whatever value exept of 0,1,2 or 3
+                ArrayList<String> mStringList = new ArrayList<>();
+                for (int i = 0; i < listMat.size(); i++) {
+                    mStringList.add(listMat.get(i).getMatière());
+                }
+                methodCombo.setModel(new DefaultComboBoxModel(mStringList.toArray()));
+                String matiereCombo = methodCombo.getSelectedItem().toString();
+                query = "select pe.nom, pe.prenom,  pe.dateDeNaissance, pe.lieuDeNaissance, pe.adress, pe.numPhone, m.matiere " +
+                        "from Person as pe right join Enseignant as en on pe.idPerson = en.idEnseignant left join Matiere as m on " +
+                        "m.idMatiere = en.idMatiere where m.matiere = '" + matiereCombo + "';"; break;
+                
+        }
+        
+       DatabaseConnection dc = new DatabaseConnection();
+        try {
+            dc.stmt= dc.conn.createStatement();
+            dc.rs= dc.stmt.executeQuery(query);
+            jTable2.setModel(DbUtils.resultSetToTableModel(dc.rs));
+    }catch (SQLException ex) {
+            System.out.println("message error from updateTable2(): "+ex);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -2429,8 +2522,6 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
     private javax.swing.JLabel class_label3;
     private javax.swing.JLabel classeLabel;
     private javax.swing.JComboBox<String> classecombo;
-    private javax.swing.JComboBox<String> classecombo1;
-    private javax.swing.JComboBox<String> classecombo2;
     private javax.swing.JComboBox<String> classecombo3;
     private javax.swing.JComboBox<String> classecombo4;
     private javax.swing.JComboBox<String> classecombo5;
@@ -2441,6 +2532,8 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
     private datechooser.beans.DateChooserCombo dateChooser;
     private javax.swing.JTextField emailField;
     private javax.swing.JRadioButton femalleRadioB;
+    private javax.swing.JComboBox<String> filterCombo;
+    private javax.swing.JLabel filterLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -2530,9 +2623,9 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
     private javax.swing.JRadioButton maleRadioB;
     private javax.swing.JComboBox<String> matiereCombo;
     private javax.swing.JLabel matiereLabel;
-    private javax.swing.JLabel matiereLabel1;
     private javax.swing.JLabel matiereLabel2;
     private javax.swing.JLabel matiereLabel3;
+    private javax.swing.JComboBox<String> methodCombo;
     private javax.swing.JComboBox<String> niveauCombo;
     private javax.swing.JLabel niveauLabel;
     private javax.swing.JTextField nomField;
@@ -2550,7 +2643,10 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
 
     @Override
     public void windowOpened(WindowEvent e) {
+        filterLabel.setVisible(false);
+        methodCombo.setVisible(false);
         updateTableMatiere(jComboBox3.getSelectedIndex());
+        updateTableEnseignant();
     }
 
     @Override
@@ -2572,12 +2668,14 @@ public class AdminDashboard extends javax.swing.JFrame implements WindowListener
     @Override
     public void windowActivated(WindowEvent e) {
         updateTableMatiere(jComboBox3.getSelectedIndex());
+        updateTableEnseignant();
         GestionDesMaitieres.updateUI();
     }
 
     @Override
     public void windowDeactivated(WindowEvent e) {
         updateTableMatiere(jComboBox3.getSelectedIndex());
+        updateTableEnseignant();
     }
     
     

@@ -91,7 +91,6 @@ public class Administrateur extends Person{
          }catch(SQLException e){
           System.out.print("error in login() Adminstrateur's Class .");
          }
-       dc.closeConnection();
        
        return access;
    }
@@ -130,7 +129,6 @@ public class Administrateur extends Person{
          }catch(SQLException e){
           System.out.println("message error from getPerson:" + e);
          }
-         dc.closeConnection();
          return list;
        
    }
@@ -160,7 +158,6 @@ public class Administrateur extends Person{
          }catch(SQLException e){
           System.out.println("message error from getIdAnnee():" + e);
          }
-       dc.closeConnection();
        return id;
    }
    
@@ -346,7 +343,6 @@ public class Administrateur extends Person{
         } catch (SQLException ex) {
             System.out.println("message from : "+ex);
         }
-        dc.closeConnection();
        return idList;  
    }
    
@@ -529,10 +525,7 @@ public class Administrateur extends Person{
            }
          
        }
-       
-       dc.closeConnection();
-       dc2.closeConnection();
-       
+      
    }
   
    /**
@@ -553,7 +546,6 @@ public class Administrateur extends Person{
        } catch (Exception e) {
            System.out.println("error from classeDesponible()!");
        }
-           dc.closeConnection();
            return  (35-nbClasse);
        }
    
@@ -582,7 +574,6 @@ public class Administrateur extends Person{
         } catch (Exception e) {
             System.out.println("message from selectNbClasse() :"+ e);
         }
-        dc2.closeConnection();
         return count;
     }
    
@@ -783,6 +774,8 @@ public class Administrateur extends Person{
         }else if (niveau == 3) {
             query = "select m.idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, concat(p.nom,' ',p.prenom) as 'Enseignant responsable' from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere left join Enseignant as en on en.idEnseignant = m.idEnseignantResponsable left join Person as p on p.idPerson = en.idEnseignant  "
                   + " where mn.idNiveau = 43;";
+        }else{
+            query = "select m.idMatiere as id, matiere, fondamental as 'Si fondamental', coefficient, concat(p.nom,' ',p.prenom) as 'Enseignant responsable' from Matiere as m left join Matiere_Niveau as mn on mn.idMatiere = m.idMatiere left join Enseignant as en on en.idEnseignant = m.idEnseignantResponsable left join Person as p on p.idPerson = en.idEnseignant ;";
         }
              
        try {
@@ -812,7 +805,11 @@ public class Administrateur extends Person{
                                 + " values(?,?,?,?,?,?,?,?,?);";
        String classeQuery = "insert into Enseignant_Classe(idEnseignant, idClasse) values(?,?)";
        String ensQuery = "insert into Enseignant(idEnseignant, nbClasse, idMatiere) values(?,?,?);";
-       int idperson = idPerson(nom, prenom, dateNai);
+       int idperson;
+       int idMatiere;
+       int nbClasses;
+       int idClasse;
+       
        try{
            
            InputStream img = new FileInputStream(new File(imagePath));
@@ -829,17 +826,24 @@ public class Administrateur extends Person{
        person.ps.setBoolean(8, sex);
        person.ps.setBlob(9, img);
        person.ps.executeUpdate();
-        
+       
+       //insert date into Enseignant table
+       idperson = idPerson(nom, prenom, dateNai);
+       idMatiere = selectIdMatiere(matiere);
+       nbClasses = nbClasseEns(indexNiveau);
+       ens.ps = ens.conn.prepareStatement(ensQuery);
+       ens.ps.setInt(1, idperson);
+       ens.ps.setInt(2, nbClasses);
+       ens.ps.setInt(3, idMatiere);
+       ens.ps.executeUpdate();
+       
+       //insert date into Enseignant_Classe table
+       idClasse = idClasse(indexNiveau);
        classe.ps = classe.conn.prepareStatement(classeQuery);
-       classe.ps.setInt(1, idPerson(nom, prenom, dateNai));
-       classe.ps.setInt(2, idClasse(indexNiveau));
+       classe.ps.setInt(1, idperson);
+       classe.ps.setInt(2, idClasse);
        classe.ps.executeUpdate();
        
-       ens.ps = ens.conn.prepareStatement(ensQuery);
-       ens.ps.setInt(1, idPerson(nom, prenom, dateNai));
-       ens.ps.setInt(2, nbClasseEns(indexNiveau));
-       ens.ps.setInt(3, selectIdMatiere(matiere));
-       ens.ps.executeUpdate();
        inscrit = true;
        } catch (Exception e) {
            System.out.println("error from inscritEnseignant() : " + e);
@@ -850,7 +854,7 @@ public class Administrateur extends Person{
        } else {
            msg.messageText.setText("insertion failed !");
        }
-   
+  msg.setVisible(true);
    }
    
    /**
